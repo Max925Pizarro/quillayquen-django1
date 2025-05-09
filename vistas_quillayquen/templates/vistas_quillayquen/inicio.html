@@ -1,0 +1,1729 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vistas Quillayquen | Recintos y Servicios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0033cc;
+            --primary-dark: #002db3;
+            --primary-light: #4d79ff;
+            --secondary-color: #0099ff;
+            --secondary-dark: #0099ff;
+            --dark-color: #002a99;
+            --light-color: #f8f9fa;
+            --gray-color: #6c757d;
+            --light-gray: #e9ecef;
+            --white: #ffffff;
+            --black: #212529;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--black);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            padding-top: 90px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Header Mejorado */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1030;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: rgba(255, 255, 255, 0.9);
+            transform: translateX(2px);
+        }
+
+        /* Logo Mejorado */
+        .logo {
+            position: fixed;
+            top: 10px;
+            left: 20px;
+            z-index: 1031;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--white);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .logo img:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Botones de Navegación Mejorados */
+        .nav-btn {
+            position: relative;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 30px;
+            border: none;
+            color: var(--white);
+            background-color: rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            margin: 0 5px;
+        }
+
+        .nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn:active {
+            transform: translateY(0);
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn.active {
+            background-color: var(--white);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Botones pequeños */
+        .btn-volver-sm {
+            padding: 5px 15px !important;
+            font-size: 0.85rem !important;
+            margin-right: 10px !important;
+        }
+
+        /* Carrusel Mejorado */
+        .carousel {
+            margin-top: 20px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-item img {
+            height: 400px;
+            object-fit: cover;
+            filter: brightness(0.9);
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item:hover img {
+            transform: scale(1.02);
+        }
+
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            bottom: 70px;
+            left: 10%;
+            right: 10%;
+            backdrop-filter: blur(5px);
+        }
+
+        .carousel-caption h5 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-caption p {
+            font-size: 1.1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+
+        /* Secciones de contenido (Quiénes Somos, Misión y Visión) */
+        .content-section {
+            background-color: var(--white);
+            padding: 60px 0;
+            margin-top: 60px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            display: none;
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .content-section .titulo-seccion {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .content-section .titulo-seccion::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .content-section .descripcion {
+            font-size: 1.1rem;
+            color: var(--gray-color);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .content-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            transition: transform 0.5s ease;
+        }
+
+        .content-section img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Imagen circular pequeña y profesional para "Quiénes Somos" */
+        .img-circle-small {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            transition: transform 0.5s ease;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .img-circle-small:hover {
+            transform: scale(1.05);
+        }
+
+        /* Servicios Mejorados */
+        .servicios-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        .titulo-seccion {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .titulo-seccion::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+        
+        .tarjetas-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tarjeta-servicio {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            background: var(--white);
+            position: relative;
+        }
+        
+        .tarjeta-servicio:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+        }
+        
+        .imagen-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .imagen-servicio {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .tarjeta-servicio:hover .imagen-servicio {
+            transform: scale(1.1);
+        }
+        
+        .contenido-tarjeta {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .contenido-tarjeta h3 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .contenido-tarjeta h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        
+        .contenido-tarjeta p {
+            color: var(--gray-color);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .precio-servicio {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin: 15px 0;
+        }
+
+        /* Botones de Formularios Mejorados */
+        .form-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-reserva,
+        .btn-cotizacion {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 51, 204, 0.3);
+            min-width: 220px;
+            text-align: center;
+        }
+
+        .btn-reserva:hover,
+        .btn-cotizacion:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 51, 204, 0.4);
+        }
+
+        .btn-reserva:active,
+        .btn-cotizacion:active {
+            transform: translateY(0);
+        }
+
+        .btn-reserva::before,
+        .btn-cotizacion::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-reserva:hover::before,
+        .btn-cotizacion:hover::before {
+            left: 100%;
+        }
+
+        .btn-cotizacion {
+            background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
+            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+        }
+
+        .btn-cotizacion:hover {
+            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.4);
+        }
+
+        /* Formularios Mejorados */
+        .form-section {
+            display: none;
+            padding: 50px 0;
+            background-color: var(--light-gray);
+        }
+
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reservation-section, .quote-section {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            max-width: 700px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reservation-section::before,
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .btn-volver {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-right: 15px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-volver:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateX(-5px);
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+        }
+
+        .form-control, .form-select {
+            padding: 12px 15px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(0, 51, 204, 0.25);
+        }
+
+        /* Footer Mejorado */
+        footer {
+            background: linear-gradient(135deg, var(--dark-color), var(--primary-dark));
+            color: var(--white);
+            padding: 40px 0 20px;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px 25px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .separator {
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: 300;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+        }
+
+        .copyright {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        /* Modal de Reglas Mejorado */
+        .modal-rules {
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .modal-rules .modal-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            border-bottom: none;
+            padding: 20px;
+        }
+
+        .modal-rules .modal-title {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .modal-rules .modal-body {
+            padding: 25px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .modal-rules .rule-item {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .modal-rules .rule-item:last-child {
+            border-bottom: none;
+        }
+
+        .modal-rules .rule-item h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .modal-rules .btn-close {
+            filter: invert(1);
+        }
+
+        /* Horarios disponibles */
+        .time-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .time-slot {
+            padding: 8px 15px;
+            border-radius: 5px;
+            background-color: var(--light-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot:hover {
+            background-color: var(--primary-light);
+            color: white;
+        }
+
+        .time-slot.booked {
+            background-color: #dc3545;
+            color: white;
+            cursor: not-allowed;
+        }
+
+        .time-slot.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .carousel-item img {
+                height: 350px;
+            }
+            
+            .tarjeta-servicio {
+                max-width: 280px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+            
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+            
+            .logo img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .carousel-item img {
+                height: 300px;
+            }
+            
+            .carousel-caption {
+                bottom: 20px;
+                padding: 15px;
+            }
+            
+            .carousel-caption h5 {
+                font-size: 1.4rem;
+            }
+            
+            .carousel-caption p {
+                font-size: 1rem;
+            }
+            
+            .form-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-reserva,
+            .btn-cotizacion {
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .reservation-section, 
+            .quote-section {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo {
+                left: 15px;
+            }
+            
+            .logo img {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .carousel-item img {
+                height: 250px;
+            }
+            
+            .carousel-caption {
+                bottom: 10px;
+                left: 5%;
+                right: 5%;
+                padding: 10px;
+            }
+            
+            .carousel-caption h5 {
+                font-size: 1.2rem;
+            }
+            
+            .carousel-caption p {
+                font-size: 0.9rem;
+            }
+            
+            .titulo-seccion {
+                font-size: 1.8rem;
+            }
+            
+            .reservation-section, 
+            .quote-section {
+                padding: 20px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .separator {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<!-- Logo -->
+<div class="logo">
+    <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/304119837_1258996464925885_5095840868789037444_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=GgsBFIpBS_UQ7kNvwFd95nh&_nc_oc=Adk4ZATRCuTrlFDVxerudPZW0Z4I5NtweXEucc8utYCar9fDKf1asP9Ooh7VdbUq34VW8HkBvIJvBjZmqQ20oYpi&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=Me0K9YHu1mB8C2Gn-JIXRg&oh=00_AfK4jeUvjtfLbz0cfiINBXdiIKxcqDJFytX9FhgFzJIqXA&oe=681F391F" alt="Logo Vistas Quillayquen">
+</div>
+
+<!-- Header Mejorado -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span>Vistas del Quillayquen</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <div class="d-flex align-items-center">
+                    <button class="nav-btn" onclick="toggleSection('quienes-somos')">
+                        <i class="fas fa-info-circle me-2"></i>Conócenos
+                    </button>
+                    <button class="nav-btn" onclick="toggleSection('mision-vision')">
+                        <i class="fas fa-bullseye me-2"></i>Misión y Visión
+                    </button>
+                    <button class="nav-btn" data-bs-toggle="modal" data-bs-target="#rulesModal">
+                        <i class="fas fa-clipboard-list me-2"></i>Reglas
+                    </button>
+                    <button class="nav-btn" data-bs-toggle="modal" data-bs-target="#priceModal">
+                        <i class="fas fa-dollar-sign me-2"></i>Precios
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+</body>
+</html>
+
+<!-- Modal Precios -->
+<div class="modal fade" id="priceModal" tabindex="-1" aria-labelledby="priceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="priceModalLabel">
+                    <i class="fas fa-dollar-sign me-2"></i>Información de Precios
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <p>El valor de la cancha de fútbol es de <strong>24.000 pesos por hora</strong>.</p>
+                <p>El valor de la piscina en temporada baja es de <strong>8.000 pesos</strong>.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<!-- Carrusel Mejorado -->
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/483567085_1152787176469939_7394208534125839537_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Oz4GlQAB9mEQ7kNvwEsFcuX&_nc_oc=AdmqxWyvvu-4ELqD3883-dXSJUcXr1dQRcksA9e_PEfOYm4h6PXcABZ7gRD2UTjZe5TxVoJ95vjt2A4G_0dIo25e&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=WPG41qfipUfFucIjmUpcsA&oh=00_AfJ3aILhiACImB6o1xnPBpXdLUDtGqCZBTi5mwOnv7gVdg&oe=682062E6" class="d-block w-100" alt="Disfruta de nuestras instalaciones">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Disfruta de nuestras instalaciones</h5>
+          <p>Vistas espectaculares y servicios de calidad</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://scontent.fscl20-1.fna.fbcdn.net/v/t39.30808-6/484307757_1154127746335882_8225832934912517591_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=N_Y47iRK6bwQ7kNvwGIiZMO&_nc_oc=AdlwgEobl9H7HWNhG0F4rn1VOI4Tc4vE42C4EZXdBL3xPpNV55TjImEJkus9iiyOSZ4&_nc_zt=23&_nc_ht=scontent.fscl20-1.fna&_nc_gid=iFdVJgVe0_L8XOHL04QwCg&oh=00_AfL7MDvvF1FzOMywA4ooc6q2VA-Mwc0d0mrVgkn3AP7ATg&oe=681F7E91" class="d-block w-100" alt="Eventos inolvidables">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Eventos inolvidables</h5>
+          <p>Celebra tus momentos especiales con nosotros</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t1.6435-9/43632680_312189552939919_7507587332871028736_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=_2kfkw3bp3AQ7kNvwHkh6Lu&_nc_oc=AdmuFYfvuUWaU_-XRIwZFJ34Pmj-YtSy-jMq6n2tSiV3TuCB3pHcgVzysotCybxAopnVPu2SvfWYNYZP1ah9eUcD&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=OZ677xM6ZHbavoQ6eS9Ggw&oh=00_AfKegFs1f6Qqi5HlFC0DbAiST4dihhKJSdEKPZzrEAxx8A&oe=6841E749" class="d-block w-100" alt="Áreas verdes">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Áreas verdes</h5>
+          <p>Espacios ideales para relajarte y disfrutar</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+</div>
+  
+<!-- Sección "Quiénes Somos" Mejorada -->
+<div id="quienes-somos" class="content-section">
+    <div class="container">
+        <h2 class="titulo-seccion">Quiénes Somos</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <p class="descripcion">
+                    En <strong>Vistas Quillayquen</strong>, nos dedicamos a ofrecer experiencias inolvidables en un entorno natural único. 
+                    Contamos con instalaciones de primer nivel, ideales para eventos, reuniones familiares y actividades recreativas. 
+                    Nuestro compromiso es brindar un servicio de calidad, asegurando que cada visita sea especial.
+                </p>
+                <p class="descripcion">
+                    Desde piscinas y áreas verdes hasta quinchos y canchas deportivas, nuestro objetivo es ser el lugar perfecto para 
+                    desconectarte y disfrutar de momentos únicos con tus seres queridos.
+                </p>
+                <div class="mt-4">
+                    <button class="btn btn-primary" onclick="showForm('cotizacion')">
+                        <i class="fas fa-calendar-alt me-2"></i>Planificar Evento
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-4 mt-lg-0">
+                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/483567085_1152787176469939_7394208534125839537_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Oz4GlQAB9mEQ7kNvwEsFcuX&_nc_oc=AdmqxWyvvu-4ELqD3883-dXSJUcXr1dQRcksA9e_PEfOYm4h6PXcABZ7gRD2UTjZe5TxVoJ95vjt2A4G_0dIo25e&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=uci260rajFk8C5HI_SGp4w&oh=00_AfKXXizBqr8grxfdcZFtC4V1fvlvsSroq2wnt6oKH0fVQQ&oe=682062E6" alt="Piscina" class="img-fluid img-circle-small shadow">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sección "Misión y Visión" -->
+<div id="mision-vision" class="content-section">
+    <div class="container">
+        <h2 class="titulo-seccion">Misión y Visión</h2>
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-center text-primary">
+                            <i class="fas fa-bullseye me-2"></i>Misión
+                        </h3>
+                        <p class="card-text">
+                            Brindar un espacio multifuncional que combine deportes, entretenimiento y eventos sociales, 
+                            ofreciendo instalaciones de calidad y un ambiente único para disfrutar en familia, con amigos 
+                            o en actividades profesionales.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-center text-primary">
+                            <i class="fas fa-eye me-2"></i>Visión
+                        </h3>
+                        <p class="card-text">
+                            Ser el centro líder entre nuestros competidores, reconocido por su excelencia en el servicio, 
+                            infraestructura innovadora y compromiso con el bienestar de nuestros clientes, promoviendo 
+                            la integración, la salud y el deporte en un solo lugar.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <button class="btn btn-outline-primary" onclick="hideAllSections()">
+                <i class="fas fa-times me-2"></i>Cerrar
+            </button>
+        </div>
+    </div>
+</div>
+  
+<!-- Servicios Mejorados -->
+<div class="servicios-container">
+    <h2 class="titulo-seccion">Nuestros Recintos</h2>
+    
+    <div class="tarjetas-wrapper">
+        <!-- Tarjeta 1 - Piscinas -->
+        <div class="tarjeta-servicio">
+            <div class="imagen-container">
+                <img src="https://scontent.fscl36-1.fna.fbcdn.net/v/t39.30808-6/484338387_1152787399803250_9021000308489321049_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=tlIX12uyDroQ7kNvwGeLavs&_nc_oc=Adn3lim5eiRFVlRZEuK1DZm2gZnl6F9axBi7KpsU5-j0gw1YxQvN3melVsuwHa6w-dI&_nc_zt=23&_nc_ht=scontent.fscl36-1.fna&_nc_gid=DgPV8qGHrOZiVjFeNtki1A&oh=00_AfK3mv31i0lp0mkdXYmUpJDlx-9maqgEErJFsSMFOEJSRA&oe=681F77CB" alt="Piscina" class="imagen-servicio">
+            </div>
+            <div class="contenido-tarjeta">
+                <h3>Piscinas</h3>
+                <p>Disfruta de nuestras piscinas con vistas espectaculares y áreas de descanso completamente equipadas para tu comodidad.</p>
+                <button class="btn btn-outline-primary btn-sm mt-2" onclick="showForm('cotizacion')">
+                    Reservar ahora
+                </button>
+            </div>
+        </div>
+
+        <!-- Tarjeta 2 - Canchas -->
+        <div class="tarjeta-servicio">
+            <div class="imagen-container">
+                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t1.6435-9/43679388_312189109606630_1092131465212198912_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFu9j-oj4LoMdNt7QsOpwIOXL1niphATdFcvWeKmEBN0UBoOl1AxgkxcaLAg0JV1brmSjRs_B6I9p9qVoh7nI3F&_nc_ohc=BwbeMwYAMT8Q7kNvwHyDmuh&_nc_oc=Adm6J6qDJGh_oXgzerb_91E0Y42tP3ez42UX_FKD3k5fwRk2sRZ2JgLKEuCC_XydXWbnnyeOgPwQeLH9ANyA0VAl&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=CSuzgs8rYCcZ6p2ZahZ_9Q&oh=00_AfGRP8oUnaJ_0V65jvXgTxV_WF1wNjPVHQpd7gJyP4v23w&oe=681E542C" alt="Canchas" class="imagen-servicio">
+            </div>
+            <div class="contenido-tarjeta">
+                <h3>Canchas Deportivas</h3>
+                <p>Canchas de fútbol  para todos los niveles, con iluminación profesional y mantenimiento de primera.</p>
+                <button class="btn btn-outline-primary btn-sm mt-2" onclick="showForm('reserva')">
+                    Reservar ahora
+                </button>
+            </div>
+        </div>
+
+        <!-- Tarjeta 3 - Quinchos -->
+        <div class="tarjeta-servicio">
+            <div class="imagen-container">
+                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/480442738_1136507014764622_5335760524264407127_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=kvth4wJi5TUQ7kNvwEyK-3F&_nc_oc=AdkGV5ji1KGTpzLwHbRfdMVYzkggTg9_u2PGJMa46N9A_UJttpny0mq3poJdlJCYQF5Gnr-38zDvD4NQcV3DLu2X&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=noEefwCnrUUyhlJWorcZ5Q&oh=00_AfKPnsrtAiOqT47ucl4bGflPGtykUQ773ww-f5aEBFYszg&oe=68206A37" alt="Quinchos" class="imagen-servicio">
+            </div>
+            <div class="contenido-tarjeta">
+                <h3>Quinchos</h3>
+                <p>Espacios perfectos para tus asados y reuniones, equipados con parrillas, mesas y áreas de descanso.</p>
+                <button class="btn btn-outline-primary btn-sm mt-2" onclick="showForm('cotizacion')">
+                    Reservar ahora
+                </button>
+            </div>
+        </div>
+
+        <!-- Tarjeta 4 - Áreas verdes -->
+        <div class="tarjeta-servicio">
+            <div class="imagen-container">
+                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t1.6435-9/50407787_362181131274094_3980882131554402304_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=bbHnzIBcTwsQ7kNvwFz14rS&_nc_oc=AdmhAbXE4808leH2cbz8bgvxjyDEAGPLdzG5Az3j7HbXdyqTkrn49LaoLU-pwfsOsmFYpbEhDKNAD_oOS7AFaRIf&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=cPH0eRSFNZjFEOl3Et99ow&oh=00_AfFQsz-5ESCjopGSlAp0pw-y_qAd3SUyZxevUXR4VrO4Rg&oe=68364254" alt="Áreas verdes" class="imagen-servicio">
+            </div>
+            <div class="contenido-tarjeta">
+                <h3>Áreas Verdes</h3>
+                <p>Amplias zonas de camping y áreas verdes para disfrutar de la naturaleza con toda la familia.</p>
+                <button class="btn btn-outline-primary btn-sm mt-2" onclick="showForm('cotizacion')">
+                    Reservar ahora
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Botones para formularios Mejorados -->
+<div class="form-buttons">
+    <button class="btn-reserva" onclick="showForm('reserva')">
+        <i class="fas fa-calendar-check me-2"></i>Reservar Cancha
+    </button>
+    <button class="btn-cotizacion" onclick="showForm('cotizacion')">
+        <i class="fas fa-clipboard-list me-2"></i>Planificar Evento
+    </button>
+</div>
+
+<!-- Modal de Reglas Mejorado -->
+<div class="modal fade modal-rules" id="rulesModal" tabindex="-1" aria-labelledby="rulesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rulesModalLabel">
+                    <i class="fas fa-clipboard-list me-2"></i>Reglas de los Recintos
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="rule-item">
+                    <h5><i class="fas fa-clock me-2"></i>Horarios</h5>
+                    <p>Respetar los horarios de apertura y cierre establecidos. El acceso fuera de horario no está permitido.</p>
+                </div>
+                
+                <div class="rule-item">
+                    <h5><i class="fas fa-wine-bottle me-2"></i>Bebidas Alcohólicas</h5>
+                    <p>No se permite el ingreso de bebidas alcohólicas. El consumo de alcohol está estrictamente prohibido en todas las instalaciones.</p>
+                </div>
+                
+                <div class="rule-item">
+                    <h5><i class="fas fa-broom me-2"></i>Limpieza</h5>
+                    <p>Mantener el área limpia y libre de basura. Utilizar los contenedores de residuos dispuestos en todo el recinto.</p>
+                </div>
+                
+                <div class="rule-item">
+                    <h5><i class="fas fa-user-tie me-2"></i>Personal</h5>
+                    <p>Seguir las instrucciones del personal en todo momento. Ellos están para garantizar su seguridad y comodidad.</p>
+                </div>
+                
+                <div class="rule-item">
+                    <h5><i class="fas fa-exclamation-triangle me-2"></i>Responsabilidad</h5>
+                    <p>El uso de las instalaciones es bajo su propio riesgo. La administración no se hace responsable por accidentes o daños causados por mal uso.</p>
+                </div>
+                
+                <div class="rule-item">
+                    <h5><i class="fas fa-swimming-pool me-2"></i>Artículo N°70 - Piscinas</h5>
+                    <p>NO PODRÁN INGRESAR A LAS PISCINAS PERSONAS QUE PORTEN PARCHES O VENDAS DE CUALQUIER TIPO O AFECCIONES DE LA PIEL, DE LAS MUCOSAS O DE LAS VÍAS RESPIRATORIAS, ASIMISMO QUIENES ESTÉN BAJO EL EFECTO DEL ALCOHOL O DROGAS.</p>
+                </div>
+                
+                <div class="rule-item">
+                    <h5><i class="fas fa-shower me-2"></i>Artículo N°71 - Higiene</h5>
+                    <p>LOS BAÑISTAS DEBEN TOMAR UN BAÑO JABONOSO COMPLETO DE DUCHA ANTES DE SALIR DE LOS CAMARINES. TODO BAÑISTA QUE SALGA DEL ÁREA DE ESPARCIMIENTO Y USE EL EXCUSADO, DEBERÁ LAVARSE CON JABÓN EN LAS DUCHAS ANTES DE REGRESAR A LA PISCINA. QUEDA PROHIBIDO ESCUPIR, SONARSE LA NARIZ O CONTAMINAR DE ALGUNA OTRA FORMA EL AGUA DE LA PILETA, ASIMISMO CONSUMIR BEBIDAS, ALIMENTOS O MASTICAR CHICLE DENTRO DE ESTA.</p>
+                </div>
+                
+                <div class="rule-item">
+                    <h5><i class="fas fa-ban me-2"></i>Artículo N°72 - Prohibiciones</h5>
+                    <p>SE PROHÍBE EL INGRESO Y CONSUMO DE BEBIDAS ALCOHÓLICAS ASÍ COMO DE SUSTANCIAS PROHIBIDAS POR LA LEY DE DROGAS DENTRO DEL RECINTO DE LA PISCINA.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                    <i class="fas fa-check me-2"></i>Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Formulario de Reserva Mejorado -->
+<div id="reserva-form" class="form-section">
+    <div class="reservation-section">
+        <h3 class="text-center mb-4">
+            <i class="fas fa-calendar-check me-2"></i>Reserva de Cancha
+        </h3>
+        <p class="text-center text-muted mb-4">Complete el formulario para reservar su cancha. Valor: $24.000 por hora.</p>
+        
+        <form id="reservationForm">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="date" class="form-label">Fecha de Reserva</label>
+                    <input type="date" class="form-control" id="date" required>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Horarios Disponibles (12:00 - 23:00 hrs)</label>
+                <div class="time-slots" id="timeSlots">
+                    <!-- Los horarios se generarán dinámicamente con JavaScript -->
+                </div>
+                <input type="hidden" id="selected-time" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="name" class="form-label">Nombre Completo</label>
+                <input type="text" class="form-control" id="name" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="phone" class="form-label">Número de Teléfono</label>
+                <input type="tel" class="form-control" id="phone" placeholder="+56 9 1234 5678" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="payment" class="form-label">Método de Pago</label>
+                <select class="form-select" id="payment" required>
+                    <option value="" disabled selected>Seleccione un método de pago</option>
+                    <option value="Transferencia">Transferencia Bancaria</option>
+                    <option value="Efectivo">Efectivo en el lugar</option>
+                    <option value="Tarjeta">Tarjeta de Crédito/Débito</option>
+                </select>
+            </div>
+            
+            <div class="mb-3">
+                <label for="comments" class="form-label">Comentarios Adicionales</label>
+                <textarea class="form-control" id="comments" rows="3" placeholder="Especifique duración o cualquier otro detalle..."></textarea>
+            </div>
+            
+            <div class="alert alert-info mt-4">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong>Nota:</strong> El pago debe realizarse antes de utilizar las instalaciones. Cancelaciones con 24 horas de anticipación.
+            </div>
+            
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-lg me-3">
+                    <i class="fas fa-paper-plane me-2"></i>Enviar Reserva
+                </button>
+                <button type="button" class="btn btn-outline-secondary btn-lg" onclick="hideForms()">
+                    <i class="fas fa-times me-2"></i>Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Formulario de Solicitud de Cotización -->
+<div id="cotizacion-form" class="form-section">
+    <div class="quote-section">
+        <!-- Encabezado con controles de navegación -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="hideForms()">
+                <i class="fas fa-arrow-left me-2"></i>Volver
+            </button>
+            <h3 class="text-center flex-grow-1 m-0">
+                <i class="fas fa-file-contract me-2"></i>Solicitud de Cotización
+            </h3>
+            <button type="button" class="btn btn-outline-danger btn-sm" onclick="hideForms()">
+                <i class="fas fa-times me-2"></i>Cerrar
+            </button>
+        </div>
+        
+        <!-- Formulario principal -->
+        <form id="quoteForm" class="needs-validation" novalidate>
+            <div class="row">
+                <!-- Información de contacto -->
+                <div class="col-md-6 mb-3">
+                    <label for="contact-name" class="form-label">Nombre Completo <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="contact-name" placeholder="Ej: Juan Pérez González" required>
+                    <div class="invalid-feedback">Por favor ingrese su nombre completo</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="contact-phone" class="form-label">Teléfono de Contacto <span class="text-danger">*</span></label>
+                    <input type="tel" class="form-control" id="contact-phone" placeholder="+56 9 1234 5678" required>
+                    <div class="invalid-feedback">Por favor ingrese un número válido</div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- Detalles del evento -->
+                <div class="col-md-6 mb-3">
+                    <label for="quote-type" class="form-label">Tipo de Instalación <span class="text-danger">*</span></label>
+                    <select class="form-select" id="quote-type" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Piscina">Área de Piscinas</option>
+                        <option value="Cancha">Cancha Deportiva</option>
+                        <option value="Quincho">Quincho/Asador</option>
+                        <option value="Camping">Zona de Camping</option>
+                        <option value="Salon">Salón de Eventos</option>
+                        <option value="Otro">Otra instalación</option>
+                    </select>
+                    <div class="invalid-feedback">Seleccione el tipo de instalación</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="event-type" class="form-label">Tipo de Evento <span class="text-danger">*</span></label>
+                    <select class="form-select" id="event-type" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Cumpleaños">Celebración de Cumpleaños</option>
+                        <option value="Boda">Ceremonia Nupcial</option>
+                        <option value="Aniversario">Evento Aniversario</option>
+                        <option value="Corporativo">Actividad Corporativa</option>
+                        <option value="Familiar">Encuentro Familiar</option>
+                        <option value="Otro">Otro tipo de evento</option>
+                    </select>
+                    <div class="invalid-feedback">Seleccione el tipo de evento</div>
+                </div>
+            </div>
+            
+            <!-- Fecha y detalles adicionales -->
+            <div class="mb-3">
+                <label for="quote-date" class="form-label">Fecha Tentativa del Evento <span class="text-danger">*</span></label>
+                <input type="date" class="form-control" id="quote-date" min="" required>
+                <div class="invalid-feedback">Seleccione una fecha válida</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="event-description" class="form-label">Requerimientos Específicos</label>
+                <textarea class="form-control" id="event-description" rows="4" placeholder="Detalle aspectos relevantes: cantidad estimada de invitados, necesidades especiales, servicios adicionales requeridos, etc."></textarea>
+                <div class="form-text">Mientras más detalles proporcione, más precisa será nuestra cotización</div>
+            </div>
+            
+            <!-- Mensaje informativo -->
+            <div class="alert alert-info mt-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-info-circle me-3 fs-4"></i>
+                    <div>
+                        <h5 class="alert-heading mb-2">Proceso de Cotización</h5>
+                        <p class="mb-0">Recibirá una propuesta detallada dentro de las próximas 24 horas hábiles. Posteriormente, nuestro equipo se pondrá en contacto para coordinar una visita guiada por nuestras instalaciones.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botón de envío -->
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary px-4 py-2">
+                    <i class="fas fa-paper-plane me-2"></i>Enviar Solicitud
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Footer Mejorado -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">
+                    <i class="fas fa-file-contract me-2"></i>Términos y Condiciones
+                </a>
+                <span class="separator">•</span>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
+                    <i class="fas fa-phone-alt me-2"></i>Contáctanos
+                </a>
+                <span class="separator">•</span>
+                <a href="#" onclick="toggleSection('quienes-somos')">
+                    <i class="fas fa-info-circle me-2"></i>Quiénes Somos
+                </a>
+                <span class="separator">•</span>
+                <a href="#" onclick="toggleSection('mision-vision')">
+                    <i class="fas fa-bullseye me-2"></i>Misión y Visión
+                </a>
+            </div>
+            
+            <div class="social-icons mt-4">
+                <a href="https://www.facebook.com/p/Vistas-de-Quillayquen-100052160036272/?locale=es_LA" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/vistasdequillayquen_/" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/56934068065" target="_blank" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+
+                <a href="https://www.google.com/maps/place/Centro+de+eventos+Vistas+de+Quillayquen/@-34.2682011,-71.0590876,17z/data=!3m1!4b1!4m6!3m5!1s0x96637bba4e76332b:0x636b8406103d2bb2!8m2!3d-34.2682011!4d-71.0590876!16s%2Fg%2F11fk1ltlwk?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_blank" title="Ubicación">
+                    <i class="fas fa-map-marker-alt"></i>
+                </a>
+                <a href="https://www.instagram.com/reel/DEpb5aMObIJ/?igsh=MTQ4djN0cWI1MGMzaw%3D%3D" target="_blank" title="Cómo llegar">
+                    <i class="fas fa-route"></i>
+                </a>
+            </div>
+            
+            <div class="copyright mt-4">
+                <p>&copy; 2025 <strong>Vistas Quillayquen</strong>. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Modal Términos Mejorado -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="termsModalLabel">
+                    <i class="fas fa-file-contract me-2"></i>Términos y Condiciones
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5 class="mb-3">1. Reservas y Pagos</h5>
+                <p>Todas las reservas están sujetas a disponibilidad. Se requiere un pago anticipado para confirmar la reserva. Los métodos de pago aceptados son transferencia bancaria, efectivo y tarjeta de crédito/débito.</p>
+                
+                <h5 class="mb-3 mt-4">2. Cancelaciones</h5>
+                <p>Las cancelaciones con más de 48 horas de anticipación recibirán un reembolso completo. Cancelaciones entre 24 y 48 horas recibirán un reembolso del 50%. No se realizarán reembolsos por cancelaciones con menos de 24 horas de anticipación.</p>
+                
+                <h5 class="mb-3 mt-4">3. Uso de Instalaciones</h5>
+                <p>Los usuarios son responsables del cuidado de las instalaciones. Cualquier daño causado por mal uso será responsabilidad del cliente y deberá ser cubierto económicamente.</p>
+                
+                <h5 class="mb-3 mt-4">4. Normas de Conducta</h5>
+                <p>Se prohíbe el ingreso de bebidas alcohólicas, sustancias ilegales y cualquier comportamiento que pueda afectar la seguridad o comodidad de otros usuarios. El incumplimiento de estas normas puede resultar en la expulsión inmediata sin reembolso.</p>
+                
+                <h5 class="mb-3 mt-4">5. Responsabilidad</h5>
+                <p>Vistas Quillayquen no se hace responsable por objetos personales perdidos o robados dentro de las instalaciones. El uso de las instalaciones deportivas es bajo propio riesgo.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                    <i class="fas fa-check me-2"></i>Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Contacto Mejorado -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="contactModalLabel">
+                    <i class="fas fa-phone-alt me-2"></i>Contáctanos
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-4">
+                    <h5 class="mb-3">
+                        <i class="fas fa-phone-volume me-2"></i>Teléfonos
+                    </h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="tel:+56968667189" class="text-decoration-none">
+                                <i class="fas fa-mobile-alt me-2"></i>+56 9 6866 7189
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="tel:+56944422235" class="text-decoration-none">
+                                <i class="fas fa-phone me-2"></i>+56 9 4442 2235
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:+56944422232" class="text-decoration-none">
+                                <i class="fas fa-phone me-2"></i>+56 9 4442 2232
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="mb-4">
+                    <h5 class="mb-3">
+                        <i class="fas fa-envelope me-2"></i>Correo Electrónico
+                    </h5>
+                    <p>
+                        <a href="mailto:contacto@vistasquillayquen.cl" class="text-decoration-none">
+                            <i class="fas fa-at me-2"></i>
+                            vistasquillayquen@gmail.com
+                        </a>
+                    </p>
+                </div>
+                
+                <div>
+                    <h5 class="mb-3">
+                        <i class="fas fa-map-marker-alt me-2"></i>Dirección
+                    </h5>
+                    <p>
+                        <i class="fas fa-road me-2"></i>Vistas de Quillayquén, Avenida Quillayquén, Cruce de Parral, Coltauco
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                    <i class="fas fa-check me-2"></i>Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Variables globales para almacenar reservas
+    let reservas = JSON.parse(localStorage.getItem('reservas')) || [];
+    let horariosOcupados = {};
+    
+    // Funciones para mostrar/ocultar secciones de contenido
+    function toggleSection(sectionId) {
+        // Ocultar todas las secciones primero
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.style.display = 'none';
+        });
+        
+        // Mostrar la sección solicitada
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.style.display = 'block';
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+    
+    function hideAllSections() {
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.style.display = 'none';
+        });
+    }
+    
+// Funciones básicas para mostrar/ocultar formularios
+function showForm(formType) {
+    hideAllSections();
+    hideForms();
+
+    const form = document.getElementById(`${formType}-form`);
+    if (form) {
+        form.classList.add('active');
+        form.scrollIntoView({ behavior: 'smooth' });
+        
+        // Si es el formulario de reserva, generar los horarios disponibles
+        if (formType === 'reserva') {
+            generarHorariosDisponibles();
+        }
+    }
+}
+
+function hideForms() {
+    document.querySelectorAll('.form-section').forEach(form => {
+        form.classList.remove('active');
+    });
+}
+
+// Nueva función para ocultar todas las secciones de contenido
+function hideAllSections() {
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.style.display = 'none';
+    });
+}
+
+// Nueva función para mostrar una sección de contenido y ocultar las demás
+function toggleSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    const isVisible = section.style.display === 'block';
+
+    hideAllSections();
+
+    if (!isVisible) {
+        section.style.display = 'block';
+        section.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+    
+    // Función para generar horarios disponibles (12:00 - 23:00)
+    function generarHorariosDisponibles() {
+        const dateInput = document.getElementById('date');
+        const selectedDate = dateInput.value;
+        const timeSlotsContainer = document.getElementById('timeSlots');
+        
+        // Limpiar contenedor
+        timeSlotsContainer.innerHTML = '';
+        
+        // Verificar si hay una fecha seleccionada
+        if (!selectedDate) {
+            timeSlotsContainer.innerHTML = '<p class="text-muted">Selecciona una fecha primero</p>';
+            return;
+        }
+        
+        // Obtener reservas para esta fecha
+        const reservasFecha = reservas.filter(reserva => reserva.fecha === selectedDate);
+        const horasOcupadas = reservasFecha.map(reserva => reserva.hora);
+        
+        // Generar horarios de 12:00 a 23:00 (último horario 22:00-23:00)
+        for (let hora = 12; hora < 23; hora++) {
+            const horaFormato = `${hora.toString().padStart(2, '0')}:00`;
+            const horaFinFormato = `${(hora + 1).toString().padStart(2, '0')}:00`;
+            const slotId = `slot-${hora}`;
+            const estaOcupado = horasOcupadas.includes(horaFormato);
+            
+            const slotElement = document.createElement('div');
+            slotElement.className = `time-slot ${estaOcupado ? 'booked' : ''}`;
+            slotElement.id = slotId;
+            slotElement.textContent = `${horaFormato} - ${horaFinFormato}`;
+            
+            if (!estaOcupado) {
+                slotElement.addEventListener('click', function() {
+                    // Deseleccionar cualquier otro slot seleccionado
+                    document.querySelectorAll('.time-slot').forEach(slot => {
+                        slot.classList.remove('selected');
+                    });
+                    
+                    // Seleccionar este slot
+                    this.classList.add('selected');
+                    document.getElementById('selected-time').value = horaFormato;
+                });
+            } else {
+                slotElement.title = "Horario ya reservado";
+            }
+            
+            timeSlotsContainer.appendChild(slotElement);
+        }
+    }
+    
+    // Configurar fecha mínima en los formularios al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').min = today;
+        document.getElementById('quote-date').min = today;
+        
+        // Escuchar cambios en la fecha para actualizar horarios disponibles
+        document.getElementById('date').addEventListener('change', generarHorariosDisponibles);
+        
+        // Configurar el formulario de reserva para enviar
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener datos del formulario
+            const fecha = document.getElementById('date').value;
+            const hora = document.getElementById('selected-time').value;
+            const tipoCancha = document.getElementById('court-type').value;
+            const nombre = document.getElementById('name').value;
+            const telefono = document.getElementById('phone').value;
+            const metodoPago = document.getElementById('payment').value;
+            const comentarios = document.getElementById('comments').value;
+            
+            if (!fecha || !hora || !tipoCancha || !nombre || !telefono || !metodoPago) {
+                alert('Por favor complete todos los campos requeridos');
+                return;
+            }
+            
+            // Crear objeto de reserva
+            const nuevaReserva = {
+                id: Date.now(),
+                fecha,
+                hora,
+                tipoCancha,
+                nombre,
+                telefono,
+                metodoPago,
+                comentarios,
+                fechaReserva: new Date().toISOString()
+            };
+            
+            // Agregar a las reservas
+            reservas.push(nuevaReserva);
+            localStorage.setItem('reservas', JSON.stringify(reservas));
+            
+            alert('¡Reserva enviada con éxito! Nos pondremos en contacto para confirmar.');
+            this.reset();
+            hideForms();
+            
+            // Actualizar horarios ocupados
+            generarHorariosDisponibles();
+        });
+        
+        // Configurar el formulario de cotización para enviar
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener datos del formulario
+            const nombre = document.getElementById('contact-name').value;
+            const telefono = document.getElementById('contact-phone').value;
+            const tipoRecinto = document.getElementById('quote-type').value;
+            const tipoEvento = document.getElementById('event-type').value;
+            const fechaEvento = document.getElementById('quote-date').value;
+            const descripcion = document.getElementById('event-description').value;
+            
+            if (!nombre || !telefono || !tipoRecinto || !tipoEvento || !fechaEvento) {
+                alert('Por favor complete todos los campos requeridos');
+                return;
+            }
+            
+            alert('¡Solicitud de cotización enviada! Recibirá nuestra respuesta en 24 horas.');
+            this.reset();
+            hideForms();
+        });
+    });
+</script>
+<script>
+    // Configuración del Bot de Telegram
+    const TELEGRAM_TOKEN = '7909302467:AAHJ8fU5cEBZL9eYZ5dEwP55PZ3-xy3D6Ew';
+    const CHAT_ID = '-1002477396042';
+
+    // Función para enviar mensajes a Telegram
+    async function enviarATelegram(mensaje) {
+        try {
+            const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: mensaje,
+                    parse_mode: 'Markdown'
+                })
+            });
+            
+            const data = await response.json();
+            if (!data.ok) {
+                console.error('Error al enviar a Telegram:', data);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    // Modificar la función de envío del formulario de reserva
+    document.getElementById('reservationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Obtener datos del formulario
+        const fecha = document.getElementById('date').value;
+        const hora = document.getElementById('selected-time').value;
+        const nombre = document.getElementById('name').value;
+        const telefono = document.getElementById('phone').value;
+        const metodoPago = document.getElementById('payment').value;
+        const comentarios = document.getElementById('comments').value;
+        
+        if (!fecha || !hora || !nombre || !telefono || !metodoPago) {
+            alert('Por favor complete todos los campos requeridos');
+            return;
+        }
+        
+        // Crear objeto de reserva
+        const nuevaReserva = {
+            id: Date.now(),
+            fecha,
+            hora,
+            nombre,
+            telefono,
+            metodoPago,
+            comentarios,
+            fechaReserva: new Date().toISOString()
+        };
+        
+        // Agregar a las reservas
+        reservas.push(nuevaReserva);
+        localStorage.setItem('reservas', JSON.stringify(reservas));
+        
+        // Enviar notificación a Telegram
+        const mensajeReserva = `
+📅 *NUEVA RESERVA DE CANCHA* 🏟️
+👤 *Nombre:* ${nombre}
+📞 *Teléfono:* ${telefono}
+📅 *Fecha:* ${fecha}
+⏰ *Hora:* ${hora}
+💳 *Método de pago:* ${metodoPago}
+📝 *Comentarios:* ${comentarios || 'Ninguno'}
+        `;
+        
+        enviarATelegram(mensajeReserva)
+            .then(() => {
+                alert('¡Reserva enviada con éxito! Nos pondremos en contacto para confirmar.');
+                this.reset();
+                hideForms();
+                generarHorariosDisponibles();
+            })
+            .catch(error => {
+                console.error('Error al enviar:', error);
+                alert('Reserva registrada, pero hubo un problema al notificar al equipo. Por favor contáctenos por teléfono.');
+            });
+    });
+
+    // Modificar la función de envío del formulario de cotización
+    document.getElementById('quoteForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Obtener datos del formulario
+        const nombre = document.getElementById('contact-name').value;
+        const telefono = document.getElementById('contact-phone').value;
+        const tipoRecinto = document.getElementById('quote-type').value;
+        const tipoEvento = document.getElementById('event-type').value;
+        const fechaEvento = document.getElementById('quote-date').value;
+        const descripcion = document.getElementById('event-description').value;
+        
+        if (!nombre || !telefono || !tipoRecinto || !tipoEvento || !fechaEvento) {
+            alert('Por favor complete todos los campos requeridos');
+            return;
+        }
+        
+        // Enviar notificación a Telegram
+        const mensajeCotizacion = `
+📋 *SOLICITUD DE COTIZACIÓN* 📝
+👤 *Nombre:* ${nombre}
+📞 *Teléfono:* ${telefono}
+🏠 *Tipo de recinto:* ${tipoRecinto}
+🎉 *Tipo de evento:* ${tipoEvento}
+📅 *Fecha tentativa:* ${fechaEvento}
+📝 *Detalles:* ${descripcion || 'No especificados'}
+        `;
+        
+        enviarATelegram(mensajeCotizacion)
+            .then(() => {
+                alert('¡Solicitud de cotización enviada! Recibirá nuestra respuesta en 24 horas.');
+                this.reset();
+                hideForms();
+            })
+            .catch(error => {
+                console.error('Error al enviar:', error);
+                alert('Solicitud registrada, pero hubo un problema al notificar al equipo. Por favor contáctenos por teléfono.');
+            });
+    });
+</script>
+</body>
+</html>
