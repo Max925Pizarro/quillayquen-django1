@@ -736,46 +736,105 @@
         }
         
         @media (max-width: 576px) {
+            /* Logo adjustments */
             .logo {
-                left: 15px;
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                z-index: 1050;
+                transition: all 0.3s ease;
             }
             
             .logo img {
-                width: 50px;
-                height: 50px;
+                width: 40px;
+                height: 40px;
+                border: 2px solid var(--white);
             }
             
+            /* Carousel adjustments */
             .carousel-item img {
-                height: 250px;
+                height: 200px;
+                object-fit: cover;
             }
             
             .carousel-caption {
-                bottom: 10px;
+                bottom: 5px;
                 left: 5%;
                 right: 5%;
-                padding: 10px;
-            }
-            
-            .carousel-caption h5 {
-                font-size: 1.2rem;
-            }
-            
-            .carousel-caption p {
+                padding: 8px;
                 font-size: 0.9rem;
             }
             
-            .titulo-seccion {
-                font-size: 1.8rem;
+            .carousel-caption h5 {
+                font-size: 1rem;
+                font-weight: 600;
             }
             
+            .carousel-caption p {
+                font-size: 0.8rem;
+            }
+            
+            /* Section titles */
+            .titulo-seccion {
+                font-size: 1.5rem;
+                margin-top: 30px;
+                padding-bottom: 10px;
+            }
+            
+            /* Content sections */
+            .content-section {
+                margin-top: 60px;
+                padding: 20px 15px;
+            }
+            
+            /* Reservation and quote forms */
             .reservation-section, 
             .quote-section {
-                padding: 20px;
+                padding: 20px 15px;
+                max-width: 100%;
+                box-shadow: none;
+                border-radius: 10px;
+            }
+            
+            /* Form buttons stacked vertically */
+            .form-buttons {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                margin: 30px 0;
+            }
+            
+            .btn-reserva,
+            .btn-cotizacion {
+                width: 90%;
+                max-width: 280px;
+                padding: 12px 0;
+                font-size: 1rem;
+                border-radius: 50px;
+                box-shadow: 0 4px 10px rgba(0, 51, 204, 0.3);
+            }
+            
+            /* Footer adjustments */
+            .footer-content {
+                padding: 15px 10px;
+                gap: 15px;
             }
             
             .footer-links {
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
+                font-size: 0.9rem;
+            }
+            
+            .footer-links a {
+                display: block;
+                text-align: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+                gap: 15px;
             }
             
             .separator {
@@ -797,7 +856,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <span>Vistas del Quillayquen</span>
+                <span>Vistas de Quillayquen</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -1097,7 +1156,7 @@
         <h3 class="text-center mb-4">
             <i class="fas fa-calendar-check me-2"></i>Reserva de Cancha
         </h3>
-        <p class="text-center text-muted mb-4">Complete el formulario para reservar su cancha. Valor: $24.000 por hora.</p>
+        <p class="text-center text-muted mb-4">"Complete el formulario para reservar su cancha. Valor: $24.000 por hora. "</p>
         
         <form id="reservationForm">
             <div class="row">
@@ -1129,9 +1188,9 @@
                 <label for="payment" class="form-label">Método de Pago</label>
                 <select class="form-select" id="payment" required>
                     <option value="" disabled selected>Seleccione un método de pago</option>
-                    <option value="Transferencia">Transferencia Bancaria</option>
+                    <option value="Transferencia">Transferencia Bancaria(En el lugar)</option>
                     <option value="Efectivo">Efectivo en el lugar</option>
-                    <option value="Tarjeta">Tarjeta de Crédito/Débito</option>
+                    <option value="Tarjeta">Tarjeta de Crédito/Débito (En el Lugar)</option>
                 </select>
             </div>
             
@@ -1142,7 +1201,7 @@
             
             <div class="alert alert-info mt-4">
                 <i class="fas fa-info-circle me-2"></i>
-                <strong>Nota:</strong> El pago debe realizarse antes de utilizar las instalaciones. Cancelaciones con 24 horas de anticipación.
+                <strong>Nota:</strong> El pago debe realizarse antes de utilizar las instalaciones. 
             </div>
             
             <div class="text-center mt-4">
@@ -1209,7 +1268,6 @@
                     <select class="form-select" id="event-type" required>
                         <option value="" disabled selected>Seleccione una opción</option>
                         <option value="Cumpleaños">Celebración de Cumpleaños</option>
-                        <option value="Boda">Ceremonia Nupcial</option>
                         <option value="Aniversario">Evento Aniversario</option>
                         <option value="Corporativo">Actividad Corporativa</option>
                         <option value="Familiar">Encuentro Familiar</option>
