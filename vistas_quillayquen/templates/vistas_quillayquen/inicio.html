@@ -1,14 +1,53 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vistas Quillayquen | Recintos y Servicios</title>
+    <title>Vistas  Del Quillayquén</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
-    <style>
+    <style>/* Estilo para el Botón de Cancelación de Reserva */
+.btn-cancelar {
+    position: relative;
+    background: linear-gradient(135deg, #ff4d4d, #ff1a1a);
+    color: var(--white);
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+    min-width: 220px;
+    text-align: center;
+}
+
+.btn-cancelar:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+}
+
+.btn-cancelar:active {
+    transform: translateY(0);
+}
+
+.btn-cancelar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn-cancelar:hover::before {
+    left: 100%;
+}
+
         :root {
             --primary-color: #0033cc;
             --primary-dark: #002db3;
@@ -55,8 +94,8 @@
         .navbar-brand {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.4rem;
+            gap: 12px;
+            font-size: 1.3rem;
             font-weight: 600;
             color: var(--white);
             letter-spacing: 0.5px;
@@ -66,6 +105,16 @@
         .navbar-brand:hover {
             color: rgba(255, 255, 255, 0.9);
             transform: translateX(2px);
+        }
+
+        .navbar-brand .logo img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--white);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+            transition: all 0.3s ease;
         }
 
         /* Logo Mejorado */
@@ -82,17 +131,24 @@
         }
 
         .logo img {
-            width: 80px;
-            height: 80px;
+            width: 48px !important;
+            height: 48px !important;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--white);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--white);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.10);
             transition: all 0.3s ease;
         }
 
-        .logo img:hover {
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        /* Título más profesional */
+        .navbar-title {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 1px;
+            margin-left: 14px;
+            font-family: 'Montserrat', 'Poppins', sans-serif;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.08);
         }
 
         /* Botones de Navegación Mejorados */
@@ -385,59 +441,32 @@
             flex-wrap: wrap;
         }
 
-        .btn-reserva,
-        .btn-cotizacion {
-            position: relative;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: var(--white);
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: all 0.4s ease;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 51, 204, 0.3);
-            min-width: 220px;
-            text-align: center;
-        }
+        .form-buttons .btn-reserva,
+.form-buttons .btn-cotizacion,
+.form-buttons .btn-cancelar {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: #fff;
+    border: none;
+    min-width: 200px;
+    max-width: 240px;
+    width: 100%;
+    padding: 13px 0;
+    font-size: 1.08rem;
+    font-weight: 600;
+    border-radius: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.10);
+}
 
-        .btn-reserva:hover,
-        .btn-cotizacion:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 51, 204, 0.4);
-        }
-
-        .btn-reserva:active,
-        .btn-cotizacion:active {
-            transform: translateY(0);
-        }
-
-        .btn-reserva::before,
-        .btn-cotizacion::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .btn-reserva:hover::before,
-        .btn-cotizacion:hover::before {
-            left: 100%;
-        }
-
-        .btn-cotizacion {
-            background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
-            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
-        }
-
-        .btn-cotizacion:hover {
-            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.4);
-        }
+.form-buttons .btn-reserva:hover,
+.form-buttons .btn-cotizacion:hover,
+.form-buttons .btn-cancelar:hover {
+    background: linear-gradient(135deg, #1e40af, #2563eb);
+    transform: translateY(-3px) scale(1.03);
+    color: #fff;
+}
 
         /* Formularios Mejorados */
         .form-section {
@@ -456,66 +485,134 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .reservation-section, .quote-section {
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            margin: 0 auto;
-            max-width: 700px;
-            position: relative;
-            overflow: hidden;
-        }
+        /* Formularios más profesionales y modernos */
+.reservation-section, .quote-section {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    padding: 40px 36px;
+    max-width: 500px;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+    border: 1.5px solid var(--light-gray);
+    transition: box-shadow 0.3s;
+}
 
-        .reservation-section::before,
-        .quote-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        }
+.reservation-section:hover, .quote-section:hover {
+    box-shadow: 0 12px 36px rgba(0,0,0,0.18);
+}
 
-        .btn-volver {
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            padding: 8px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-right: 15px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
+.form-section h3 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 18px;
+    letter-spacing: 0.5px;
+}
 
-        .btn-volver:hover {
-            background-color: var(--primary-color);
-            color: var(--white);
-            transform: translateX(-5px);
-        }
+.form-label {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--primary-dark);
+    margin-bottom: 6px;
+}
 
-        .form-label {
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 8px;
-            color: var(--dark-color);
-        }
+.form-control, .form-select, textarea.form-control {
+    border-radius: 10px;
+    border: 1.5px solid var(--light-gray);
+    font-size: 1.03rem;
+    padding: 12px 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #f8fafc;
+}
 
-        .form-control, .form-select {
-            padding: 12px 15px;
-            font-size: 1rem;
-            border-radius: 8px;
-            border: 1px solid #ced4da;
-            transition: all 0.3s ease;
-        }
+.form-control:focus, .form-select:focus, textarea.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0,51,204,0.09);
+    background: #fff;
+}
 
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.25rem rgba(0, 51, 204, 0.25);
-        }
+input[type="date"].form-control,
+input[type="time"].form-control {
+    min-height: 44px;
+}
+
+textarea.form-control {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.invalid-feedback {
+    font-size: 0.93rem;
+    color: #e74c3c;
+    margin-top: 2px;
+}
+
+.alert-info {
+    border-radius: 10px;
+    background: linear-gradient(90deg, #e3f0ff 60%, #f8fafc 100%);
+    color: #1e40af;
+    border: none;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+}
+
+.form-section .btn,
+.form-section button[type="submit"] {
+    border-radius: 30px;
+    font-size: 1.08rem;
+    font-weight: 600;
+    padding: 10px 28px;
+    transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+}
+
+.form-section .btn-primary {
+    background: linear-gradient(90deg, #2563eb 60%, #1e40af 100%);
+    border: none;
+    color: #fff;
+}
+
+.form-section .btn-primary:hover {
+    background: linear-gradient(90deg, #1e40af 60%, #2563eb 100%);
+    color: #fff;
+}
+
+.form-section .btn-outline-secondary {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    background: #fff;
+}
+
+.form-section .btn-outline-secondary:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.form-section .btn-danger {
+    background: linear-gradient(90deg, #ff4d4d 60%, #ff1a1a 100%);
+    border: none;
+    color: #fff;
+}
+
+.form-section .btn-danger:hover {
+    background: linear-gradient(90deg, #ff1a1a 60%, #ff4d4d 100%);
+    color: #fff;
+}
+
+.form-section .btn-lg {
+    font-size: 1.08rem;
+    padding: 10px 28px;
+    border-radius: 30px;
+}
+
+.form-section .text-center.mt-4 {
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
         /* Footer Mejorado */
         footer {
@@ -736,146 +833,229 @@
         }
         
         @media (max-width: 576px) {
-            /* Logo adjustments */
-            .logo {
-                position: fixed;
-                top: 10px;
-                left: 10px;
-                z-index: 1050;
-                transition: all 0.3s ease;
-            }
-            
-            .logo img {
-                width: 40px;
-                height: 40px;
-                border: 2px solid var(--white);
-            }
-            
-            /* Carousel adjustments */
-            .carousel-item img {
-                height: 200px;
-                object-fit: cover;
-            }
-            
-            .carousel-caption {
-                bottom: 5px;
-                left: 5%;
-                right: 5%;
-                padding: 8px;
-                font-size: 0.9rem;
-            }
-            
-            .carousel-caption h5 {
-                font-size: 1rem;
-                font-weight: 600;
-            }
-            
-            .carousel-caption p {
-                font-size: 0.8rem;
-            }
-            
-            /* Section titles */
-            .titulo-seccion {
-                font-size: 1.5rem;
-                margin-top: 30px;
-                padding-bottom: 10px;
-            }
-            
-            /* Content sections */
-            .content-section {
-                margin-top: 60px;
-                padding: 20px 15px;
-            }
-            
-            /* Reservation and quote forms */
-            .reservation-section, 
-            .quote-section {
-                padding: 20px 15px;
-                max-width: 100%;
-                box-shadow: none;
-                border-radius: 10px;
-            }
-            
-            /* Form buttons stacked vertically */
-            .form-buttons {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-                margin: 30px 0;
-            }
-            
-            .btn-reserva,
-            .btn-cotizacion {
-                width: 90%;
-                max-width: 280px;
-                padding: 12px 0;
-                font-size: 1rem;
-                border-radius: 50px;
-                box-shadow: 0 4px 10px rgba(0, 51, 204, 0.3);
-            }
-            
-            /* Footer adjustments */
-            .footer-content {
-                padding: 15px 10px;
-                gap: 15px;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 12px;
-                font-size: 0.9rem;
-            }
-            
-            .footer-links a {
-                display: block;
-                text-align: center;
-            }
-            
-            .social-icons {
-                justify-content: center;
-                gap: 15px;
-            }
-            
-            .separator {
-                display: none;
-            }
-        }
-    </style>
+    /* Navbar: logo y título alineados, botón hamburguesa más grande y a la derecha */
+    .nav-flex {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: relative;
+        min-height: 48px;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+        height: 48px;
+        margin-left: 4px;
+    }
+    .logo img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 2px solid var(--white);
+        object-fit: cover;
+    }
+    .navbar-title {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--white);
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+        z-index: 2;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        height: 48px;
+    }
+    .navbar-toggler {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 40px;
+        width: 40px;
+        padding: 4px 10px !important;
+        font-size: 1.3rem !important;
+        border-radius: 10px !important;
+        display: flex;
+        align-items: center;
+        z-index: 3;
+        margin: 0;
+    }
+
+    /* Botones principales centrados y más pequeños */
+    .form-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 18px 0 12px 0;
+    }
+    .form-buttons .btn-reserva,
+    .form-buttons .btn-cotizacion,
+    .form-buttons .btn-cancelar {
+        min-width: 110px;
+        max-width: 150px;
+        width: 80vw;
+        padding: 8px 0;
+        font-size: 0.95rem;
+        border-radius: 28px;
+        margin: 0 auto;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+    }
+
+    /* Footer ordenado y en columna */
+    footer {
+        padding: 18px 0 8px;
+        font-size: 0.93rem;
+    }
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px 0;
+        text-align: center;
+    }
+    .footer-links .separator {
+        display: none;
+    }
+    .social-icons {
+        justify-content: center;
+        gap: 10px;
+        margin-top: 8px;
+    }
+    .social-icons a {
+        width: 28px;
+        height: 28px;
+        font-size: 1.1rem;
+    }
+    .copyright {
+        font-size: 0.89rem;
+        margin-top: 6px;
+    }
+}
+    
+/* ======= ESTILO UNIFICADO PARA MENÚ ======= */
+.nav-btn {
+    font-size: 0.9rem !important;
+    padding: 8px 16px !important;
+    margin: 0 6px;
+    border-radius: 25px;
+    color: var(--white);
+    background-color: rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: var(--white);
+}
+
+/* Estilos para el menú desplegable en móvil */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        position: absolute !important;
+        top: 56px !important;
+        right: 16px !important;
+        left: auto !important;
+        width: 170px !important;
+        min-width: 140px;
+        max-width: 220px;
+        background: var(--white);
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 8px 24px rgba(0,51,204,0.10);
+        padding: 0.5rem 0.5rem 0.7rem 0.5rem;
+        z-index: 1050;
+        text-align: left;
+        animation: fadeInDown 0.25s;
+    }
+    .navbar-nav {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100%;
+        gap: 0;
+    }
+    .nav-item {
+        width: 100%;
+        margin: 0;
+    }
+    .nav-btn {
+        width: 100%;
+        text-align: left;
+        font-size: 0.92rem;
+        padding: 8px 12px;
+        margin: 0 0 2px 0;
+        border-radius: 8px;
+        color: var(--primary-color);
+        background: var(--light-gray);
+        border: none;
+        transition: background 0.2s, color 0.2s;
+    }
+    .nav-btn:hover {
+        background: var(--primary-light);
+        color: var(--white);
+    }
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px);}
+    to { opacity: 1; transform: translateY(0);}
+</style>
 </head>
 <body>
-
-
-<!-- Logo -->
-<div class="logo">
-    <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/304119837_1258996464925885_5095840868789037444_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=GgsBFIpBS_UQ7kNvwFd95nh&_nc_oc=Adk4ZATRCuTrlFDVxerudPZW0Z4I5NtweXEucc8utYCar9fDKf1asP9Ooh7VdbUq34VW8HkBvIJvBjZmqQ20oYpi&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=Me0K9YHu1mB8C2Gn-JIXRg&oh=00_AfK4jeUvjtfLbz0cfiINBXdiIKxcqDJFytX9FhgFzJIqXA&oe=681F391F" alt="Logo Vistas Quillayquen">
-</div>
 
 <!-- Header Mejorado -->
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <span>Vistas de Quillayquen</span>
-            </a>
+        <div class="container nav-flex">
+            <span class="logo">
+              <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/304119837_1258996464925885_5095840868789037444_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeH_Z2XE9t0qpyb8oRA4rGEpsdN8pCcY67Kx03ykJxjrstZl0bsQVquLDrME0PKUm96zPwOTC3w1WqEY6uM7HJCS&_nc_ohc=4mI2pb3E7sAQ7kNvwHrMdti&_nc_oc=AdnxjqOao4WT2VzBQLulIxXi_P1vLp1Of-gzo2uRfBBYRvbCTE6cmZMyCkt_KBzjTdJezSAS0lLTENCDqtWxUK-Q&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=6cex_LkaKPzVovK2mr8Hqg&oh=00_AfJRIO4VRZFCJl4sjrcbeKT3mQIbatPfCXbCdXpnIqI-wg&oe=683AE89F" alt="Logo Vistas Quillayquen">
+            </span>
+            <span class="navbar-title">Vistas Del Quillayquén</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+              <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <div class="d-flex align-items-center">
-                    <button class="nav-btn" onclick="toggleSection('quienes-somos')">
-                        <i class="fas fa-info-circle me-2"></i>Conócenos
-                    </button>
-                    <button class="nav-btn" onclick="toggleSection('mision-vision')">
-                        <i class="fas fa-bullseye me-2"></i>Misión y Visión
-                    </button>
-                    <button class="nav-btn" data-bs-toggle="modal" data-bs-target="#rulesModal">
-                        <i class="fas fa-clipboard-list me-2"></i>Reglas
-                    </button>
-                    <button class="nav-btn" data-bs-toggle="modal" data-bs-target="#priceModal">
-                        <i class="fas fa-dollar-sign me-2"></i>Precios
-                    </button>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <button class="nav-btn" onclick="toggleSection('quienes-somos')">
+                            <i class="fas fa-info-circle me-2"></i>Conócenos
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-btn" onclick="toggleSection('mision-vision')">
+                            <i class="fas fa-bullseye me-2"></i>Misión y Visión
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-btn" data-bs-toggle="modal" data-bs-target="#rulesModal">
+                            <i class="fas fa-clipboard-list me-2"></i>Reglas
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-btn" data-bs-toggle="modal" data-bs-target="#priceModal">
+                            <i class="fas fa-dollar-sign me-2"></i>Precios
+                        </button>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -916,21 +1096,21 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/483567085_1152787176469939_7394208534125839537_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Oz4GlQAB9mEQ7kNvwEsFcuX&_nc_oc=AdmqxWyvvu-4ELqD3883-dXSJUcXr1dQRcksA9e_PEfOYm4h6PXcABZ7gRD2UTjZe5TxVoJ95vjt2A4G_0dIo25e&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=WPG41qfipUfFucIjmUpcsA&oh=00_AfJ3aILhiACImB6o1xnPBpXdLUDtGqCZBTi5mwOnv7gVdg&oe=682062E6" class="d-block w-100" alt="Disfruta de nuestras instalaciones">
+        <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/483101767_1154127706335886_4638351470801271982_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGXTWIEfS3FO0GuuAltmRX-XeR1n-I9_apd5HWf4j39qtAPbvZEKmNbB-Crwh_xyU5nRwkEfpngqqay3f_ISP2C&_nc_ohc=-dvCbrOdRBoQ7kNvwEBztl5&_nc_oc=Adlf9r8KFo04PaeKIyw9mkRN_HK6PFMj0QiL8cEsiSeOr3kRbneYXKosngMfeM9ktlEg8uht90G6c4dgBIZZFYZj&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=0Dzkdz8F6knmhRomc-PkEg&oh=00_AfLOSFKNnQ10Cn_2Oq2P_W_uOfXsGZU6lgoxn2wzT8yrWA&oe=683BD775" class="d-block w-100" class="d-block w-100" alt="Disfruta de nuestras instalaciones">
         <div class="carousel-caption d-none d-md-block">
           <h5>Disfruta de nuestras instalaciones</h5>
           <p>Vistas espectaculares y servicios de calidad</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="https://scontent.fscl20-1.fna.fbcdn.net/v/t39.30808-6/484307757_1154127746335882_8225832934912517591_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=N_Y47iRK6bwQ7kNvwGIiZMO&_nc_oc=AdlwgEobl9H7HWNhG0F4rn1VOI4Tc4vE42C4EZXdBL3xPpNV55TjImEJkus9iiyOSZ4&_nc_zt=23&_nc_ht=scontent.fscl20-1.fna&_nc_gid=iFdVJgVe0_L8XOHL04QwCg&oh=00_AfL7MDvvF1FzOMywA4ooc6q2VA-Mwc0d0mrVgkn3AP7ATg&oe=681F7E91" class="d-block w-100" alt="Eventos inolvidables">
+        <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/480846459_1142448664170457_5580398454510288839_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeErhmSaZK5Jck2qyJMFmGDyixBK3m_X_ceLEEreb9f9x96tfnIob62QoyXq-T1RKHL6q_Li8wvV_UCgR7wqrWB8&_nc_ohc=pAZzAK2o4KAQ7kNvwEnf4bB&_nc_oc=AdnyJkVjW_caZBTgRXshIcDgWEJxVmsE_QDZLOGu02RBQMTShddymgNqEJdUw3mUbvLj7GmT0oyAJN6yW883oua0&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=8xWK4zEWBzVPvN_rw__4XA&oh=00_AfLYskkhnfdZWA5KUseFzmwDHNhUYOt3N7oJFAifoUo_wg&oe=683AE8C6" class="d-block w-100" alt="Eventos inolvidables">
         <div class="carousel-caption d-none d-md-block">
           <h5>Eventos inolvidables</h5>
           <p>Celebra tus momentos especiales con nosotros</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t1.6435-9/43632680_312189552939919_7507587332871028736_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=_2kfkw3bp3AQ7kNvwHkh6Lu&_nc_oc=AdmuFYfvuUWaU_-XRIwZFJ34Pmj-YtSy-jMq6n2tSiV3TuCB3pHcgVzysotCybxAopnVPu2SvfWYNYZP1ah9eUcD&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=OZ677xM6ZHbavoQ6eS9Ggw&oh=00_AfKegFs1f6Qqi5HlFC0DbAiST4dihhKJSdEKPZzrEAxx8A&oe=6841E749" class="d-block w-100" alt="Áreas verdes">
+        <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/483615740_1152787483136575_4497225821990342272_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeF_tDXBauwPcIefs1aU7twCZHgfkHxfkVxkeB-QfF-RXI6EUleMq_MjA20dIJvita-amngtk_K9U0dy2QkhKc8L&_nc_ohc=D8b55id50QYQ7kNvwEGvfZG&_nc_oc=AdnzHSl7IqW90y_Zo3VQ1HklRXlzIOCT78ZS286fYzSkKcCNz9ka6jSameGS9FoZM7c3EtHhN_aLOVVcALF2ILP3&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=SttgQbcSjQb_pf6jeXoBfg&oh=00_AfKDBU7vlPxDxIuo_aGPzYz1lyYP8Q3VNFd1HsIcPxgJcA&oe=683AF376" class="d-block w-100" alt="Áreas verdes">
         <div class="carousel-caption d-none d-md-block">
           <h5>Áreas verdes</h5>
           <p>Espacios ideales para relajarte y disfrutar</p>
@@ -969,7 +1149,7 @@
                 </div>
             </div>
             <div class="col-lg-6 mt-4 mt-lg-0">
-                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/483567085_1152787176469939_7394208534125839537_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Oz4GlQAB9mEQ7kNvwEsFcuX&_nc_oc=AdmqxWyvvu-4ELqD3883-dXSJUcXr1dQRcksA9e_PEfOYm4h6PXcABZ7gRD2UTjZe5TxVoJ95vjt2A4G_0dIo25e&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=uci260rajFk8C5HI_SGp4w&oh=00_AfKXXizBqr8grxfdcZFtC4V1fvlvsSroq2wnt6oKH0fVQQ&oe=682062E6" alt="Piscina" class="img-fluid img-circle-small shadow">
+                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/483567085_1152787176469939_7394208534125839537_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGci0dpZtthp-s5zwqPli9OkZUaWRgO8U6RlRpZGA7xTrwfr0JoPn4ykTIlOtGluJM0-wY0LQZq71iEJSJfIxzj&_nc_ohc=Hq2lBQ4PtgUQ7kNvwFP1ymY&_nc_oc=AdlfFGkarF_CVTuJv0OTJk6NRmkAQ3yXRr4AGdfR6gWcgCdb1vc6JTlZO52RyjgGM15ouib6mZbZ0nh9PJgz8Xr5&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=vCrgf625HXFjNa5jSFcn6A&oh=00_AfKDHe_Oi-1OJAMRWJe7JUrMhCcKaB1_jQfH1K06ybLFPg&oe=683BDA26" alt="Piscina" class="img-fluid img-circle-small shadow">
             </div>
         </div>
     </div>
@@ -1025,7 +1205,7 @@
         <!-- Tarjeta 1 - Piscinas -->
         <div class="tarjeta-servicio">
             <div class="imagen-container">
-                <img src="https://scontent.fscl36-1.fna.fbcdn.net/v/t39.30808-6/484338387_1152787399803250_9021000308489321049_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=tlIX12uyDroQ7kNvwGeLavs&_nc_oc=Adn3lim5eiRFVlRZEuK1DZm2gZnl6F9axBi7KpsU5-j0gw1YxQvN3melVsuwHa6w-dI&_nc_zt=23&_nc_ht=scontent.fscl36-1.fna&_nc_gid=DgPV8qGHrOZiVjFeNtki1A&oh=00_AfK3mv31i0lp0mkdXYmUpJDlx-9maqgEErJFsSMFOEJSRA&oe=681F77CB" alt="Piscina" class="imagen-servicio">
+                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/486168814_1160178259064164_7796565407202238441_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeG15sa3dyKURHfIbrVkwnqnyCSTQKoLYv_IJJNAqgti_zkKP9yo66Mx9vpOpG5CrhR1EeQahHcd7bZ6LnOmHgad&_nc_ohc=DWDx67lEB3UQ7kNvwEqYT2T&_nc_oc=Adl6T5yzqDK2gzKodCUdroEl2kdh1I081fXoQFC3XK4pdX1lcldeUqzlPRWXK3yOnx7IVo3BKskgWgZZ1meZyRum&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=J6w0dWUwBfqSGliGIq9btw&oh=00_AfJWDWH0d4Wb1CYJ8f2JG4BhBT4ZJlXMIrIyRkM6PeQnrQ&oe=683AF858" alt="Piscina" class="imagen-servicio">
             </div>
             <div class="contenido-tarjeta">
                 <h3>Piscinas</h3>
@@ -1039,7 +1219,7 @@
         <!-- Tarjeta 2 - Canchas -->
         <div class="tarjeta-servicio">
             <div class="imagen-container">
-                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t1.6435-9/43679388_312189109606630_1092131465212198912_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFu9j-oj4LoMdNt7QsOpwIOXL1niphATdFcvWeKmEBN0UBoOl1AxgkxcaLAg0JV1brmSjRs_B6I9p9qVoh7nI3F&_nc_ohc=BwbeMwYAMT8Q7kNvwHyDmuh&_nc_oc=Adm6J6qDJGh_oXgzerb_91E0Y42tP3ez42UX_FKD3k5fwRk2sRZ2JgLKEuCC_XydXWbnnyeOgPwQeLH9ANyA0VAl&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=CSuzgs8rYCcZ6p2ZahZ_9Q&oh=00_AfGRP8oUnaJ_0V65jvXgTxV_WF1wNjPVHQpd7gJyP4v23w&oe=681E542C" alt="Canchas" class="imagen-servicio">
+                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t1.6435-9/43679388_312189109606630_1092131465212198912_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=L9rMC9jkjE0Q7kNvwEJoroy&_nc_oc=AdkcCZUrB6vjtY6fE2c9H8nJ91tWckh1pqorfdjzeB-7OoGRJZnjhTW_7Xzgurem6NBEsQ_9H8FeA-iqUls6B3RN&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=9cNuRhn8sg_XvGs-AzuvfA&oh=00_AfI9pS8IY0rV9Mrqtotxk_7CLMDXscqETuXl2raila-_qQ&oe=6845E12C" alt="Canchas" class="imagen-servicio">
             </div>
             <div class="contenido-tarjeta">
                 <h3>Canchas Deportivas</h3>
@@ -1053,7 +1233,7 @@
         <!-- Tarjeta 3 - Quinchos -->
         <div class="tarjeta-servicio">
             <div class="imagen-container">
-                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/480442738_1136507014764622_5335760524264407127_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=kvth4wJi5TUQ7kNvwEyK-3F&_nc_oc=AdkGV5ji1KGTpzLwHbRfdMVYzkggTg9_u2PGJMa46N9A_UJttpny0mq3poJdlJCYQF5Gnr-38zDvD4NQcV3DLu2X&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=noEefwCnrUUyhlJWorcZ5Q&oh=00_AfKPnsrtAiOqT47ucl4bGflPGtykUQ773ww-f5aEBFYszg&oe=68206A37" alt="Quinchos" class="imagen-servicio">
+                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/480927822_1138807271201263_1163546771899207418_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGJa351564LmRlBpJfB82B4iQI1ynFGf2WJAjXKcUZ_ZfyFii3vJRF8I-v3o898nGRnC-D7i4yWHQ--kZYUT244&_nc_ohc=2-3SCZwvzh8Q7kNvwFQPMbo&_nc_oc=Adl6az_bTGzN1_70VQr-Yh4R0zirXnwQJ96FWGEirlxLMqOE8cs4R-rDNEHAQ7gcxHx5nBMM2svbOwA9ZjzTQuB6&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=J9AH_ClO_V88wbbxS8EYpw&oh=00_AfKT29cv_BvBpX9EOXHiRGCcY_4JdSo8dTKxQcZr9FOLIA&oe=683AD5F8" alt="Quinchos" class="imagen-servicio">
             </div>
             <div class="contenido-tarjeta">
                 <h3>Quinchos</h3>
@@ -1088,6 +1268,9 @@
     <button class="btn-cotizacion" onclick="showForm('cotizacion')">
         <i class="fas fa-clipboard-list me-2"></i>Planificar Evento
     </button>
+<button class="btn-cancelar" onclick="showCancelForm()">
+    <i class="fas fa-times-circle me-2"></i>Cancelar Reserva
+</button>  
 </div>
 
 <!-- Modal de Reglas Mejorado -->
@@ -1150,6 +1333,52 @@
     </div>
 </div>
 
+<!-- Aviso de mantención -->
+<div id="mantencionAviso" style="display:none;background:#ffeb3b;color:#222;padding:16px 0;text-align:center;font-weight:600;font-size:1.1rem;">
+    <i class="fas fa-tools me-2"></i>Las canchas están en mantención. No se pueden realizar reservas en este momento.
+</div>
+
+<!-- Formulario de Cancelación de Reserva -->
+<div id="cancel-form" class="form-section">
+    <div class="reservation-section">
+        <h3 class="text-center mb-4">
+            <i class="fas fa-times-circle me-2"></i>Cancelar Reserva
+        </h3>
+        <p class="text-center text-muted mb-4">Ingrese los detalles de su reserva para cancelarla.</p>
+        
+        <form id="cancelReservationForm">
+            <div class="mb-3">
+                <label for="cancel-name" class="form-label">Nombre Completo</label>
+                <input type="text" class="form-control" id="cancel-name" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="cancel-phone" class="form-label">Número de Teléfono</label>
+                <input type="tel" class="form-control" id="cancel-phone" placeholder="+56 9 1234 5678" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="cancel-date" class="form-label">Fecha de Reserva</label>
+                <input type="date" class="form-control" id="cancel-date" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="cancel-time" class="form-label">Hora de Reserva</label>
+                <input type="time" class="form-control" id="cancel-time" required>
+            </div>
+            
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-danger btn-lg me-3">
+                    <i class="fas fa-times-circle me-2"></i>Cancelar Reserva
+                </button>
+                <button type="button" class="btn btn-outline-secondary btn-lg" onclick="hideForms()">
+                    <i class="fas fa-times me-2"></i>Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <!-- Formulario de Reserva Mejorado -->
 <div id="reserva-form" class="form-section">
     <div class="reservation-section">
@@ -1163,6 +1392,16 @@
                 <div class="col-md-6 mb-3">
                     <label for="date" class="form-label">Fecha de Reserva</label>
                     <input type="date" class="form-control" id="date" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="cantidad-horas" class="form-label">Cantidad de horas</label>
+                    <select class="form-select" id="cantidad-horas" required>
+                        <option value="1" selected>1 hora</option>
+                        <option value="2">2 horas</option>
+                        <option value="3">3 horas</option>
+                        <option value="4">4 horas</option>
+                        <option value="5">5 horas</option>
+                    </select>
                 </div>
             </div>
             
@@ -1202,6 +1441,10 @@
             <div class="alert alert-info mt-4">
                 <i class="fas fa-info-circle me-2"></i>
                 <strong>Nota:</strong> El pago debe realizarse antes de utilizar las instalaciones. 
+            </div>
+
+            <div class="mb-3 text-end">
+                <span id="total-pagar" class="fw-bold fs-5"></span>
             </div>
             
             <div class="text-center mt-4">
@@ -1342,7 +1585,7 @@
                 </a>
                 <a href="https://wa.me/56934068065" target="_blank" title="WhatsApp">
                     <i class="fab fa-whatsapp"></i>
-
+                </a>
                 <a href="https://www.google.com/maps/place/Centro+de+eventos+Vistas+de+Quillayquen/@-34.2682011,-71.0590876,17z/data=!3m1!4b1!4m6!3m5!1s0x96637bba4e76332b:0x636b8406103d2bb2!8m2!3d-34.2682011!4d-71.0590876!16s%2Fg%2F11fk1ltlwk?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_blank" title="Ubicación">
                     <i class="fas fa-map-marker-alt"></i>
                 </a>
@@ -1357,41 +1600,6 @@
         </div>
     </div>
 </footer>
-
-<!-- Modal Términos Mejorado -->
-<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="termsModalLabel">
-                    <i class="fas fa-file-contract me-2"></i>Términos y Condiciones
-                </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h5 class="mb-3">1. Reservas y Pagos</h5>
-                <p>Todas las reservas están sujetas a disponibilidad. Se requiere un pago anticipado para confirmar la reserva. Los métodos de pago aceptados son transferencia bancaria, efectivo y tarjeta de crédito/débito.</p>
-                
-                <h5 class="mb-3 mt-4">2. Cancelaciones</h5>
-                <p>Las cancelaciones con más de 48 horas de anticipación recibirán un reembolso completo. Cancelaciones entre 24 y 48 horas recibirán un reembolso del 50%. No se realizarán reembolsos por cancelaciones con menos de 24 horas de anticipación.</p>
-                
-                <h5 class="mb-3 mt-4">3. Uso de Instalaciones</h5>
-                <p>Los usuarios son responsables del cuidado de las instalaciones. Cualquier daño causado por mal uso será responsabilidad del cliente y deberá ser cubierto económicamente.</p>
-                
-                <h5 class="mb-3 mt-4">4. Normas de Conducta</h5>
-                <p>Se prohíbe el ingreso de bebidas alcohólicas, sustancias ilegales y cualquier comportamiento que pueda afectar la seguridad o comodidad de otros usuarios. El incumplimiento de estas normas puede resultar en la expulsión inmediata sin reembolso.</p>
-                
-                <h5 class="mb-3 mt-4">5. Responsabilidad</h5>
-                <p>Vistas Quillayquen no se hace responsable por objetos personales perdidos o robados dentro de las instalaciones. El uso de las instalaciones deportivas es bajo propio riesgo.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                    <i class="fas fa-check me-2"></i>Entendido
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Modal Contacto Mejorado -->
 <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
@@ -1426,7 +1634,6 @@
                         </li>
                     </ul>
                 </div>
-                
                 <div class="mb-4">
                     <h5 class="mb-3">
                         <i class="fas fa-envelope me-2"></i>Correo Electrónico
@@ -1438,7 +1645,6 @@
                         </a>
                     </p>
                 </div>
-                
                 <div>
                     <h5 class="mb-3">
                         <i class="fas fa-map-marker-alt me-2"></i>Dirección
@@ -1456,6 +1662,70 @@
         </div>
     </div>
 </div>
+<!-- Botón para abrir el login de admin -->
+<button class="btn btn-outline-warning btn-sm" id="adminLoginBtn" style="position:fixed;bottom:20px;right:20px;z-index:2000;">
+    <i class="fas fa-user-shield"></i> Admin
+</button>
+
+<!-- Modal de Login Admin -->
+<div class="modal fade" id="adminLoginModal" tabindex="-1" aria-labelledby="adminLoginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form id="adminLoginForm">
+        <div class="modal-header bg-warning">
+          <h5 class="modal-title" id="adminLoginModalLabel"><i class="fas fa-user-shield me-2"></i>Acceso Administrador</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="admin-user" class="form-label">Usuario</label>
+            <input type="text" class="form-control" id="admin-user" required>
+          </div>
+          <div class="mb-3">
+            <label for="admin-pass" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="admin-pass" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-warning">Ingresar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Menú de administración -->
+<div id="adminMenu" style="display:none;position:fixed;top:80px;right:20px;z-index:2000;background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.15);padding:20px 24px;min-width:220px;">
+    <h5 class="mb-3"><i class="fas fa-tools me-2"></i>Panel Admin</h5>
+    <button class="btn btn-danger w-100 mb-2" id="bloquearReservasBtn">
+        <i class="fas fa-ban me-2"></i>Bloquear reservas por mantención
+    </button>
+    <button class="btn btn-success w-100 mb-2" id="desbloquearReservasBtn">
+        <i class="fas fa-unlock me-2"></i>Habilitar reservas
+    </button>
+    <button class="btn btn-secondary w-100" id="logoutAdminBtn">
+        <i class="fas fa-sign-out-alt me-2"></i>Cerrar sesión
+    </button>
+    <!-- Agrega esto dentro del menú admin -->
+    <div class="mb-3">
+    <label for="fecha-horario-especial" class="form-label">Fecha a modificar</label>
+    <input type="date" class="form-control" id="fecha-horario-especial">
+</div>
+<div class="mb-3">
+    <label for="hora-tope-especial" class="form-label">Hora máxima de reserva</label>
+    <input type="time" class="form-control" id="hora-tope-especial" value="20:00">
+</div>
+<button class="btn btn-primary w-100 mb-2" id="guardarHorarioEspecialBtn">
+    <i class="fas fa-clock me-2"></i>Guardar horario especial
+</button>
+<button class="btn btn-danger w-100 mb-2" id="restablecerHorarioEspecialBtn">
+    <i class="fas fa-undo me-2"></i>Restablecer horario de ese día
+</button>
+</div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -1464,10 +1734,11 @@
     // Variables globales para almacenar reservas
     let reservas = JSON.parse(localStorage.getItem('reservas')) || [];
     let horariosOcupados = {};
+    let mantencionBloqueada = false;
     
     // Funciones para mostrar/ocultar secciones de contenido
     function toggleSection(sectionId) {
-        // Ocultar todas las secciones primero
+        // Ocultar todas as secciones primero
         document.querySelectorAll('.content-section').forEach(section => {
             section.style.display = 'none';
         });
@@ -1485,9 +1756,67 @@
             section.style.display = 'none';
         });
     }
+
+// Función para mostrar el formulario de cancelación
+function showCancelForm() {
+    hideAllSections();
+    hideForms();
+    const form = document.getElementById('cancel-form');
+    if (form) {
+        form.classList.add('active');
+        form.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Función para cancelar una reserva
+document.getElementById('cancelReservationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
     
-// Funciones básicas para mostrar/ocultar formularios
-function showForm(formType) {
+    // Obtener datos del formulario
+    const nombre = document.getElementById('cancel-name').value;
+    const telefono = document.getElementById('cancel-phone').value;
+    const fecha = document.getElementById('cancel-date').value;
+    const hora = document.getElementById('cancel-time').value;
+    
+    // Buscar y eliminar la reserva
+    const index = reservas.findIndex(reserva => reserva.nombre === nombre && reserva.telefono === telefono && reserva.fecha === fecha && reserva.hora === hora);
+    
+    if (index !== -1) {
+        reservas.splice(index, 1);
+        localStorage.setItem('reservas', JSON.stringify(reservas));
+        
+        // Enviar notificación a Telegram
+        const mensajeCancelacion = `
+❌ *RESERVA CANCELADA* 🏟️
+👤 *Nombre:* ${nombre}
+📞 *Teléfono:* ${telefono}
+📅 *Fecha:* ${fecha}
+⏰ *Hora:* ${hora}
+        `;
+        
+        enviarATelegram(mensajeCancelacion)
+            .then(() => {
+                alert('¡Reserva cancelada con éxito! Se ha notificado al equipo.');
+                this.reset();
+                hideForms();
+            })
+            .catch(error => {
+                console.error('Error al enviar:', error);
+                alert('Reserva cancelada, pero hubo un problema al notificar al equipo. Por favor contáctenos por teléfono.');
+            });
+    } else {
+        alert('No se encontró ninguna reserva con los detalles proporcionados.');
+    }
+});
+
+
+    // Funciones básicas para mostrar/ocultar formularios
+    function showForm(formType) {
+    // Si está bloqueado, no mostrar el formulario
+    if (localStorage.getItem('mantencion') === '1') {
+        alert('Las canchas están en mantención. No se pueden realizar reservas ni cotizaciones en este momento.');
+        return;
+    }
     hideAllSections();
     hideForms();
 
@@ -1495,146 +1824,231 @@ function showForm(formType) {
     if (form) {
         form.classList.add('active');
         form.scrollIntoView({ behavior: 'smooth' });
-        
-        // Si es el formulario de reserva, generar los horarios disponibles
         if (formType === 'reserva') {
             generarHorariosDisponibles();
         }
     }
 }
 
-function hideForms() {
-    document.querySelectorAll('.form-section').forEach(form => {
-        form.classList.remove('active');
-    });
-}
-
-// Nueva función para ocultar todas las secciones de contenido
-function hideAllSections() {
-    document.querySelectorAll('.content-section').forEach(section => {
-        section.style.display = 'none';
-    });
-}
-
-// Nueva función para mostrar una sección de contenido y ocultar las demás
-function toggleSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (!section) return;
-
-    const isVisible = section.style.display === 'block';
-
-    hideAllSections();
-
-    if (!isVisible) {
-        section.style.display = 'block';
-        section.scrollIntoView({ behavior: 'smooth' });
+    function hideForms() {
+        document.querySelectorAll('.form-section').forEach(form => {
+            form.classList.remove('active');
+        });
     }
-}
+
+    // Nueva función para ocultar todas las secciones de contenido
+    function hideAllSections() {
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.style.display = 'none';
+        });
+    }
+
+    // Nueva función para mostrar una sección de contenido y ocultar las demás
+    function toggleSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (!section) return;
+
+        const isVisible = section.style.display === 'block';
+
+        hideAllSections();
+
+        if (!isVisible) {
+            section.style.display = 'block';
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
     
     // Función para generar horarios disponibles (12:00 - 23:00)
     function generarHorariosDisponibles() {
         const dateInput = document.getElementById('date');
+        const cantidadHoras = parseInt(document.getElementById('cantidad-horas').value, 10);
         const selectedDate = dateInput.value;
         const timeSlotsContainer = document.getElementById('timeSlots');
-        
-        // Limpiar contenedor
+        const totalPagar = document.getElementById('total-pagar');
+        const valorHora = 24000;
+
+        // Limpiar contenedor y total
         timeSlotsContainer.innerHTML = '';
-        
-        // Verificar si hay una fecha seleccionada
+        totalPagar.textContent = '';
+
         if (!selectedDate) {
             timeSlotsContainer.innerHTML = '<p class="text-muted">Selecciona una fecha primero</p>';
             return;
         }
-        
-        // Obtener reservas para esta fecha
-        const reservasFecha = reservas.filter(reserva => reserva.fecha === selectedDate);
-        const horasOcupadas = reservasFecha.map(reserva => reserva.hora);
-        
-        // Generar horarios de 12:00 a 23:00 (último horario 22:00-23:00)
-        for (let hora = 12; hora < 23; hora++) {
-            const horaFormato = `${hora.toString().padStart(2, '0')}:00`;
-            const horaFinFormato = `${(hora + 1).toString().padStart(2, '0')}:00`;
-            const slotId = `slot-${hora}`;
-            const estaOcupado = horasOcupadas.includes(horaFormato);
-            
-            const slotElement = document.createElement('div');
-            slotElement.className = `time-slot ${estaOcupado ? 'booked' : ''}`;
-            slotElement.id = slotId;
-            slotElement.textContent = `${horaFormato} - ${horaFinFormato}`;
-            
-            if (!estaOcupado) {
-                slotElement.addEventListener('click', function() {
-                    // Deseleccionar cualquier otro slot seleccionado
-                    document.querySelectorAll('.time-slot').forEach(slot => {
-                        slot.classList.remove('selected');
-                    });
-                    
-                    // Seleccionar este slot
-                    this.classList.add('selected');
-                    document.getElementById('selected-time').value = horaFormato;
+
+        // Consulta a Firebase por horario especial
+        db.ref('horarios_especiales/' + selectedDate).once('value').then(snapshot => {
+            let horaTope = snapshot.val() || "23:00"; // Si no hay especial, usa 23:00
+
+            // Obtener reservas para esta fecha
+            const reservasFecha = reservas.filter(reserva => reserva.fecha === selectedDate);
+
+            // Marcar todas las horas ocupadas (no solo la de inicio)
+            let horasOcupadas = [];
+            reservasFecha.forEach(reserva => {
+                if (Array.isArray(reserva.bloques)) {
+                    horasOcupadas = horasOcupadas.concat(reserva.bloques);
+                } else if (reserva.hora) {
+                    horasOcupadas.push(reserva.hora);
+                }
+            });
+
+            // Calcular hora máxima de inicio según cantidad de horas y tope
+            const horaTopeNum = parseInt(horaTope.split(':')[0], 10);
+            let bloques = [];
+            for (let hora = 12; hora <= horaTopeNum - cantidadHoras; hora++) {
+                let bloqueDisponible = true;
+                let bloqueHoras = [];
+                for (let i = 0; i < cantidadHoras; i++) {
+                    const horaBloque = `${(hora + i).toString().padStart(2, '0')}:00`;
+                    if (horasOcupadas.includes(horaBloque)) {
+                        bloqueDisponible = false;
+                        break;
+                    }
+                    bloqueHoras.push(horaBloque);
+                }
+                bloques.push({
+                    inicio: `${hora.toString().padStart(2, '0')}:00`,
+                    fin: `${(hora + cantidadHoras).toString().padStart(2, '0')}:00`,
+                    horas: bloqueHoras,
+                    disponible: bloqueDisponible
                 });
-            } else {
-                slotElement.title = "Horario ya reservado";
             }
-            
-            timeSlotsContainer.appendChild(slotElement);
-        }
+
+            // Mostrar bloques (igual que antes)
+            bloques.forEach((bloque, idx) => {
+                const slotElement = document.createElement('div');
+                slotElement.className = `time-slot ${bloque.disponible ? '' : 'booked'}`;
+                slotElement.textContent = `${bloque.inicio} - ${bloque.fin}`;
+                slotElement.dataset.inicio = bloque.inicio;
+                slotElement.dataset.fin = bloque.fin;
+                slotElement.dataset.horas = JSON.stringify(bloque.horas);
+
+                if (bloque.disponible) {
+                    slotElement.addEventListener('click', function() {
+                        document.querySelectorAll('.time-slot').forEach(slot => {
+                            slot.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                        document.getElementById('selected-time').value = bloque.inicio;
+                        totalPagar.textContent = `Total a pagar: $${(valorHora * cantidadHoras).toLocaleString('es-CL')}`;
+                    });
+                } else {
+                    slotElement.title = "Bloque no disponible";
+                }
+                timeSlotsContainer.appendChild(slotElement);
+            });
+
+            // Actualizar total si ya hay un bloque seleccionado
+            const selectedSlot = document.querySelector('.time-slot.selected');
+            if (selectedSlot) {
+                totalPagar.textContent = `Total a pagar: $${(valorHora * cantidadHoras).toLocaleString('es-CL')}`;
+            }
+        });
     }
-    
-    // Configurar fecha mínima en los formularios al cargar la página
+
+    // Escuchar cambios en cantidad de horas y fecha
     document.addEventListener('DOMContentLoaded', function() {
+        // Configurar fecha mínima en los formularios
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('date').min = today;
         document.getElementById('quote-date').min = today;
         
         // Escuchar cambios en la fecha para actualizar horarios disponibles
         document.getElementById('date').addEventListener('change', generarHorariosDisponibles);
+        document.getElementById('cantidad-horas').addEventListener('change', generarHorariosDisponibles);
         
         // Configurar el formulario de reserva para enviar
         document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            // BLOQUEO POR MANTENCIÓN
+            if (localStorage.getItem('mantencion') === '1') {
+                alert('Las canchas están en mantención. No se pueden realizar reservas en este momento.');
+                e.preventDefault();
+                hideForms();
+                return;
+            }
             e.preventDefault();
             
             // Obtener datos del formulario
             const fecha = document.getElementById('date').value;
-            const hora = document.getElementById('selected-time').value;
-            const tipoCancha = document.getElementById('court-type').value;
+            const cantidadHoras = parseInt(document.getElementById('cantidad-horas').value, 10);
+            const horaInicio = document.getElementById('selected-time').value;
             const nombre = document.getElementById('name').value;
             const telefono = document.getElementById('phone').value;
             const metodoPago = document.getElementById('payment').value;
             const comentarios = document.getElementById('comments').value;
-            
-            if (!fecha || !hora || !tipoCancha || !nombre || !telefono || !metodoPago) {
+            const valorHora = 24000;
+            const total = valorHora * cantidadHoras;
+
+            if (!fecha || !horaInicio || !nombre || !telefono || !metodoPago) {
                 alert('Por favor complete todos los campos requeridos');
                 return;
             }
-            
+
+            // Calcular hora de fin y bloques reservados
+            const horaInicioNum = parseInt(horaInicio.split(':')[0], 10);
+            const horaFinNum = horaInicioNum + cantidadHoras;
+            const horaFin = `${horaFinNum.toString().padStart(2, '0')}:00`;
+            let bloques = [];
+            for (let i = 0; i < cantidadHoras; i++) {
+                bloques.push(`${(horaInicioNum + i).toString().padStart(2, '0')}:00`);
+            }
+
             // Crear objeto de reserva
             const nuevaReserva = {
                 id: Date.now(),
                 fecha,
-                hora,
-                tipoCancha,
+                hora: horaInicio,
+                bloques,
+                cantidadHoras,
                 nombre,
                 telefono,
                 metodoPago,
                 comentarios,
+                total,
                 fechaReserva: new Date().toISOString()
             };
-            
+
             // Agregar a las reservas
             reservas.push(nuevaReserva);
             localStorage.setItem('reservas', JSON.stringify(reservas));
-            
-            alert('¡Reserva enviada con éxito! Nos pondremos en contacto para confirmar.');
-            this.reset();
-            hideForms();
-            
-            // Actualizar horarios ocupados
-            generarHorariosDisponibles();
+
+            // Enviar notificación a Telegram
+            const mensajeReserva = `
+📅 *NUEVA RESERVA DE CANCHA* 🏟️
+👤 *Nombre:* ${nombre}
+📞 *Teléfono:* ${telefono}
+📅 *Fecha:* ${fecha}
+⏰ *Hora inicio:* ${horaInicio}
+⏳ *Cantidad de horas:* ${cantidadHoras}
+🕒 *Bloques reservados:* ${bloques.join(', ')}
+💳 *Método de pago:* ${metodoPago}
+📝 *Comentarios:* ${comentarios || 'Ninguno'}
+💰 *Total a pagar:* $${total.toLocaleString('es-CL')}
+            `;
+
+            enviarATelegram(mensajeReserva)
+                .then(() => {
+                    alert('¡Reserva enviada con éxito! Nos pondremos en contacto para confirmar.');
+                    this.reset();
+                    hideForms();
+                    generarHorariosDisponibles();
+                })
+                .catch(error => {
+                    console.error('Error al enviar:', error);
+                    alert('Reserva registrada, pero hubo un problema al notificar al equipo. Por favor contáctenos por teléfono.');
+                });
         });
         
         // Configurar el formulario de cotización para enviar
         document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            // BLOQUEO POR MANTENCIÓN
+            if (localStorage.getItem('mantencion') === '1') {
+                alert('Las canchas están en mantención. No se pueden solicitar cotizaciones en este momento.');
+                e.preventDefault();
+                hideForms();
+                return;
+            }
             e.preventDefault();
             
             // Obtener datos del formulario
@@ -1650,9 +2064,27 @@ function toggleSection(sectionId) {
                 return;
             }
             
-            alert('¡Solicitud de cotización enviada! Recibirá nuestra respuesta en 24 horas.');
-            this.reset();
-            hideForms();
+            // Enviar notificación a Telegram
+            const mensajeCotizacion = `
+📋 *SOLICITUD DE COTIZACIÓN* 📝
+👤 *Nombre:* ${nombre}
+📞 *Teléfono:* ${telefono}
+🏠 *Tipo de recinto:* ${tipoRecinto}
+🎉 *Tipo de evento:* ${tipoEvento}
+📅 *Fecha tentativa:* ${fechaEvento}
+📝 *Detalles:* ${descripcion || 'No especificados'}
+            `;
+            
+            enviarATelegram(mensajeCotizacion)
+                .then(() => {
+                    alert('¡Solicitud de cotización enviada! Recibirá nuestra respuesta en 24 horas.');
+                    this.reset();
+                    hideForms();
+                })
+                .catch(error => {
+                    console.error('Error al enviar:', error);
+                    alert('Solicitud registrada, pero hubo un problema al notificar al equipo. Por favor contáctenos por teléfono.');
+                });
         });
     });
 </script>
@@ -1686,102 +2118,141 @@ function toggleSection(sectionId) {
         }
     }
 
-    // Modificar la función de envío del formulario de reserva
-    document.getElementById('reservationForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Obtener datos del formulario
-        const fecha = document.getElementById('date').value;
-        const hora = document.getElementById('selected-time').value;
-        const nombre = document.getElementById('name').value;
-        const telefono = document.getElementById('phone').value;
-        const metodoPago = document.getElementById('payment').value;
-        const comentarios = document.getElementById('comments').value;
-        
-        if (!fecha || !hora || !nombre || !telefono || !metodoPago) {
-            alert('Por favor complete todos los campos requeridos');
-            return;
-        }
-        
-        // Crear objeto de reserva
-        const nuevaReserva = {
-            id: Date.now(),
-            fecha,
-            hora,
-            nombre,
-            telefono,
-            metodoPago,
-            comentarios,
-            fechaReserva: new Date().toISOString()
-        };
-        
-        // Agregar a las reservas
-        reservas.push(nuevaReserva);
-        localStorage.setItem('reservas', JSON.stringify(reservas));
-        
-        // Enviar notificación a Telegram
-        const mensajeReserva = `
-📅 *NUEVA RESERVA DE CANCHA* 🏟️
-👤 *Nombre:* ${nombre}
-📞 *Teléfono:* ${telefono}
-📅 *Fecha:* ${fecha}
-⏰ *Hora:* ${hora}
-💳 *Método de pago:* ${metodoPago}
-📝 *Comentarios:* ${comentarios || 'Ninguno'}
-        `;
-        
-        enviarATelegram(mensajeReserva)
-            .then(() => {
-                alert('¡Reserva enviada con éxito! Nos pondremos en contacto para confirmar.');
-                this.reset();
-                hideForms();
-                generarHorariosDisponibles();
-            })
-            .catch(error => {
-                console.error('Error al enviar:', error);
-                alert('Reserva registrada, pero hubo un problema al notificar al equipo. Por favor contáctenos por teléfono.');
-            });
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+    // --- ADMINISTRADOR ---
+    const ADMIN_USER = "admin";
+    const ADMIN_PASS = "1234"; // Cambia esto por seguridad real en producción
 
-    // Modificar la función de envío del formulario de cotización
-    document.getElementById('quoteForm').addEventListener('submit', function(e) {
+    // Mostrar modal login admin
+    document.getElementById('adminLoginBtn').onclick = function() {
+        const modal = new bootstrap.Modal(document.getElementById('adminLoginModal'));
+        modal.show();
+    };
+
+    // Login admin
+    document.getElementById('adminLoginForm').onsubmit = function(e) {
         e.preventDefault();
-        
-        // Obtener datos del formulario
-        const nombre = document.getElementById('contact-name').value;
-        const telefono = document.getElementById('contact-phone').value;
-        const tipoRecinto = document.getElementById('quote-type').value;
-        const tipoEvento = document.getElementById('event-type').value;
-        const fechaEvento = document.getElementById('quote-date').value;
-        const descripcion = document.getElementById('event-description').value;
-        
-        if (!nombre || !telefono || !tipoRecinto || !tipoEvento || !fechaEvento) {
-            alert('Por favor complete todos los campos requeridos');
+        const user = document.getElementById('admin-user').value;
+        const pass = document.getElementById('admin-pass').value;
+        if (user === ADMIN_USER && pass === ADMIN_PASS) {
+            localStorage.setItem('adminLog', '1');
+            document.getElementById('adminMenu').style.display = 'block';
+            bootstrap.Modal.getInstance(document.getElementById('adminLoginModal')).hide();
+        } else {
+            alert('Usuario o contraseña incorrectos');
+        }
+    };
+
+    // Mostrar menú admin si está logueado
+    if (localStorage.getItem('adminLog') === '1') {
+        document.getElementById('adminMenu').style.display = 'block';
+    }
+
+    // Logout admin
+    document.getElementById('logoutAdminBtn').onclick = function() {
+        localStorage.removeItem('adminLog');
+        document.getElementById('adminMenu').style.display = 'none';
+    };
+
+    // Bloquear reservas por mantención (admin)
+    document.getElementById('bloquearReservasBtn').onclick = function() {
+        db.ref('mantencion').set(true);
+        alert('¡Reservas bloqueadas por mantención!');
+    };
+    // Desbloquear reservas (admin)
+    document.getElementById('desbloquearReservasBtn').onclick = function() {
+        db.ref('mantencion').set(false);
+        alert('¡Reservas habilitadas nuevamente!');
+    };
+
+    // Mostrar aviso de mantención si está activo
+    function mostrarAvisoMantencion() {
+        if (localStorage.getItem('mantencion') === '1') {
+            document.getElementById('mantencionAviso').style.display = 'block';
+        } else {
+            document.getElementById('mantencionAviso').style.display = 'none';
+        }
+    }
+    mostrarAvisoMantencion();
+
+    // Si hay mantención, bloquear formularios de reserva
+    function bloquearReservasSiMantencion() {
+        const bloqueo = localStorage.getItem('mantencion') === '1';
+        // Oculta formularios y botones
+        document.querySelectorAll('.btn-reserva, .btn-cotizacion, #reserva-form, #cotizacion-form').forEach(el => {
+            if (el) el.style.display = bloqueo ? 'none' : '';
+        });
+        // Además, desactiva los botones "Reservar ahora" de las tarjetas
+        document.querySelectorAll('.tarjeta-servicio .btn-outline-primary').forEach(el => {
+            if (el) el.disabled = bloqueo;
+        });
+        document.querySelectorAll('.btn-cancelar').forEach(el => {
+            if (el) el.disabled = bloqueo;
+        });
+    }
+    bloquearReservasSiMantencion();
+
+    // Escuchar el estado de mantención en tiempo real
+    db.ref('mantencion').on('value', (snapshot) => {
+        mantencionBloqueada = !!snapshot.val();
+        if (mantencionBloqueada) {
+            localStorage.setItem('mantencion', '1');
+        } else {
+            localStorage.setItem('mantencion', '0');
+        }
+        bloquearReservasSiMantencion();
+        mostrarAvisoMantencion();
+    });
+});
+
+// Configuración de tu proyecto Firebase
+const firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "quillayquen-b7b22.firebaseapp.com",
+  databaseURL: "https://quillayquen-b7b22-default-rtdb.firebaseio.com/",
+  projectId: "quillayquen-b7b22",
+  storageBucket: "quillayquen-b7b22.appspot.com",
+  messagingSenderId: "TU_MESSAGING_SENDER_ID",
+  appId: "TU_APP_ID"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+document.addEventListener('DOMContentLoaded', function() {
+    // ...todo tu código admin...
+
+    // Guardar horario especial en Firebase (¡ahora sí funciona!)
+    document.getElementById('guardarHorarioEspecialBtn').onclick = function() {
+        const fecha = document.getElementById('fecha-horario-especial').value;
+        const horaTope = document.getElementById('hora-tope-especial').value;
+        if (!fecha || !horaTope) {
+            alert('Debes seleccionar una fecha y una hora máxima.');
             return;
         }
-        
-        // Enviar notificación a Telegram
-        const mensajeCotizacion = `
-📋 *SOLICITUD DE COTIZACIÓN* 📝
-👤 *Nombre:* ${nombre}
-📞 *Teléfono:* ${telefono}
-🏠 *Tipo de recinto:* ${tipoRecinto}
-🎉 *Tipo de evento:* ${tipoEvento}
-📅 *Fecha tentativa:* ${fechaEvento}
-📝 *Detalles:* ${descripcion || 'No especificados'}
-        `;
-        
-        enviarATelegram(mensajeCotizacion)
+        db.ref('horarios_especiales/' + fecha).set(horaTope)
             .then(() => {
-                alert('¡Solicitud de cotización enviada! Recibirá nuestra respuesta en 24 horas.');
-                this.reset();
-                hideForms();
+                alert('Horario especial guardado para ' + fecha + ' hasta las ' + horaTope);
             })
-            .catch(error => {
-                console.error('Error al enviar:', error);
-                alert('Solicitud registrada, pero hubo un problema al notificar al equipo. Por favor contáctenos por teléfono.');
+            .catch(() => {
+                alert('Error al guardar el horario especial.');
             });
-    });
+    };
+
+    // Restablecer horario especial en Firebase
+    document.getElementById('restablecerHorarioEspecialBtn').onclick = function() {
+    const fecha = document.getElementById('fecha-horario-especial').value;
+    if (!fecha) {
+        alert('Debes seleccionar una fecha para restablecer el horario.');
+        return;
+    }
+    db.ref('horarios_especiales/' + fecha).remove()
+        .then(() => {
+            alert('Horario restablecido para ' + fecha + '. Ahora tendrá el horario normal.');
+        })
+        .catch(() => {
+            alert('Error al restablecer el horario.');
+        });
+}
+    // ...resto de tu código...
+});
 </script>
-</body>
-</html>

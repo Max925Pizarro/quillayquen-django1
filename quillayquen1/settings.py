@@ -9,12 +9,28 @@ from django.core.management.utils import get_random_secret_key
 
 # Build paths
 BASE_DIR = Path(__file__).resolve().parent.parent
+# settings.py (Django)
 
-# Configuración de seguridad
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', get_random_secret_key())
-DEBUG = True  # ¡Cambiar a False en producción!
-ALLOWED_HOSTS = ['4a5e-2803-c600-6116-82f1-b9f7-6ebf-85a8-c8da.ngrok-free.app', 'localhost', '127.0.0.1']
+# 1. Clave secreta (nunca hardcodear en producción)
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', get_random_secret_key())  # ✅ Bien
 
+# 2. Debug (solo True en desarrollo)
+DEBUG = os.getenv('DEBUG', 'True') == 'True'  # Mejor práctica: controlar por variable de entorno
+
+# 3. Hosts permitidos (seguridad CSRF y Host header validation)
+ALLOWED_HOSTS = [
+    '.ngrok-free.app',  # Permite cualquier subdominio de ngrok (v3+)
+    'localhost',
+    '127.0.0.1',
+    '[::1]',  # Para IPv6 local
+]
+
+# 4. Configuración adicional para ngrok (CSRF y CORS si usas APIs)
+if DEBUG:
+    CSRF_TRUSTED_ORIGINS = [
+        'https://*.ngrok-free.app',  # Necesario para forms POST vía ngrok
+    ]
+    CORS_ALLOW_ALL_ORIGINS = True  # Solo en desarrollo, para APIs
 # Aplicaciones instaladas
 INSTALLED_APPS = [
     'django.contrib.admin',
