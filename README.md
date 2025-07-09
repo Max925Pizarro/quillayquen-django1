@@ -1,21 +1,34 @@
-# Quillayquén Django
+# 🌿 Quillayquén - Sistema de Reservas para Canchas y Áreas Verdes
 
-Este proyecto es un **sistema de reservas** para canchas y áreas verdes del centro recreativo **Vistas Quillayquén**, desarrollado con **Django**.
+Este proyecto es un sistema de reservas desarrollado con **Django**, para el centro recreativo **Vistas del Quillayquén**. Permite gestionar reservas de canchas, áreas verdes, usuarios y paneles administrativos en un entorno natural.
 
 ---
 
 ## 🚀 Características
 
-- Reservas de canchas de fútbol y áreas verdes.
-- Gestión de usuarios y administradores.
-- Panel de administración de reservas.
-- Imágenes de las instalaciones.
+- Reservas en línea de canchas de fútbol y zonas verdes 🌳
+- Gestión de usuarios y administradores
+- Panel de administración con interfaz amigable
+- Visualización de imágenes de las instalaciones
+- Base de datos local con SQLite
 
 ---
 
-## ⚙️ Instalación
+## 🛠 Tecnologías utilizadas
 
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/Max925Pizarro/quillayquen-django1.git
-   cd quillayquen-django1
+- Python 3.x
+- Django
+- SQLite
+- HTML/CSS/JS
+- Bootstrap (opcional)
+- Git y GitHub
+
+---
+
+## ⚙️ Instalación local
+
+1. Clona este repositorio:
+```bash
+git clone https://github.com/Max925Pizarro/quillayquen-django1.git
+cd quillayquen-django1
+
