@@ -1,13 +1,266 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <style>
+    /* --- PROFESIONALIZACIÓN GLOBAL --- */
+    body {
+        background: #f8faff;
+        color: #1a237e;
+        font-family: 'Poppins', 'Montserrat', Arial, sans-serif;
+        font-size: 1.08rem;
+        letter-spacing: 0.01em;
+    }
+    header {
+        background: linear-gradient(90deg, #0033cc 60%, #225fa8 100%);
+        box-shadow: 0 4px 18px rgba(0,51,204,0.10);
+        border-bottom-left-radius: 18px;
+        border-bottom-right-radius: 18px;
+    }
+    .navbar-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 8px #0033cc22;
+    }
+    .logo img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 2.5px solid #fff;
+        box-shadow: 0 2px 8px #0033cc22;
+        background: #fff;
+    }
+    .nav-btn {
+        border-radius: 18px;
+        font-size: 1.08rem;
+        font-weight: 600;
+        padding: 10px 22px;
+        background: #f4f8ff;
+        color: #0033cc;
+        border: 1.5px solid #e3e8f0;
+        margin: 0 6px;
+        box-shadow: 0 2px 8px #0033cc11;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    .nav-btn:hover, .nav-btn:focus {
+        background: #e6edfa;
+        color: #1e40af;
+        box-shadow: 0 4px 16px #0033cc22;
+    }
+    .nav-btn.active {
+        background: #0033cc;
+        color: #fff;
+        border-color: #0033cc;
+    }
+    .carousel {
+        border-radius: 18px;
+        box-shadow: 0 8px 32px #0033cc18;
+        margin-bottom: 32px;
+    }
+    .carousel-item img {
+        border-radius: 18px;
+        object-fit: cover;
+        min-height: 220px;
+        max-height: 400px;
+    }
+    .carousel-caption {
+        background: rgba(0, 51, 204, 0.10);
+        border-radius: 14px;
+        padding: 18px 24px;
+        color: #0033cc;
+        box-shadow: 0 2px 8px #0033cc22;
+    }
+    .content-section {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 4px 18px #0033cc11;
+        padding: 40px 0 32px 0;
+        margin-bottom: 32px;
+    }
+    .titulo-seccion {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #0033cc;
+        margin-bottom: 18px;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+    .descripcion {
+        color: #222;
+        font-size: 1.08rem;
+        margin-bottom: 18px;
+    }
+    .tarjetas-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        justify-content: center;
+    }
+    .tarjeta-servicio {
+        background: #f8faff;
+        border-radius: 16px;
+        box-shadow: 0 4px 18px #0033cc11;
+        padding: 28px 18px 18px 18px;
+        min-width: 220px;
+        max-width: 320px;
+        flex: 1 1 220px;
+        text-align: center;
+        transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .tarjeta-servicio:hover {
+        box-shadow: 0 8px 32px #0033cc22;
+        transform: translateY(-4px) scale(1.03);
+    }
+    .tarjeta-servicio h3 {
+        color: #0033cc;
+        font-size: 1.18rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    .tarjeta-servicio p {
+        color: #444;
+        font-size: 1.01rem;
+    }
+    .form-section {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 4px 18px #0033cc11;
+        padding: 40px 0 32px 0;
+        margin-bottom: 32px;
+    }
+    .form-control, .form-select, textarea.form-control {
+        border-radius: 12px;
+        border: 1.5px solid #e3e8f0;
+        font-size: 1.1rem;
+        padding: 14px 16px;
+        background: #f9fbff;
+        box-shadow: 0 1px 3px #0033cc08 inset;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .form-control:focus, .form-select:focus, textarea.form-control:focus {
+        border-color: #0033cc;
+        box-shadow: 0 0 0 3px #0033cc22;
+        background: #fff;
+        outline: none;
+    }
+    .btn-primary, .btn.btn-primary {
+        background: linear-gradient(90deg, #2563eb 60%, #1e40af 100%);
+        border: none;
+        color: #fff;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        padding: 12px 36px;
+        box-shadow: 0 4px 14px #2563eb22;
+        letter-spacing: 1.2px;
+        transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+    }
+    .btn-primary:hover, .btn.btn-primary:hover {
+        background: linear-gradient(90deg, #1e40af 60%, #2563eb 100%);
+        color: #fff;
+        box-shadow: 0 6px 20px #2563eb33;
+    }
+    footer {
+        background: linear-gradient(135deg, #0033cc, #225fa8);
+        color: #fff;
+        padding: 40px 0 20px;
+        font-size: 0.98rem;
+        border-top-left-radius: 18px;
+        border-top-right-radius: 18px;
+        box-shadow: 0 -2px 12px #0033cc22;
+    }
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .footer-links {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px 25px;
+    }
+    .footer-links a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s, transform 0.3s;
+    }
+    .footer-links a:hover {
+        color: #b3d1ea;
+        transform: translateY(-2px);
+    }
+    .social-icons a {
+        color: #fff;
+        background: #0033cc33;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s, transform 0.3s;
+    }
+    .social-icons a:hover {
+        background: #225fa8;
+        transform: scale(1.1);
+    }
+    </style>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Vistas  De Quillayquén</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
-    <style>/* Estilo para el Botón de Cancelación de Reserva */
+    <style>
+    /* --- OPTIMIZACIÓN MOBILE Y PROFESIONALIZACIÓN GENERAL --- */
+    html {
+        scroll-behavior: smooth;
+        -webkit-tap-highlight-color: transparent;
+    }
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: var(--light-color);
+        color: var(--black);
+        font-family: 'Poppins', sans-serif;
+        line-height: 1.7;
+        padding-top: 90px;
+        margin: 0;
+    }
+    /* Mejora de contraste para accesibilidad */
+    *:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+    /* Botón flotante WhatsApp */
+    .whatsapp-float {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        z-index: 3000;
+        background: #25d366;
+        color: #fff;
+        border-radius: 50%;
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 16px rgba(37,211,102,0.18);
+        font-size: 2rem;
+        transition: background 0.3s, transform 0.2s;
+    }
+    .whatsapp-float:hover {
+        background: #128c7e;
+        transform: scale(1.08);
+    }
 .btn-cancelar {
     position: relative;
     background: linear-gradient(135deg, #ff4d4d, #ff1a1a);
@@ -120,7 +373,7 @@
         /* Logo Mejorado */
         .logo {
             position: fixed;
-            top: 10px;
+            top: 20px;
             left: 20px;
             z-index: 1031;
             transition: all 0.3s ease;
@@ -131,8 +384,8 @@
         }
 
         .logo img {
-            width: 48px !important;
-            height: 48px !important;
+            width: 51px !important;
+            height: 51px !important;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--white);
@@ -254,10 +507,10 @@
         /* Secciones de contenido (Quiénes Somos, Misión y Visión) */
         .content-section {
             background-color: var(--white);
-            padding: 60px 0;
-            margin-top: 60px;
+            padding: 40px 0;
+            margin-top: 40px;
             border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
             position: relative;
             overflow: hidden;
             display: none;
@@ -334,7 +587,7 @@
         .servicios-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 80px 20px;
+            padding: 40px 10px;
         }
         
         .titulo-seccion {
@@ -358,17 +611,17 @@
         .tarjetas-wrapper {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 24px;
             flex-wrap: wrap;
         }
         
         .tarjeta-servicio {
             width: 100%;
-            max-width: 300px;
+            max-width: 320px;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(.4,2,.3,1);
             background: var(--white);
             position: relative;
         }
@@ -441,23 +694,54 @@
             flex-wrap: wrap;
         }
 
-        .form-buttons .btn-reserva,
+
+
+.form-buttons .btn-reserva,
 .form-buttons .btn-cotizacion,
 .form-buttons .btn-cancelar {
-    background: linear-gradient(135deg, #2563eb, #1e40af);
+    position: relative;
+    background: #1565c0;
     color: #fff;
     border: none;
-    min-width: 200px;
-    max-width: 240px;
+    min-width: 180px;
+    max-width: 320px;
     width: 100%;
-    padding: 13px 0;
+    padding: 12px 0 12px 0;
     font-size: 1.08rem;
-    font-weight: 600;
-    border-radius: 50px;
+    font-weight: 700;
+    border-radius: 6px;
     text-align: center;
     box-sizing: border-box;
-    transition: background 0.3s, transform 0.2s;
-    box-shadow: 0 4px 12px rgba(37,99,235,0.10);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+    box-shadow: 0 4px 16px rgba(21,101,192,0.13);
+    z-index: 1;
+}
+.form-buttons .btn-reserva::after,
+.form-buttons .btn-cotizacion::after,
+.form-buttons .btn-cancelar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45%;
+    height: 100%;
+    background: #4fc3f7;
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+    z-index: 2;
+    transition: background 0.2s;
+}
+.form-buttons .btn-reserva span,
+.form-buttons .btn-cotizacion span,
+.form-buttons .btn-cancelar span {
+    position: relative;
+    z-index: 3;
+}
+.form-buttons .btn-reserva:hover,
+.form-buttons .btn-cotizacion:hover,
+.form-buttons .btn-cancelar:hover {
+    box-shadow: 0 8px 24px rgba(33,150,243,0.18);
+    transform: translateY(-2px) scale(1.01);
 }
 
 .form-buttons .btn-reserva:hover,
@@ -468,104 +752,119 @@
     color: #fff;
 }
 
-        /* Formularios Mejorados */
-        .form-section {
-            display: none;
-            padding: 50px 0;
-            background-color: var(--light-gray);
-        }
+/* Formularios Mejorados */
+.form-section {
+    display: none;
+    padding: 50px 0;
+    background-color: var(--light-gray);
+}
 
-        .form-section.active {
-            display: block;
-            animation: fadeIn 0.5s ease-out;
-        }
+.form-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-        /* Formularios más profesionales y modernos */
+/* Formularios más profesionales y modernos */
 .reservation-section, .quote-section {
     background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-    padding: 40px 36px;
-    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    padding: 45px 40px;
+    max-width: 520px;
     margin: 40px auto;
     position: relative;
     overflow: hidden;
     border: 1.5px solid var(--light-gray);
-    transition: box-shadow 0.3s;
+    transition: box-shadow 0.3s ease;
 }
 
 .reservation-section:hover, .quote-section:hover {
-    box-shadow: 0 12px 36px rgba(0,0,0,0.18);
+    box-shadow: 0 14px 48px rgba(0,0,0,0.22);
 }
 
 .form-section h3 {
-    font-size: 1.45rem;
+    font-size: 1.6rem;
     font-weight: 700;
     color: var(--primary-color);
-    margin-bottom: 18px;
-    letter-spacing: 0.5px;
+    margin-bottom: 22px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .form-label {
-    font-weight: 600;
-    font-size: 1.05rem;
+    font-weight: 700;
+    font-size: 1.1rem;
     color: var(--primary-dark);
-    margin-bottom: 6px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .form-control, .form-select, textarea.form-control {
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1.5px solid var(--light-gray);
-    font-size: 1.03rem;
-    padding: 12px 14px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    background: #f8fafc;
+    font-size: 1.1rem;
+    padding: 14px 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: #f9fbff;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .form-control:focus, .form-select:focus, textarea.form-control:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(0,51,204,0.09);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
     background: #fff;
+    outline: none;
 }
 
 input[type="date"].form-control,
 input[type="time"].form-control {
-    min-height: 44px;
+    min-height: 48px;
 }
 
 textarea.form-control {
-    min-height: 90px;
+    min-height: 100px;
     resize: vertical;
+    font-family: 'Poppins', sans-serif;
 }
 
 .invalid-feedback {
-    font-size: 0.93rem;
+    font-size: 0.95rem;
     color: #e74c3c;
-    margin-top: 2px;
+    margin-top: 4px;
+    font-weight: 600;
 }
 
 .alert-info {
-    border-radius: 10px;
+    border-radius: 12px;
     background: linear-gradient(90deg, #e3f0ff 60%, #f8fafc 100%);
     color: #1e40af;
     border: none;
-    font-size: 1rem;
-    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+    font-size: 1.05rem;
+    box-shadow: 0 3px 10px rgba(37,99,235,0.12);
+    padding: 15px 20px;
+    margin-top: 20px;
+    font-weight: 600;
+    text-align: center;
 }
 
 .form-section .btn,
 .form-section button[type="submit"] {
-    border-radius: 30px;
-    font-size: 1.08rem;
-    font-weight: 600;
-    padding: 10px 28px;
-    transition: background 0.2s, box-shadow 0.2s, color 0.2s;
-    box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+    border-radius: 35px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    padding: 12px 36px;
+    transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    box-shadow: 0 4px 14px rgba(37,99,235,0.15);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
 }
 
 .form-section .btn-primary {
@@ -577,6 +876,7 @@ textarea.form-control {
 .form-section .btn-primary:hover {
     background: linear-gradient(90deg, #1e40af 60%, #2563eb 100%);
     color: #fff;
+    box-shadow: 0 6px 20px rgba(37,99,235,0.25);
 }
 
 .form-section .btn-outline-secondary {
@@ -588,6 +888,7 @@ textarea.form-control {
 .form-section .btn-outline-secondary:hover {
     background: var(--primary-color);
     color: #fff;
+    box-shadow: 0 6px 20px rgba(37,99,235,0.25);
 }
 
 .form-section .btn-danger {
@@ -599,16 +900,17 @@ textarea.form-control {
 .form-section .btn-danger:hover {
     background: linear-gradient(90deg, #ff1a1a 60%, #ff4d4d 100%);
     color: #fff;
+    box-shadow: 0 6px 20px rgba(255,0,0,0.25);
 }
 
 .form-section .btn-lg {
-    font-size: 1.08rem;
-    padding: 10px 28px;
-    border-radius: 30px;
+    font-size: 1.15rem;
+    padding: 12px 36px;
+    border-radius: 35px;
 }
 
 .form-section .text-center.mt-4 {
-    gap: 12px;
+    gap: 14px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -776,70 +1078,62 @@ textarea.form-control {
         /* Responsive */
         @media (max-width: 992px) {
             .carousel-item img {
-                height: 350px;
+                height: 220px;
             }
-            
             .tarjeta-servicio {
-                max-width: 280px;
+                max-width: 95vw;
+            }
+            .servicios-container {
+                padding: 20px 2vw;
             }
         }
         
         @media (max-width: 768px) {
             body {
-                padding-top: 80px;
+                padding-top: 70px;
             }
-            
-            .navbar-brand {
-                font-size: 1.2rem;
-            }
-            
-            .logo img {
-                width: 60px;
-                height: 60px;
-            }
-            
             .carousel-item img {
-                height: 300px;
+                height: 160px;
             }
-            
-            .carousel-caption {
-                bottom: 20px;
-                padding: 15px;
+            .tarjeta-servicio {
+                max-width: 98vw;
             }
-            
-            .carousel-caption h5 {
-                font-size: 1.4rem;
-            }
-            
-            .carousel-caption p {
-                font-size: 1rem;
-            }
-            
-            .form-buttons {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .btn-reserva,
-            .btn-cotizacion {
-                width: 100%;
-                max-width: 280px;
-            }
-            
-            .reservation-section, 
-            .quote-section {
-                padding: 30px;
+            .servicios-container {
+                padding: 10px 1vw;
             }
         }
         
-        @media (max-width: 576px) {
-    /* Navbar: logo y título alineados, botón hamburguesa más grande y a la derecha */
+@media (max-width: 576px) {
+    .btn.btn-sm, .btn-sm {
+        font-size: 0.93rem !important;
+        padding: 8px 18px !important;
+        min-width: 110px !important;
+        max-width: 180px !important;
+        border-radius: 18px !important;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        background: #fff !important;
+        color: #222 !important;
+        border: 1.5px solid #d1d5db !important;
+    }
+    .btn.btn-sm:active, .btn-sm:active {
+        box-shadow: 0 1px 3px rgba(37,99,235,0.08);
+        transform: scale(0.97);
+        background: #f3f4f6 !important;
+    }
+    .btn.btn-sm:hover, .btn-sm:hover {
+        background: #f3f4f6 !important;
+        color: #111 !important;
+        border-color: #bfc3c9 !important;
+    }
     .nav-flex {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         position: relative;
-        min-height: 48px;
+        min-height: 44px;
         padding-left: 0;
         padding-right: 0;
         width: 100%;
@@ -847,12 +1141,12 @@ textarea.form-control {
     .logo {
         display: flex;
         align-items: center;
-        height: 48px;
-        margin-left: 4px;
+        height: 44px;
+        margin-left: 2px;
     }
     .logo img {
-        width: 36px;
-        height: 36px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         border: 2px solid var(--white);
         object-fit: cover;
@@ -861,70 +1155,65 @@ textarea.form-control {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 1.05rem;
+        font-size: 0.98rem;
         font-weight: 600;
         color: var(--white);
-        letter-spacing: 0.3px;
+        letter-spacing: 0.2px;
         white-space: nowrap;
         z-index: 2;
         pointer-events: none;
         display: flex;
         align-items: center;
-        height: 48px;
+        height: 44px;
     }
     .navbar-toggler {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        height: 40px;
-        width: 40px;
-        padding: 4px 10px !important;
-        font-size: 1.3rem !important;
-        border-radius: 10px !important;
+        position: relative;
+        margin-left: auto;
+        margin-right: 0;
+        top: 0;
+        transform: none;
+        height: 36px;
+        width: 36px;
+        padding: 2px 8px !important;
+        font-size: 1.1rem !important;
+        border-radius: 8px !important;
         display: flex;
         align-items: center;
         z-index: 3;
         margin: 0;
     }
-
-    /* Botones principales centrados y más pequeños */
     .form-buttons {
-        display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap: 10px;
-        margin: 18px 0 12px 0;
+        gap: 8px;
+        margin: 12px 0 8px 0;
     }
     .form-buttons .btn-reserva,
     .form-buttons .btn-cotizacion,
     .form-buttons .btn-cancelar {
-        min-width: 110px;
-        max-width: 150px;
-        width: 80vw;
-        padding: 8px 0;
-        font-size: 0.95rem;
-        border-radius: 28px;
+        min-width: 90px;
+        max-width: 120px;
+        width: 90vw;
+        padding: 5px 0;
+        font-size: 0.82rem;
+        border-radius: 8px;
         margin: 0 auto;
         text-align: center;
         box-shadow: 0 2px 8px rgba(37,99,235,0.10);
     }
-
-    /* Footer ordenado y en columna */
     footer {
-        padding: 18px 0 8px;
-        font-size: 0.93rem;
+        padding: 10px 0 4px;
+        font-size: 0.91rem;
     }
     .footer-content {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 6px;
     }
     .footer-links {
         flex-direction: column;
         align-items: center;
-        gap: 6px 0;
+        gap: 3px 0;
         text-align: center;
     }
     .footer-links .separator {
@@ -932,17 +1221,17 @@ textarea.form-control {
     }
     .social-icons {
         justify-content: center;
-        gap: 10px;
-        margin-top: 8px;
+        gap: 6px;
+        margin-top: 4px;
     }
     .social-icons a {
-        width: 28px;
-        height: 28px;
-        font-size: 1.1rem;
+        width: 22px;
+        height: 22px;
+        font-size: 1rem;
     }
     .copyright {
-        font-size: 0.89rem;
-        margin-top: 6px;
+        font-size: 0.87rem;
+        margin-top: 3px;
     }
 }
     
@@ -973,13 +1262,13 @@ textarea.form-control {
         top: 56px !important;
         right: 16px !important;
         left: auto !important;
-        width: 170px !important;
+        width: 90vw !important;
         min-width: 140px;
-        max-width: 220px;
-        background: var(--white);
-        border-radius: 0 0 12px 12px;
-        box-shadow: 0 8px 24px rgba(0,51,204,0.10);
-        padding: 0.5rem 0.5rem 0.7rem 0.5rem;
+        max-width: 340px;
+        background: #fff;
+        border-radius: 0 0 18px 18px;
+        box-shadow: 0 8px 32px rgba(0,51,204,0.13), 0 1.5px 0 #e3e8f0;
+        padding: 1.2rem 1.2rem 1.5rem 1.2rem;
         z-index: 1050;
         text-align: left;
         animation: fadeInDown 0.25s;
@@ -988,28 +1277,105 @@ textarea.form-control {
         flex-direction: column !important;
         align-items: stretch !important;
         width: 100%;
-        gap: 0;
+        gap: 0.5rem;
     }
     .nav-item {
         width: 100%;
         margin: 0;
+        padding: 0.2rem 0;
     }
     .nav-btn {
         width: 100%;
         text-align: left;
-        font-size: 0.92rem;
-        padding: 8px 12px;
-        margin: 0 0 2px 0;
+        font-size: 1.08rem;
+        padding: 13px 18px;
+        margin: 0 0 6px 0;
+        border-radius: 12px;
+        color: #0033cc;
+        background: #f3f6fa;
+        border: 1.5px solid #e3e8f0;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(0,51,204,0.07);
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .nav-btn:hover, .nav-btn:focus {
+        background: #e6edfa;
+        color: #1e40af;
+        box-shadow: 0 4px 16px rgba(0,51,204,0.10);
+    }
+    .nav-btn.active {
+        background: #0033cc;
+        color: #fff;
+        border-color: #0033cc;
+    }
+    .navbar-toggler {
+        background: #052fc7 !important;
+        border: none !important;
+        color: #fff !important;
+        border-radius: 18px !important;
+        box-shadow: 0 4px 18px rgba(0,51,204,0.18);
+        width: 52px;
+        height: 52px;
+        min-width: 52px;
+        min-height: 52px;
+        max-width: 52px;
+        max-height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        transition: background 0.2s, box-shadow 0.2s;
+        outline: none !important;
+        position: absolute;
+        right: 6px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1051;
+    }
+    .navbar-toggler-icon {
+        background-image: none !important;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    .navbar-toggler-icon::before, .navbar-toggler-icon::after, .navbar-toggler-icon span {
+        content: '';
+        display: block;
+        height: 7px;
+        width: 28px;
+        background: #143a66;
         border-radius: 8px;
-        color: var(--primary-color);
-        background: var(--light-gray);
-        border: none;
-        transition: background 0.2s, color 0.2s;
+        margin: 6px 0;
+        box-shadow: 0 2px 8px rgba(0,51,204,0.10);
+        transition: box-shadow 0.2s, background 0.2s;
+        filter: brightness(1.08) drop-shadow(0 2px 8px #6ec1ff44);
+        box-shadow: 0 6px 24px rgba(0,51,204,0.18), 0 1.5px 0 #0a6fb3;
+        border: 2.5px solid #074ccc;
+        transition: box-shadow 0.2s, border 0.2s, background 0.2s;
     }
-    .nav-btn:hover {
-        background: var(--primary-light);
-        color: var(--white);
+    .navbar-toggler-icon span {
+        margin: 0;
+        position: static;
     }
+    .navbar-toggler-icon::before {
+        position: static;
+    }
+    .navbar-toggler-icon::after {
+        position: static;
+    }
+    .navbar-toggler:focus {
+        outline: 2px solid #0033cc;
+        outline-offset: 2px;
+    }
+
 }
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
@@ -1020,84 +1386,120 @@ textarea.form-control {
     to { opacity: 1; transform: translateY(0);}
 }
 </style>
+<style>
+.gallery-item {
+    max-width: 280px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+</style>
+<style>
+.gallery-item {
+    max-width: 280px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+</style>
 <body>
+<!-- Botón flotante WhatsApp -->
+<a id="whatsapp-float-btn" href="#" class="whatsapp-float" target="_blank" title="Contáctanos por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var numero = '56961854665';
+        var mensaje = encodeURIComponent('Hola, necesito más información sobre las instalaciones');
+        var enlace = `https://wa.me/${numero}?text=${mensaje}`;
+        var btn = document.getElementById('whatsapp-float-btn');
+        btn.setAttribute('href', enlace);
+    });
+</script>
 
 <!-- Nueva Sección Galería de Imágenes -->
 <div id="gallery-section" class="content-section" style="display:none; margin-top: 30px;">
     <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="titulo-seccion">Galería de Archivos</h2>
-            <button id="closeGalleryBtn" class="btn btn-sm btn-outline-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="toggleGallery()">
-                <i class="fas fa-times"></i>
+        <div class="d-flex align-items-center mb-2 position-relative" style="min-height: 38px;">
+            <h2 class="titulo-seccion mb-0" style="font-size:1.25rem; flex:1; text-align:center;">Galería de Recintos</h2>
+            <button id="closeGalleryBtn" onclick="toggleGallery()" aria-label="Cerrar galería"
+                style="position:absolute; right:0.5rem; top:0.5rem; width:22px; height:22px; background:#fff; border:1.5px solid #d1d5db; border-radius:6px; display:flex; align-items:center; justify-content:center; z-index:2; box-shadow:0 1px 4px rgba(0,0,0,0.07); padding:0;">
+                <span style="font-size:1rem; color:#888; line-height:1; font-weight:bold;">&times;</span>
             </button>
         </div>
-        <div class="row g-3">
-            <div class="col-6 col-md-3 col-lg-1-7">
-                <div class="gallery-item card shadow-sm" style="cursor:pointer; border-radius: 12px; overflow: hidden; transition: transform 0.3s;">
-<img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/480439569_1136507044764619_7564460146238459567_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeESz8J-kQIjLb079wUPJELU2Kf7MSCktW3Yp_sxIKS1be_B2bZ06FLBirsrTDAqnl4vBSwUWlPDxy9KhAO1VNdm&_nc_ohc=bV--_cnkaIwQ7kNvwEGIGIt&_nc_oc=AdnMHoyHpOMONnny7rMXz125iq3_ZQPaQyyuEDCY3ws2HubtkdR4oRh5Q0NsBJ088scvNXxZD5KYQsetH2KEOWb_&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=CYZGNqTBe-c8nT-O7lGj5g&oh=00_AfOmjYLYmYIXUNxvSPJS3QXFe-6EJ2YB6dsTFlC5JL5Q6w&oe=6857C84A" alt="Imagen 1" class="card-img-top img-fluid" style="object-fit: cover;">
-                    <div class="card-body p-2 text-center">
-                        <h6 class="card-title mb-0">Imagen 1</h6>
-                    </div>
+        <div class="gallery-carousel-container" style="position: relative; overflow: hidden; padding: 0 40px;">
+            <div class="gallery-arrow gallery-arrow-left" style="position: absolute; top: 50%; left: 4px; transform: translateY(-50%); width: 24px; height: 24px; background-color: rgba(0,0,0,0.13); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10;" onclick="scrollGallery(-1)">
+                <i class="fas fa-chevron-left" style="color: white; font-size: 1rem;"></i>
+            </div>
+            <div class="gallery-carousel" id="galleryCarousel" style="display: flex; gap: 20px; overflow-x: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; padding-bottom: 10px; scrollbar-width: none; -ms-overflow-style: none;">
+                <style>
+                    #galleryCarousel::-webkit-scrollbar {
+                        display: none;
+                    }
+                </style>
+                <div class="gallery-item" tabindex="0" style="flex: 0 0 auto; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; background: white; transition: transform 0.3s ease;">
+                    <img src="{% static 'sillas.jpg'%}" alt="vestuario outdoor" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-top: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                    <h6 style="margin-top: 8px; font-size: 0.9rem; color: var(--primary-color, #0033cc); font-weight: 600; user-select: none;">vestuario outdoor</h6>
+                </div>
+                <div class="gallery-item" tabindex="0" style="flex: 0 0 auto; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; background: white; transition: transform 0.3s ease;">
+                    <img src="{% static 'silla5.jpg'%}" alt="paisaje bosque" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-top: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                    <h6 style="margin-top: 8px; font-size: 0.9rem; color: var(--primary-color, #0033cc); font-weight: 600; user-select: none;">bosque</h6>
+                </div>
+                <div class="gallery-item" tabindex="0" style="flex: 0 0 auto; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; background: white; transition: transform 0.3s ease;">
+                    <img src="{% static 'silla 6.jpg'%}" alt="río montaña" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-top: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                    <h6 style="margin-top: 8px; font-size: 0.9rem; color: var(--primary-color, #0033cc); font-weight: 600; user-select: none;">río montaña</h6>
+                </div>
+                <div class="gallery-item" tabindex="0" style="flex: 0 0 auto; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; background: white; transition: transform 0.3s ease;">
+                    <img src="{% static 'quincho4.jpg'%}" alt="atardecer lago" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-top: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                    <h6 style="margin-top: 8px; font-size: 0.9rem; color: var(--primary-color, #0033cc); font-weight: 600; user-select: none;">atardecer lago</h6>
+                </div>
+                <div class="gallery-item" tabindex="0" style="flex: 0 0 auto; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; background: white; transition: transform 0.3s ease;">
+                    <img src="{% static 'piscina 5.jpg'%}" alt="bicicletas y electromovilidad" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-top: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                    <h6 style="margin-top: 8px; font-size: 0.9rem; color: var(--primary-color, #0033cc); font-weight: 600; user-select: none;">bicicletas y electromovilidad</h6>
+                </div>
+                <div class="gallery-item" tabindex="0" style="flex: 0 0 auto; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; background: white; transition: transform 0.3s ease;">
+                    <img src="{% static 'sillas.jpg'%}" alt="máquinas y accesorios" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-top: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                    <h6 style="margin-top: 8px; font-size: 0.9rem; color: var(--primary-color, #0033cc); font-weight: 600; user-select: none;">máquinas y accesorios</h6>
+                </div>
+                <div class="gallery-item" tabindex="0" style="flex: 0 0 auto; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; background: white; transition: transform 0.3s ease;">
+                    <img src="{% static 'psicina3.jpg'%}" alt="disciplinas" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-top: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                    <h6 style="margin-top: 8px; font-size: 0.9rem; color: var(--primary-color, #0033cc); font-weight: 600; user-select: none;">disciplinas</h6>
+                </div>
+                <div class="gallery-item" tabindex="0" style="flex: 0 0 auto; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; background: white; transition: transform 0.3s ease;">
+                    <img src="{% static 'quincho4.jpg'%}" alt="camping" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-top: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                    <h6 style="margin-top: 8px; font-size: 0.9rem; color: var(--primary-color, #0033cc); font-weight: 600; user-select: none;">camping</h6>
                 </div>
             </div>
-            <div class="col-6 col-md-3 col-lg-1-7">
-                <div class="gallery-item card shadow-sm" style="cursor:pointer; border-radius: 12px; overflow: hidden; transition: transform 0.3s;">
-<img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/480575090_1136507041431286_8051415280894658211_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGN8nPRGba21eGG7dvYKVr5sjVEAW-QZ0iyNUQBb5BnSGvIDylM_oEup8QT7MybI2BDn6VMgVYMy3TVUnZp4Okn&_nc_ohc=Hm81DdTpbFEQ7kNvwG6HWbr&_nc_oc=AdlSSyNIcahMzr49h9QJm7kajclufLJ9ABtgSIf2M-BxzrCfjzU1yI0Ph7Q2AKRvhEGCje_y_uOiKPr55EVFQkFt&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=PUuweBDJNwVhVvUBBWLN-A&oh=00_AfN7As63Sp_UmyzsBqPlseRjBnZFpYiy3R0XlfnPLLXgFA&oe=6857DAF6" alt="Imagen 2" class="card-img-top img-fluid" style="object-fit: cover;">
-                    <div class="card-body p-2 text-center">
-                        <h6 class="card-title mb-0">Imagen 2</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 col-lg-1-7">
-                <div class="gallery-item card shadow-sm" style="cursor:pointer; border-radius: 12px; overflow: hidden; transition: transform 0.3s;">
-<img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/480575090_1136507041431286_8051415280894658211_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGN8nPRGba21eGG7dvYKVr5sjVEAW-QZ0iyNUQBb5BnSGvIDylM_oEup8QT7MybI2BDn6VMgVYMy3TVUnZp4Okn&_nc_ohc=Hm81DdTpbFEQ7kNvwG6HWbr&_nc_oc=AdlSSyNIcahMzr49h9QJm7kajclufLJ9ABtgSIf2M-BxzrCfjzU1yI0Ph7Q2AKRvhEGCje_y_uOiKPr55EVFQkFt&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=PUuweBDJNwVhVvUBBWLN-A&oh=00_AfN7As63Sp_UmyzsBqPlseRjBnZFpYiy3R0XlfnPLLXgFA&oe=6857DAF6" class="card-img-top img-fluid" style="object-fit: cover;">
-                    <div class="card-body p-2 text-center">
-                        <h6 class="card-title mb-0">Imagen 3</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 col-lg-1-7">
-                <div class="gallery-item card shadow-sm" style="cursor:pointer; border-radius: 12px; overflow: hidden; transition: transform 0.3s;">
-<img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/480760839_1136507368097920_8538244210954914420_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFWI2T93ISvAWLTM3wpyZFwb730YVSTV_5vvfRhVJNX_uAgf9vkk_zcDo5Mn79jwR8phaVyLlA2-X0V7QbwAmIg&_nc_ohc=hw7DABeBTIMQ7kNvwEy7Ztb&_nc_oc=AdkaJ-1REoMcAc2LPWqG6O-ESEe6ebj2W3QZyImEL7RJccvh12cbrzgm9YIMdtGQiemZOEWYZahhpQW9cnObbAUD&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=PRmxTG3FATjER-PCRwOTBQ&oh=00_AfOGFck9P0GHqTms5v-DsQaOGxQ2noBTZfrCVVyRbUukhw&oe=6857C2E7" alt="Imagen 4" class="card-img-top img-fluid" style="object-fit: cover;">
-                    <div class="card-body p-2 text-center">
-                        <h6 class="card-title mb-0">Imagen 4</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 col-lg-1-7">
-                <div class="gallery-item card shadow-sm" style="cursor:pointer; border-radius: 12px; overflow: hidden; transition: transform 0.3s;">
-                    <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/480545385_1136507058097951_7623809134010362208_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHWZcEpu1zowm2P5Zq2OpSo23MgWsgHBCTbcyBayAcEJCjQwTeRuJg6JWKHsDCdghkY3zIBT_jToKVoqshTZvVW&_nc_ohc=nRcXmKvlChMQ7kNvwEBds3r&_nc_oc=AdmEp5tP6AWWK6zDOnnutZZ7KIbaeDvY9xwmgpTuc4ql0q2Nl07bu-HxREfgEK83AFIcSMw4B49UBYcpmhkQfCJp&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=75O01Pdb-aLxbvPkhh252A&oh=00_AfN9AmQnH6khMAqhNcKv3CxNtkepZPVTaGwRNQ0c6cp8KQ&oe=6857DE68" alt="Imagen 5" class="card-img-top" style="height: 120px; object-fit: cover;">
-                    <div class="card-body p-2 text-center">
-                        <h6 class="card-title mb-0">Imagen 5</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 col-lg-1-7">
-                <div class="gallery-item card shadow-sm" style="cursor:pointer; border-radius: 12px; overflow: hidden; transition: transform 0.3s;">
-                    <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/487170588_1775427703189500_705297619829725784_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGueY7oEKBYBfbzNkls4iBmFOPXDo-YvKsU49cOj5i8q_aE__cDmGZU14KITJcWBXrnnRd7a12jN1dBmN2DC5xL&_nc_ohc=SeYxjLi3Ue8Q7kNvwH_tNjb&_nc_oc=AdkcPEqXUd1B41FZsh2hsWMfC00MVqlfL9Q4WPzZXaldFzA-YthW7itAE0leI7eSbJcGCuA0KCulgzIUGccPfwce&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=GEChFOe7X563Uvk-C7lRiw&oh=00_AfPWZmY_uQirVDMqSHDs3hvC94oN2j_zDp9IPd3cQRQ_yw&oe=6857DEB5" alt="Imagen 6" class="card-img-top" style="height: 120px; object-fit: cover;">
-                    <div class="card-body p-2 text-center">
-                        <h6 class="card-title mb-0">Imagen 6</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 col-lg-1-7">
-                <div class="gallery-item card shadow-sm" style="cursor:pointer; border-radius: 12px; overflow: hidden; transition: transform 0.3s;">
-                    <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/486609882_1775427749856162_6530492319397428147_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFmXAt2-ZlcQtuT2tQZSU086HTABvmWI0HodMAG-ZYjQWX1GSJ8IPLKtci_ZqNqa5d15lcWbS6WQweSS4BBGdnd&_nc_ohc=RHalmg989rYQ7kNvwE3kU9q&_nc_oc=Adm0YVBEQ_AA22gYb3mIXs7mrdULxu92KnhxMSThLKx81qtHhlc_Sr1LuKB4XXh0Xs9b0fdA7sTENRaYmwRwQlfR&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=HhBXBET75EkqT9ZlCnwmvg&oh=00_AfNkK8JIM-5OVS9CqIv28MqqrYEVd6qf2D8M2Pz3VLNTIg&oe=6857C393" alt="Imagen 7" class="card-img-top" style="height: 120px; object-fit: cover;">
-                    <div class="card-body p-2 text-center">
-                        <h6 class="card-title mb-0">Imagen 7</h6>
-                    </div>
-                </div>
+            <div class="gallery-arrow gallery-arrow-right" style="position: absolute; top: 50%; right: 4px; transform: translateY(-50%); width: 24px; height: 24px; background-color: rgba(0,0,0,0.13); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10;" onclick="scrollGallery(1)">
+                <i class="fas fa-chevron-right" style="color: white; font-size: 1rem;"></i>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Header Mejorado -->
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container nav-flex">
             <span class="logo">
-              <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/304119837_1258996464925885_5095840868789037444_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeH_Z2XE9t0qpyb8oRA4rGEpsdN8pCcY67Kx03ykJxjrstZl0bsQVquLDrME0PKUm96zPwOTC3w1WqEY6uM7HJCS&_nc_ohc=ranxGzqSK24Q7kNvwHW3qkz&_nc_oc=Adl0Lbs2-eUZ-hkDhakxCrVol_FUOQ2tIxJgIvVmq9ySfdp2hoNE2dpdaQu1VaKjNC5GoP8okVSibws4xjxhQKM3&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=heqAGiRutOo-dWSZrwZirA&oh=00_AfMfMZFsOak0YHKKJPBTkmMFdw1Szjv6X4LdSAGOSGtb7A&oe=6857B15F" alt="Logo Vistas Quillayquen">
+              <img src="{% static 'vistalogo.jpg' %}" alt="Logo Vistas Quillayquen">
             </span>
             <span class="navbar-title">Vistas De Quillayquén</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -1106,27 +1508,27 @@ textarea.form-control {
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <button class="nav-btn" onclick="toggleSection('quienes-somos')">
+                        <button class="nav-btn" onclick="toggleSection('quienes-somos'); document.getElementById('navbarNav').classList.remove('show');">
                             <i class="fas fa-info-circle me-2"></i>Conócenos
                         </button>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-btn" onclick="toggleSection('mision-vision')">
+                        <button class="nav-btn" onclick="toggleSection('mision-vision'); document.getElementById('navbarNav').classList.remove('show');">
                             <i class="fas fa-bullseye me-2"></i>Misión y Visión
                         </button>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-btn" onclick="toggleGallery()">
-                            <i class="fas fa-images me-2"></i>Explorar Archivos
+                        <button class="nav-btn" onclick="toggleGallery(); document.getElementById('navbarNav').classList.remove('show');">
+                            <i class="fas fa-images me-2"></i>Explorar Recintos
                         </button>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-btn" data-bs-toggle="modal" data-bs-target="#rulesModal">
+                        <button class="nav-btn" data-bs-toggle="modal" data-bs-target="#rulesModal" onclick="document.getElementById('navbarNav').classList.remove('show');">
                             <i class="fas fa-clipboard-list me-2"></i>Reglas
                         </button>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-btn" data-bs-toggle="modal" data-bs-target="#priceModal">
+                        <button class="nav-btn" data-bs-toggle="modal" data-bs-target="#priceModal" onclick="document.getElementById('navbarNav').classList.remove('show');">
                             <i class="fas fa-dollar-sign me-2"></i>Precios
                         </button>
                     </li>
@@ -1139,19 +1541,39 @@ textarea.form-control {
 <!-- Modal Precios -->
 <div class="modal fade" id="priceModal" tabindex="-1" aria-labelledby="priceModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="priceModalLabel">
-                    <i class="fas fa-dollar-sign me-2"></i>Información de Precios
-                </h5>
+        <div class="modal-content shadow-lg border-0" style="border-radius: 18px;">
+            <div class="modal-header" style="background: linear-gradient(90deg, #0033cc 60%, #225fa8 100%); color: #fff; border-top-left-radius: 18px; border-top-right-radius: 18px; border-bottom: none;">
+                <h4 class="modal-title fw-bold d-flex align-items-center gap-2" id="priceModalLabel" style="font-family: 'Montserrat', sans-serif; font-size: 1.35rem;">
+                    <i class="fas fa-dollar-sign" style="font-size:1.5rem;"></i> Información de Precios
+                </h4>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
-            <div class="modal-body">
-                <p>El valor de la cancha de fútbol es de <strong>24.000 pesos por hora</strong>.</p>
-                <p>El valor de la piscina en temporada baja es de <strong>8.000 pesos</strong>.</p>
+            <div class="modal-body" style="background: #f8faff; padding: 32px 28px 24px 28px;">
+                <div class="row g-3 align-items-center justify-content-center">
+                    <div class="col-12 col-md-6 mb-3 mb-md-0">
+                        <div class="card border-0 shadow-sm h-100" style="border-radius: 14px; background: #fff;">
+                            <div class="card-body text-center">
+                                <i class="fas fa-futbol fa-2x mb-2 text-primary"></i>
+                                <h5 class="fw-bold mb-2" style="color:#0033cc;">Cancha de Fútbol</h5>
+                                <div class="display-6 fw-bold mb-1" style="color:#1e40af;">$24.000</div>
+                                <div style="font-size:1.05rem; color:#444;">por hora</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="card border-0 shadow-sm h-100" style="border-radius: 14px; background: #fff;">
+                            <div class="card-body text-center">
+                                <i class="fas fa-swimmer fa-2x mb-2" style="color:#0099ff;"></i>
+                                <h5 class="fw-bold mb-2" style="color:#0099ff;">Piscina</h5>
+                                <div class="display-6 fw-bold mb-1" style="color:#0099ff;">$8.000</div>
+                                <div style="font-size:1.05rem; color:#444;">temporada baja</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            <div class="modal-footer" style="border-bottom-left-radius: 18px; border-bottom-right-radius: 18px; background: #f8faff; border-top: none;">
+                <button type="button" class="btn btn-primary px-4 py-2 fw-bold" style="border-radius: 30px; font-size: 1.1rem; letter-spacing: 1px;" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -1159,6 +1581,13 @@ textarea.form-control {
 
 <!-- Carrusel Mejorado -->
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+<style>
+@media (max-width: 576px) {
+  #carouselExampleCaptions {
+    margin-top: 90px !important;
+  }
+}
+</style>
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -1166,21 +1595,21 @@ textarea.form-control {
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/480238916_1136507338097923_4174833033910572682_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeFRPU-Ct69k0rW4euAkUipS1IbP2UU0a67Uhs_ZRTRrrr_RXX-iX2TbFvIRBDII5vkQmsFwcC_yj2wJcctl_Ue5&_nc_ohc=4vYw9DNCQoMQ7kNvwGJ1Z0D&_nc_oc=AdnUAx6v61FmToJRaxV0Ew7R_uSX5XCGus3NaKrhgnOOeVYL0E3VGZWU8fdtE_fbT5E2CGSP5keGngyyq1FR4jll&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=tSW8wBk6Ofj9rtrymJbzRA&oh=00_AfOhy59ILYI0YWNhxT4TLucMTX32HRQQHXaWA2fYA9DCPw&oe=6857E1EF" class="d-block w-100" class="d-block w-100" alt="Disfruta de nuestras instalaciones">
+        <img src="{% static 'areaverde3..jpg' %}" class="d-block w-100" class="d-block w-100" alt="Disfruta de nuestras instalaciones">
         <div class="carousel-caption d-none d-md-block">
           <h5>Disfruta de nuestras instalaciones</h5>
           <p>Vistas espectaculares y servicios de calidad</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/480846459_1142448664170457_5580398454510288839_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeErhmSaZK5Jck2qyJMFmGDyixBK3m_X_ceLEEreb9f9x96tfnIob62QoyXq-T1RKHL6q_Li8wvV_UCgR7wqrWB8&_nc_ohc=yGFjnvDAFd4Q7kNvwG1SaCV&_nc_oc=Adk5hu73BTAwpepITdGeBIEvh4kNs1ERyCuTuUKmuejWUf4DKrDG2RRiE-4REAFVCa2M8elGdgNLsATDCJjaETLJ&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=7rSmmOWS6vD36w4nlH22SQ&oh=00_AfOPhL3VeYcatYvRPYcsr80XeAyZU7yz75F8Wbf9v6pY9g&oe=6857B186" class="d-block w-100" alt="Eventos inolvidables">
+        <img src="{% static 'imagen1.jpg' %}" class="d-block w-100" alt="Eventos inolvidables">
         <div class="carousel-caption d-none d-md-block">
           <h5>Eventos inolvidables</h5>
           <p>Celebra tus momentos especiales con nosotros</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/480291567_1136507021431288_5881670813450225351_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeF9Onig56aJJf8Ol-ZSC0uRJgKcZvQBz80mApxm9AHPzURjMMHyxbnTCwyzLVCRsohss0zq-03BoZ3fTFx9dk0D&_nc_ohc=4Teit_NCg7QQ7kNvwFzlppq&_nc_oc=AdkqCqrRAK4oBC_kX1QGzwDJSKlzofWFjioWrMxnxqd_fNAxh9unjDs9k-1c_8nmc9YYQ_LlNkKSO3LidZ9O0Oca&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=lqMHwtNbpeOYN6GkdyM-0Q&oh=00_AfMlAuqsHNfd09ldp0pH6fPBydCTGsaSW8ZWRC-BfjrI9g&oe=6857CF40" class="d-block w-100" alt="Áreas verdes">
+        <img src="{% static 'quincho4.jpg'%}" class="d-block w-100" alt="Áreas verdes">
         <div class="carousel-caption d-none d-md-block">
           <h5>Áreas Verdes</h5>
           <p>Espacios ideales para relajarte y disfrutar</p>
@@ -1197,90 +1626,92 @@ textarea.form-control {
     </button>
 </div>
   
-<!-- Sección "Quiénes Somos" Mejorada -->
-<div id="quienes-somos" class="content-section">
-    <div class="container">
+<!-- Sección "Quiénes Somos" Mejorada y Profesional -->
+<div id="quienes-somos" class="content-section" style="display:none;">
+    <div class="container position-relative">
+        <button onclick="toggleSection('quienes-somos')" aria-label="Cerrar sección" style="position:absolute; right:1.2rem; top:1.2rem; width:32px; height:32px; background:#fff; border:1.5px solid #d1d5db; border-radius:8px; display:flex; align-items:center; justify-content:center; z-index:2; box-shadow:0 2px 8px rgba(0,0,0,0.10); padding:0;">
+            <span style="font-size:1.4rem; color:#888; line-height:1; font-weight:bold;">&times;</span>
+        </button>
         <h2 class="titulo-seccion">Quiénes Somos</h2>
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <p class="descripcion">
-                    En <strong>Vistas Quillayquen</strong>, nos dedicamos a ofrecer experiencias inolvidables en un entorno natural único. 
-                    Contamos con instalaciones de primer nivel, ideales para eventos, reuniones familiares y actividades recreativas. 
-                    Nuestro compromiso es brindar un servicio de calidad, asegurando que cada visita sea especial.
-                </p>
-                <p class="descripcion">
-                    Desde piscinas y áreas verdes hasta quinchos y canchas deportivas, nuestro objetivo es ser el lugar perfecto para 
-                    desconectarte y disfrutar de momentos únicos con tus seres queridos.
-                </p>
-                <div class="mt-4">
-                    <button class="btn btn-primary" onclick="showForm('cotizacion')">
-                        <i class="fas fa-calendar-alt me-2"></i>Planificar Evento
-                    </button>
-                </div>
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-5 mb-4 mb-md-0 d-flex justify-content-center">
+                <img src="{% static 'piscina 5.jpg' %}" alt="Equipo Quillayquén" class="img-circle-small" style="border:4px solid #e3e8f0; background:#fff;">
             </div>
-            <div class="col-lg-6 mt-4 mt-lg-0">
-                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/483615740_1152787483136575_4497225821990342272_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeF_tDXBauwPcIefs1aU7twCZHgfkHxfkVxkeB-QfF-RXI6EUleMq_MjA20dIJvita-amngtk_K9U0dy2QkhKc8L&_nc_ohc=GFgqHZIcsFQQ7kNvwGQ5jif&_nc_oc=Adk90IjLfMr0OI7qUqa0_geyao57kMUF46wqQmhS-mFtjj9DHwHGE1qJ4MppfMdFNgs&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=9aEIpTNCvptd2sIWnMf8uw&oh=00_AfM-CPb9XxYo1Qj62QyxKok9uxlWtUtO47sJlEmmHFrZuA&oe=684779B6" alt="Piscina" class="img-fluid img-circle-small shadow">
+            <div class="col-md-7">
+                <div class="descripcion" style="font-size:1.13rem; color:#444; font-weight:500; background:linear-gradient(90deg,#f8faff 80%,#e3f0ff 100%); border-radius:12px; box-shadow:0 2px 8px #0033cc11; padding:28px 24px;">
+                    Somos un equipo apasionado por crear experiencias inolvidables en un entorno natural único. En Vistas de Quillayquén, combinamos hospitalidad, profesionalismo y amor por la naturaleza para ofrecer el mejor servicio en reservas, eventos y actividades al aire libre.<br><br>
+                    Nuestro compromiso es brindar atención personalizada, instalaciones de primer nivel y un ambiente seguro y acogedor para toda la familia, empresas y grupos.
+                </div>
+                <button class="btn btn-primary mt-4 w-100" style="max-width:320px; border-radius:30px; font-weight:600;" onclick="showForm('cotizacion')">
+                    <i class="fas fa-calendar-alt me-2"></i>Planificar Evento
+                </button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Sección "Misión y Visión" -->
-<div id="mision-vision" class="content-section">
-    <div class="container">
+<!-- Sección "Misión y Visión" Mejorada y Profesional -->
+<div id="mision-vision" class="content-section" style="display:none;">
+    <div class="container position-relative">
+        <button onclick="toggleSection('mision-vision')" aria-label="Cerrar sección" style="position:absolute; right:1.2rem; top:1.2rem; width:32px; height:32px; background:#fff; border:1.5px solid #d1d5db; border-radius:8px; display:flex; align-items:center; justify-content:center; z-index:2; box-shadow:0 2px 8px rgba(0,0,0,0.10); padding:0;">
+            <span style="font-size:1.4rem; color:#888; line-height:1; font-weight:bold;">&times;</span>
+        </button>
         <h2 class="titulo-seccion">Misión y Visión</h2>
-        <div class="row">
-            <div class="col-lg-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h3 class="card-title text-center text-primary">
-                            <i class="fas fa-bullseye me-2"></i>Misión
-                        </h3>
-                        <p class="card-text">
-                            Brindar un espacio multifuncional que combine deportes, entretenimiento y eventos sociales, 
-                            ofreciendo instalaciones de calidad y un ambiente único para disfrutar en familia, con amigos 
-                            o en actividades profesionales.
-                        </p>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0" style="border-radius:14px; background:linear-gradient(90deg,#e3f0ff 60%,#f8fafc 100%);">
+                    <div class="card-body text-center">
+                        <i class="fas fa-bullseye fa-2x mb-2" style="color:#0033cc;"></i>
+                        <h5 class="fw-bold mb-2" style="color:#0033cc;">Misión</h5>
+                        <p class="mb-0" style="color:#444; font-size:1.08rem;">Ofrecer espacios y servicios de excelencia para la realización de eventos, actividades recreativas y experiencias al aire libre, promoviendo el respeto por la naturaleza y la satisfacción de nuestros visitantes.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h3 class="card-title text-center text-primary">
-                            <i class="fas fa-eye me-2"></i>Visión
-                        </h3>
-                        <p class="card-text">
-                            Ser el centro líder entre nuestros competidores, reconocido por su excelencia en el servicio, 
-                            infraestructura innovadora y compromiso con el bienestar de nuestros clientes, promoviendo 
-                            la integración, la salud y el deporte en un solo lugar.
-                        </p>
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0" style="border-radius:14px; background:linear-gradient(90deg,#f8fafc 60%,#e3f0ff 100%);">
+                    <div class="card-body text-center">
+                        <i class="fas fa-eye fa-2x mb-2" style="color:#0033cc;"></i>
+                        <h5 class="fw-bold mb-2" style="color:#0033cc;">Visión</h5>
+                        <p class="mb-0" style="color:#444; font-size:1.08rem;">Ser el centro de eventos y actividades outdoor líder en la región, reconocido por la calidad de sus servicios, el cuidado del entorno y la innovación en experiencias para nuestros clientes.</p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="text-center mt-3">
-            <button class="btn btn-outline-primary" onclick="hideAllSections()">
-                <i class="fas fa-times me-2"></i>Cerrar
-            </button>
         </div>
     </div>
 </div>
   
 <!-- Servicios Mejorados -->
 <div class="servicios-container">
-    <h2 class="titulo-seccion">Nuestros Recintos</h2>
+    <h2 class="titulo-seccion titulo-recintos">Nuestros Recintos</h2>
+<style>
+.titulo-recintos {
+  font-size: 1.7rem !important;
+  margin-top: 32px !important;
+  margin-bottom: 18px !important;
+  text-align: center;
+}
+@media (max-width: 576px) {
+  .titulo-recintos {
+    font-size: 1.25rem !important;
+    margin-top: 24px !important;
+    margin-bottom: 12px !important;
+  }
+}
+.servicios-container {
+  margin-top: 30px !important;
+}
+</style>
     
     <div class="tarjetas-wrapper">
         <!-- Tarjeta 1 - Piscinas -->
         <div class="tarjeta-servicio">
             <div class="imagen-container">
-                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/484338387_1152787399803250_9021000308489321049_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHgBwehLTKzqzkzfEmpE_grDrWRXEmTMIQOtZFcSZMwhGhD5ivihjU--E1dnGcxn3qhCjjIbVBupwcPFIAmMbt2&_nc_ohc=e5Nr5deH_hYQ7kNvwH4gp7O&_nc_oc=AdnH9tT4fXEEsEDRcc8r2AijGdyebOGhHVISU-BjX5C5K9ROKpVFQlGiDWF2Xcg-BHj85qrOWi_WoLNiKRZUBBth&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=8NXDhChpI6ub_eCyYsuunQ&oh=00_AfPVLkV_fD2K_ESiRE3_4Bwl-uYF6c8cL_DCtjU5xRdwbw&oe=6857B7CB" alt="Piscina" class="imagen-servicio">
+                <img src="{% static 'psicina5.jpg'%}" alt="Piscina" class="imagen-servicio">
             </div>
             <div class="contenido-tarjeta">
                 <h3>Piscinas</h3>
                 <p>Disfruta de nuestras piscinas con vistas espectaculares y áreas de descanso completamente equipadas para tu comodidad.</p>
-                <button class="btn btn-outline-primary btn-sm mt-2" onclick="showForm('cotizacion')">
+                <button class="btn btn-outline-primary btn-sm mt-2" onclick="showForm('cotizacion'); scrollToForm('cotizacion-form');">
                     Reservar ahora
                 </button>
             </div>
@@ -1294,7 +1725,7 @@ textarea.form-control {
             <div class="contenido-tarjeta">
                 <h3>Canchas Deportivas</h3>
                 <p>Canchas de fútbol  para todos los niveles, con iluminación profesional y mantenimiento de primera.</p>
-                <button class="btn btn-outline-primary btn-sm mt-2" onclick="showForm('reserva')">
+                <button class="btn btn-outline-primary btn-sm mt-2" onclick="showForm('reserva'); scrollToForm('reserva-form');">
                     Reservar ahora
                 </button>
             </div>
@@ -1303,12 +1734,12 @@ textarea.form-control {
         <!-- Tarjeta 3 - Quinchos -->
         <div class="tarjeta-servicio">
             <div class="imagen-container">
-                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/480927822_1138807271201263_1163546771899207418_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGJa351564LmRlBpJfB82B4iQI1ynFGf2WJAjXKcUZ_ZfyFii3vJRF8I-v3o898nGRnC-D7i4yWHQ--kZYUT244&_nc_ohc=QAqf3DNji30Q7kNvwFeKQnD&_nc_oc=Adl1BxASrROMd9uLDY207IGAJzWS1e80fpla4yTJcT50BltjZwgLgBuZhUNx2DmILMJg7w6Y7M3yW6GiDB3HFuWs&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=hISAP4C-ohA0mOp8gIZhAA&oh=00_AfP3FSthnY0cxde5bCMQN9u6N6N-Xfd-yh9Elsslj03TaQ&oe=6857D6F8" alt="Quinchos" class="imagen-servicio">
+                <img src="{% static 'quincho4.jpg'%}" alt="Quinchos" class="imagen-servicio">
             </div>
             <div class="contenido-tarjeta">
                 <h3>Quinchos</h3>
                 <p>Espacios perfectos para tus asados y reuniones, equipados con parrillas, mesas y áreas de descanso.</p>
-                <button class="btn btn-outline-primary btn-sm mt-2" onclick="showForm('cotizacion')">
+                <button class="btn btn-outline-primary btn-sm mt-2" onclick="showForm('cotizacion'); scrollToForm('cotizacion-form');">
                     Reservar ahora
                 </button>
             </div>
@@ -1317,12 +1748,12 @@ textarea.form-control {
         <!-- Tarjeta 4 - Áreas verdes -->
         <div class="tarjeta-servicio">
             <div class="imagen-container">
-                <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/483847691_1152787509803239_1748480869798048834_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEKCZXlW5ycsFMzrFU9HGyazPsSsHom217M-xKweibbXgAdZXs52G9frQiTvW6uJaS07cNc3zWfYfEdr7VdMgPv&_nc_ohc=OR11RrZ1TE8Q7kNvwFhSUEN&_nc_oc=Adltjf0juowlDJAvZC5fZL3MjJxSWseCn-OwpCzWTgONjZ2cOqjeJSX0kEGNuPhvtT3vmeq3J8EbVQCWQSr99Hvb&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=g4oq6CN-eJr4rIGwcDUJmQ&oh=00_AfMTtVfQTAFWY7GZs2cdYggyE-S1Bv7znUf9Fg3nxAuS1w&oe=6857B329" alt="Áreas verdes" class="imagen-servicio">
+                <img src="{% static 'areasverdes.jpg'%}" alt="Áreas verdes" class="imagen-servicio">
             </div>
             <div class="contenido-tarjeta">
                 <h3>Áreas Verdes</h3>
                 <p>Amplias zonas de camping y áreas verdes para disfrutar de la naturaleza con toda la familia.</p>
-                <button class="btn btn-outline-primary btn-sm mt-2" onclick="showForm('cotizacion')">
+                <button class="btn btn-outline-primary btn-sm mt-2" onclick="showForm('cotizacion'); scrollToForm('cotizacion-form');">
                     Reservar ahora
                 </button>
             </div>
@@ -1332,75 +1763,76 @@ textarea.form-control {
 
 <!-- Botones para formularios Mejorados -->
 <div class="form-buttons">
-    <button class="btn-reserva" onclick="showForm('reserva')">
-        <i class="fas fa-calendar-check me-2"></i>Reservar Cancha
+    <button class="btn-cancelar" onclick="showCancelForm()">
+        <span style="font-weight:700; letter-spacing:1px;">CANCELAR RESERVA</span>
     </button>
-    <button class="btn-cotizacion" onclick="showForm('cotizacion')">
-        <i class="fas fa-clipboard-list me-2"></i>Planificar Evento
-    </button>
-<button class="btn-cancelar" onclick="showCancelForm()">
-    <i class="fas fa-times-circle me-2"></i>Cancelar Reserva
-</button>  
 </div>
-
-<!-- Modal de Reglas Mejorado -->
+<!-- Modal de Reglas Mejorado y Profesional -->
 <div class="modal fade modal-rules" id="rulesModal" tabindex="-1" aria-labelledby="rulesModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="rulesModalLabel">
-                    <i class="fas fa-clipboard-list me-2"></i>Reglas de los Recintos
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content" style="border-radius:16px;">
+            <div class="modal-header" style="background:linear-gradient(90deg,#0033cc 60%,#225fa8 100%); color:#fff; border-bottom:none;">
+                <h4 class="modal-title fw-bold d-flex align-items-center gap-2" id="rulesModalLabel" style="font-family:'Montserrat',sans-serif; font-size:1.25rem;">
+                    <i class="fas fa-gavel me-2"></i> Reglas y Normas del Centro
+                </h4>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
-            <div class="modal-body">
-                <div class="rule-item">
-                    <h5><i class="fas fa-clock me-2"></i>Horarios</h5>
-                    <p>Respetar los horarios de apertura y cierre establecidos. El acceso fuera de horario no está permitido.</p>
+            <div class="modal-body" style="background:#f8faff; padding:32px 28px 24px 28px;">
+                <div class="rule-item d-flex align-items-start mb-3">
+                    <i class="fas fa-check-circle fa-lg me-3" style="color:#2563eb;"></i>
+                    <div>
+                        <h5>Respeto y convivencia</h5>
+                        <p style="margin-bottom:0; color:#444;">Todos los visitantes deben mantener una actitud respetuosa con el personal, otros usuarios y el entorno natural.</p>
+                    </div>
                 </div>
-                
-                <div class="rule-item">
-                    <h5><i class="fas fa-wine-bottle me-2"></i>Bebidas Alcohólicas</h5>
-                    <p>No se permite el ingreso de bebidas alcohólicas. El consumo de alcohol está estrictamente prohibido en todas las instalaciones.</p>
+                <div class="rule-item d-flex align-items-start mb-3">
+                    <i class="fas fa-tree fa-lg me-3" style="color:#009688;"></i>
+                    <div>
+                        <h5>Cuidado del entorno</h5>
+                        <p style="margin-bottom:0; color:#444;">Está prohibido dañar la flora, fauna o instalaciones. Utiliza los basureros y respeta las áreas delimitadas.</p>
+                    </div>
                 </div>
-                
-                <div class="rule-item">
-                    <h5><i class="fas fa-broom me-2"></i>Limpieza</h5>
-                    <p>Mantener el área limpia y libre de basura. Utilizar los contenedores de residuos dispuestos en todo el recinto.</p>
+                <div class="rule-item d-flex align-items-start mb-3">
+                    <i class="fas fa-ban fa-lg me-3" style="color:#e74c3c;"></i>
+                    <div>
+                        <h5>Prohibiciones</h5>
+                        <p style="margin-bottom:0; color:#444;">No se permite el ingreso de bebidas alcohólicas, drogas ni armas. Está prohibido fumar en zonas no habilitadas.</p>
+                    </div>
                 </div>
-                
-                <div class="rule-item">
-                    <h5><i class="fas fa-user-tie me-2"></i>Personal</h5>
-                    <p>Seguir las instrucciones del personal en todo momento. Ellos están para garantizar su seguridad y comodidad.</p>
+                <div class="rule-item d-flex align-items-start mb-3">
+                    <i class="fas fa-clock fa-lg me-3" style="color:#ff9800;"></i>
+                    <div>
+                        <h5>Horarios</h5>
+                        <p style="margin-bottom:0; color:#444;">Respeta los horarios de apertura y cierre. El ingreso fuera de horario no está permitido.</p>
+                    </div>
                 </div>
-                
-                <div class="rule-item">
-                    <h5><i class="fas fa-exclamation-triangle me-2"></i>Responsabilidad</h5>
-                    <p>El uso de las instalaciones es bajo su propio riesgo. La administración no se hace responsable por accidentes o daños causados por mal uso.</p>
-                </div>
-                
-                <div class="rule-item">
-                    <h5><i class="fas fa-swimming-pool me-2"></i>Artículo N°70 - Piscinas</h5>
-                    <p>NO PODRÁN INGRESAR A LAS PISCINAS PERSONAS QUE PORTEN PARCHES O VENDAS DE CUALQUIER TIPO O AFECCIONES DE LA PIEL, DE LAS MUCOSAS O DE LAS VÍAS RESPIRATORIAS, ASIMISMO QUIENES ESTÉN BAJO EL EFECTO DEL ALCOHOL O DROGAS.</p>
-                </div>
-                
-                <div class="rule-item">
-                    <h5><i class="fas fa-shower me-2"></i>Artículo N°71 - Higiene</h5>
-                    <p>LOS BAÑISTAS DEBEN TOMAR UN BAÑO JABONOSO COMPLETO DE DUCHA ANTES DE SALIR DE LOS CAMARINES. TODO BAÑISTA QUE SALGA DEL ÁREA DE ESPARCIMIENTO Y USE EL EXCUSADO, DEBERÁ LAVARSE CON JABÓN EN LAS DUCHAS ANTES DE REGRESAR A LA PISCINA. QUEDA PROHIBIDO ESCUPIR, SONARSE LA NARIZ O CONTAMINAR DE ALGUNA OTRA FORMA EL AGUA DE LA
-                </div>
-                
-                <div class="rule-item">
-                    <h5><i class="fas fa-ban me-2"></i>Artículo N°72 - Prohibiciones</h5>
-                    <p>SE PROHÍBE EL INGRESO Y CONSUMO DE BEBIDAS ALCOHÓLICAS ASÍ COMO DE SUSTANCIAS PROHIBIDAS POR LA LEY DE DROGAS DENTRO DEL RECINTO DE LA PISCINA.</p>
+                <div class="rule-item d-flex align-items-start mb-3">
+                    <i class="fas fa-user-shield fa-lg me-3" style="color:#0033cc;"></i>
+                    <div>
+                        <h5>Seguridad</h5>
+                        <p style="margin-bottom:0; color:#444;">Sigue las indicaciones del personal y ante cualquier emergencia, comunícate de inmediato con nosotros.</p>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                    <i class="fas fa-check me-2"></i>Entendido
-                </button>
+            <div class="modal-footer" style="border-bottom-left-radius:16px; border-bottom-right-radius:16px; background:#f8faff; border-top:none;">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" style="border-radius:30px; font-weight:600;">Cerrar</button>
             </div>
         </div>
     </div>
+</div>
+    </div>
+<script>
+// Mostrar/Ocultar secciones informativas con animación y botón X
+function toggleSection(sectionId) {
+    var section = document.getElementById(sectionId);
+    if (section.style.display === 'none' || section.style.display === '') {
+        section.style.display = 'block';
+        section.scrollIntoView({behavior:'smooth'});
+    } else {
+        section.style.display = 'none';
+    }
+}
+</script>
 </div>
 
 <!-- Aviso de mantención -->
@@ -1408,38 +1840,39 @@ textarea.form-control {
     <i class="fas fa-tools me-2"></i>Las canchas están en mantención. No se pueden realizar reservas en este momento.
 </div>
 
-<!-- Formulario de Cancelación de Reserva -->
+<!-- Formulario de Cancelación de Reserva Mejorado -->
 <div id="cancel-form" class="form-section">
-    <div class="reservation-section">
-        <h3 class="text-center mb-4">
-            <i class="fas fa-times-circle me-2"></i>Cancelar Reserva
-        </h3>
-        <p class="text-center text-muted mb-4">Ingrese su RUT o número telefónico para buscar su reserva.</p>
+    <div class="reservation-section shadow-lg border-0" style="background: linear-gradient(120deg, #f8fafc 60%, #e3f0ff 100%);">
+        <div class="text-center mb-4">
+            <span class="d-inline-block bg-danger bg-gradient rounded-circle p-3 mb-2"><i class="fas fa-times-circle fa-2x text-white"></i></span>
+            <h3 class="fw-bold text-danger mb-1" style="letter-spacing:1px;">Cancelar Reserva</h3>
+            <p class="text-muted mb-0">Ingrese su <b>número telefónico</b> para buscar su reserva.</p>
+        </div>
         <form id="cancelReservationForm" class="needs-validation" novalidate>
-            <div class="row g-3">
-                <div class="col-8">
+            <div class="row g-3 align-items-end mb-2">
+                <div class="col-12 col-md-8">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="cancel-contact" placeholder="Ej: 12.345.678-9 o +56 9 1234 5678" required autofocus>
-                        <label for="cancel-contact"><i class="fas fa-id-card me-2"></i>RUT o Teléfono</label>
-                        <div class="invalid-feedback">Ingrese un RUT válido o un número telefónico válido.</div>
+                        <input type="text" class="form-control border-danger-subtle" id="cancel-contact" placeholder="Ej: 12.345.678-9 o +56 9 1234 5678" required autofocus>
+                        <label for="cancel-contact"><i class="fas fa-id-card me-2"></i> Teléfono</label>
+                        <div class="invalid-feedback">Ingrese un un número telefónico válido.</div>
                     </div>
                 </div>
-                <div class="col-4 d-flex align-items-end">
-                    <button type="button" class="btn btn-primary" id="btnBuscarReserva" style="padding: 6px 12px; font-size: 0.85rem; min-width: 120px;">
+                <div class="col-12 col-md-4">
+                    <button type="button" class="btn btn-danger w-100 py-2" id="btnBuscarReserva">
                         <i class="fas fa-search me-2"></i>Buscar Reserva
                     </button>
                 </div>
             </div>
             <div id="listaReservasCancel" class="mt-4" style="display:none;">
-                <label for="selectReservaCancel" class="form-label">Seleccione la reserva a cancelar:</label>
-                <select id="selectReservaCancel" class="form-select"></select>
+                <label for="selectReservaCancel" class="form-label fw-semibold">Seleccione la reserva a cancelar:</label>
+                <select id="selectReservaCancel" class="form-select border-danger-subtle"></select>
             </div>
             <div id="datosReservaCancel" class="mt-4" style="display:none;"></div>
-            <div class="text-center mt-4 d-grid gap-2 d-md-flex justify-content-md-center">
-                <button type="button" class="btn btn-danger btn-lg me-3" id="btnCancelarReserva" disabled>
-                    <i class="fas fa-times-circle me-2"></i>Eliminar Reserva
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-2 mt-4">
+                <button type="button" class="btn btn-danger btn-sm px-3 shadow-sm" id="btnCancelarReserva" disabled>
+                    <i class="fas fa-trash-alt me-2"></i>Eliminar Reserva
                 </button>
-                <button type="button" class="btn btn-outline-secondary btn-lg" onclick="hideForms()">
+                <button type="button" class="btn btn-outline-secondary btn-sm px-3" onclick="hideForms()">
                     <i class="fas fa-times me-2"></i>Cancelar
                 </button>
             </div>
@@ -1447,86 +1880,87 @@ textarea.form-control {
     </div>
 </div>
 
-<!-- Formulario de Reserva Mejorado -->
+<!-- Formulario de Reserva Mejorado y Profesional -->
 <div id="reserva-form" class="form-section">
-    <div class="reservation-section">
-        <h3 class="text-center mb-4">
-            <i class="fas fa-calendar-check me-2"></i>Reserva de Cancha
-        </h3>
-        <p class="text-center text-muted mb-4">Complete el formulario para reservar su cancha. Valor: <strong>$24.000 por hora</strong>.</p>
+    <div class="reservation-section shadow-lg border-0" style="background: linear-gradient(120deg, #f8fafc 60%, #e3f0ff 100%);">
+        <div class="text-center mb-4">
+            <span class="d-inline-block bg-primary bg-gradient rounded-circle p-3 mb-2"><i class="fas fa-calendar-check fa-2x text-white"></i></span>
+            <h3 class="fw-bold text-primary mb-1" style="letter-spacing:1px;">Reserva de Cancha</h3>
+            <p class="text-muted mb-0">Complete el formulario para reservar su cancha.<br><span class="badge bg-primary bg-gradient">Valor: $24.000 por hora</span></p>
+        </div>
         <form id="reservationForm" class="needs-validation" novalidate>
-<fieldset class="border rounded-3 p-3 mb-3 shadow-sm">
-    <legend class="float-none w-auto px-3 fs-6 fw-bold text-primary mb-2">
-        <i class="fas fa-calendar-check me-2"></i>Datos de la Reserva
-    </legend>
-    <div class="row g-3">
-        <div class="col-md-4">
-            <div class="form-floating">
-                <select class="form-select" id="cancha" required>
-                    <option value="" disabled selected>Seleccione una cancha</option>
-                    <option value="Cancha 1">Cancha 1</option>
-                    <option value="Cancha 2">Cancha 2</option>
-                </select>
-                <label for="cancha"><i class="fas fa-futbol me-2"></i>Cancha</label>
-                <div class="invalid-feedback">Seleccione una cancha.</div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-floating">
-                <input type="date" class="form-control" id="date" required>
-                <label for="date"><i class="fas fa-calendar-alt me-2"></i>Fecha de Reserva</label>
-                <div class="invalid-feedback">Seleccione una fecha válida.</div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-floating">
-                <select class="form-select" id="cantidad-horas" required>
-                    <option value="1" selected>1 hora</option>
-                    <option value="2">2 horas</option>
-                    <option value="3">3 horas</option>
-                    <option value="4">4 horas</option>
-                    <option value="5">5 horas</option>
-                </select>
-                <label for="cantidad-horas"><i class="fas fa-clock me-2"></i>Cantidad de horas</label>
-                <div class="invalid-feedback">Seleccione la cantidad de horas.</div>
-            </div>
-        </div>
-    </div>
-    <div class="mt-3">
-        <label class="form-label fw-semibold">Horarios Disponibles</label>
-        <div class="time-slots" id="timeSlots"></div>
-        <input type="hidden" id="selected-time" required>
-    </div>
-</fieldset>
-            <fieldset class="border rounded-3 p-3 mb-3 shadow-sm">
+            <fieldset class="border rounded-3 p-3 mb-3 shadow-sm bg-white">
+                <legend class="float-none w-auto px-3 fs-6 fw-bold text-primary mb-2">
+                    <i class="fas fa-calendar-check me-2"></i>Datos de la Reserva
+                </legend>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <select class="form-select border-primary-subtle" id="cancha" required>
+                                <option value="" disabled selected>Seleccione una cancha</option>
+                                <option value="Cancha 1">Cancha 1</option>
+                                <option value="Cancha 2">Cancha 2</option>
+                            </select>
+                            <label for="cancha"><i class="fas fa-futbol me-2"></i>Cancha</label>
+                            <div class="invalid-feedback">Seleccione una cancha.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <input type="date" class="form-control border-primary-subtle" id="date" required>
+                            <label for="date"><i class="fas fa-calendar-alt me-2"></i>Fecha de Reserva</label>
+                            <div class="invalid-feedback">Seleccione una fecha válida.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <select class="form-select border-primary-subtle" id="cantidad-horas" required>
+                                <option value="1" selected>1 hora</option>
+                                <option value="2">2 horas</option>
+                                <option value="3">3 horas</option>
+                                <option value="4">4 horas</option>
+                                <option value="5">5 horas</option>
+                            </select>
+                            <label for="cantidad-horas"><i class="fas fa-clock me-2"></i>Cantidad de horas</label>
+                            <div class="invalid-feedback">Seleccione la cantidad de horas.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <label class="form-label fw-semibold">Horarios Disponibles</label>
+                    <div class="time-slots" id="timeSlots"></div>
+                    <input type="hidden" id="selected-time" required>
+                </div>
+            </fieldset>
+            <fieldset class="border rounded-3 p-3 mb-3 shadow-sm bg-white">
                 <legend class="float-none w-auto px-3 fs-6 fw-bold text-primary mb-2">
                     <i class="fas fa-user me-2"></i>Datos de Contacto
                 </legend>
                 <div class="row g-3 align-items-center">
-                <div class="col-md-4">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="name" placeholder="Nombre completo" required>
-                        <label for="name"><i class="fas fa-user me-2"></i>Nombre</label>
-                        <div class="invalid-feedback">Ingrese su nombre completo.</div>
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control border-primary-subtle" id="name" placeholder="Nombre completo" required>
+                            <label for="name"><i class="fas fa-user me-2"></i>Nombre</label>
+                            <div class="invalid-feedback">Ingrese su nombre completo.</div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-floating">
-                        <input type="tel" class="form-control" id="phone" placeholder="+56 9 1234 5678" required>
-                        <label for="phone"><i class="fas fa-phone me-2"></i>Teléfono</label>
-                        <div class="invalid-feedback">Ingrese un teléfono válido.</div>
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <input type="tel" class="form-control border-primary-subtle" id="phone" placeholder="+56 9 1234 5678" required>
+                            <label for="phone"><i class="fas fa-phone me-2"></i>Teléfono</label>
+                            <div class="invalid-feedback">Ingrese un teléfono válido.</div>
+                        </div>
                     </div>
-                </div>
                 </div>
             </fieldset>
-            <fieldset class="border rounded-3 p-3 mb-3 shadow-sm">
+            <fieldset class="border rounded-3 p-3 mb-3 shadow-sm bg-white">
                 <legend class="float-none w-auto px-3 fs-6 fw-bold text-primary mb-2">
                     <i class="fas fa-credit-card me-2"></i>Pago y Comentarios
                 </legend>
                 <div class="row g-3">
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <select class="form-select" id="payment" required>
+                            <select class="form-select border-primary-subtle" id="payment" required>
                                 <option value="" disabled selected>Seleccione un método de pago</option>
                                 <option value="Transferencia">Transferencia Bancaria (En el lugar)</option>
                                 <option value="Efectivo">Efectivo en el lugar</option>
@@ -1538,25 +1972,25 @@ textarea.form-control {
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <textarea class="form-control" id="comments" placeholder="Comentarios adicionales" style="height: 58px"></textarea>
+                            <textarea class="form-control border-primary-subtle" id="comments" placeholder="Comentarios adicionales" style="height: 58px"></textarea>
                             <label for="comments"><i class="fas fa-comment-dots me-2"></i>Comentarios</label>
                         </div>
                     </div>
                 </div>
             </fieldset>
-            <div class="alert alert-info mt-4">
+            <div class="alert alert-info mt-4 shadow-sm">
                 <i class="fas fa-info-circle me-2"></i>
                 <strong>Nota:</strong> El pago debe realizarse antes de utilizar las instalaciones.
             </div>
             <div class="mb-3 text-end">
                 <span id="total-pagar" class="fw-bold fs-5"></span>
             </div>
-            <div class="text-center mt-4 d-grid gap-2 d-md-flex justify-content-md-center">
-                <button type="submit" class="btn btn-primary btn-lg me-3">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-2 mt-4">
+                <button type="submit" class="btn btn-primary btn-sm px-3 shadow-sm">
                     <span class="spinner-border spinner-border-sm d-none" id="spinnerReserva" role="status" aria-hidden="true"></span>
                     <i class="fas fa-paper-plane me-2"></i>Enviar Reserva
                 </button>
-                <button type="button" class="btn btn-outline-secondary btn-lg" onclick="hideForms()">
+                <button type="button" class="btn btn-outline-secondary btn-sm px-3" onclick="hideForms()">
                     <i class="fas fa-times me-2"></i>Cancelar
                 </button>
             </div>
@@ -1564,43 +1998,44 @@ textarea.form-control {
     </div>
 </div>
 
-<!-- Formulario de Solicitud de Cotización Mejorado -->
+<!-- Formulario de Solicitud de Cotización Mejorado y Profesional -->
 <div id="cotizacion-form" class="form-section">
-    <div class="quote-section">
-        <h3 class="text-center mb-4">
-            <i class="fas fa-clipboard-list me-2"></i>Solicitud de Cotización
-        </h3>
-        <p class="text-center text-muted mb-4">Complete el formulario para solicitar una cotización para su evento.</p>
+    <div class="quote-section shadow-lg border-0" style="background: linear-gradient(120deg, #f8fafc 60%, #e3f0ff 100%);">
+        <div class="text-center mb-4">
+            <span class="d-inline-block bg-info bg-gradient rounded-circle p-3 mb-2"><i class="fas fa-clipboard-list fa-2x text-white"></i></span>
+            <h3 class="fw-bold text-info mb-1" style="letter-spacing:1px;">Solicitud de Cotización</h3>
+            <p class="text-muted mb-0">Complete el formulario para solicitar una cotización para su evento.</p>
+        </div>
         <form id="quoteForm" class="needs-validation" novalidate>
-            <fieldset class="border rounded-3 p-3 mb-3 shadow-sm">
-                <legend class="float-none w-auto px-3 fs-6 fw-bold text-primary mb-2">
+            <fieldset class="border rounded-3 p-3 mb-3 shadow-sm bg-white">
+                <legend class="float-none w-auto px-3 fs-6 fw-bold text-info mb-2">
                     <i class="fas fa-user me-2"></i>Datos de Contacto
                 </legend>
                 <div class="row g-3">
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="contact-name" placeholder="Nombre completo" required>
+                            <input type="text" class="form-control border-info-subtle" id="contact-name" placeholder="Nombre completo" required>
                             <label for="contact-name"><i class="fas fa-user me-2"></i>Nombre Completo</label>
                             <div class="invalid-feedback">Ingrese su nombre completo.</div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <input type="tel" class="form-control" id="contact-phone" placeholder="+56 9 1234 5678" required>
+                            <input type="tel" class="form-control border-info-subtle" id="contact-phone" placeholder="+56 9 1234 5678" required>
                             <label for="contact-phone"><i class="fas fa-phone me-2"></i>Teléfono</label>
                             <div class="invalid-feedback">Ingrese un teléfono válido.</div>
                         </div>
                     </div>
                 </div>
             </fieldset>
-            <fieldset class="border rounded-3 p-3 mb-3 shadow-sm">
-                <legend class="float-none w-auto px-3 fs-6 fw-bold text-primary mb-2">
+            <fieldset class="border rounded-3 p-3 mb-3 shadow-sm bg-white">
+                <legend class="float-none w-auto px-3 fs-6 fw-bold text-info mb-2">
                     <i class="fas fa-calendar-alt me-2"></i>Detalles del Evento
                 </legend>
                 <div class="row g-3">
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <select class="form-select" id="quote-type" required>
+                            <select class="form-select border-info-subtle" id="quote-type" required>
                                 <option value="" disabled selected>Seleccione un recinto</option>
                                 <option value="Piscina">Piscina</option>
                                 <option value="Cancha">Cancha</option>
@@ -1613,7 +2048,7 @@ textarea.form-control {
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <select class="form-select" id="event-type" required>
+                            <select class="form-select border-info-subtle" id="event-type" required>
                                 <option value="" disabled selected>Tipo de evento</option>
                                 <option value="Cumpleaños">Cumpleaños</option>
                                 <option value="Matrimonio">Matrimonio</option>
@@ -1628,24 +2063,24 @@ textarea.form-control {
                 <div class="row g-3 mt-2">
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <input type="date" class="form-control" id="quote-date" required>
+                            <input type="date" class="form-control border-info-subtle" id="quote-date" required>
                             <label for="quote-date"><i class="fas fa-calendar-alt me-2"></i>Fecha tentativa</label>
                             <div class="invalid-feedback">Seleccione una fecha.</div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <textarea class="form-control" id="event-description" placeholder="Detalles adicionales" style="height: 58px"></textarea>
+                            <textarea class="form-control border-info-subtle" id="event-description" placeholder="Detalles adicionales" style="height: 58px"></textarea>
                             <label for="event-description"><i class="fas fa-comment-dots me-2"></i>Detalles adicionales</label>
                         </div>
                     </div>
                 </div>
             </fieldset>
-            <div class="text-center mt-4 d-grid gap-2 d-md-flex justify-content-md-center">
-                <button type="submit" class="btn btn-primary btn-lg me-3">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-2 mt-4">
+                <button type="submit" class="btn btn-info btn-sm px-3 shadow-sm text-white">
                     <i class="fas fa-paper-plane me-2"></i>Enviar Cotización
                 </button>
-                <button type="button" class="btn btn-outline-secondary btn-lg" onclick="hideForms()">
+                <button type="button" class="btn btn-outline-secondary btn-sm px-3" onclick="hideForms()">
                     <i class="fas fa-times me-2"></i>Cancelar
                 </button>
             </div>
@@ -1654,6 +2089,34 @@ textarea.form-control {
 </div>
 
 <script>
+// Mejor scroll de galería: muestra más imágenes al presionar flecha y desactiva si no hay más
+function scrollGallery(direction) {
+    var carousel = document.getElementById('galleryCarousel');
+    if (!carousel) return;
+    var item = carousel.querySelector('.gallery-item');
+    var scrollAmount = item ? (item.offsetWidth + 20) * 2 : 200; // 2 imágenes
+    var maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+    var newScrollLeft = carousel.scrollLeft + direction * scrollAmount;
+    // Limitar el scroll para no pasar el borde
+    if (newScrollLeft < 0) {
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+        return;
+    }
+    if (newScrollLeft > maxScrollLeft - 5) {
+        carousel.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
+        return;
+    }
+    carousel.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+}
+// Scroll suave al formulario correspondiente
+function scrollToForm(formId) {
+    setTimeout(function() {
+        var el = document.getElementById(formId);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, 200);
+}
 document.addEventListener('DOMContentLoaded', function() {
   const quoteForm = document.getElementById('quoteForm');
   if (quoteForm) {
@@ -1677,6 +2140,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Enviar mensaje a Telegram
       enviarATelegram(mensaje);
+
+      // Enviar boleta/cotización al WhatsApp del cliente
+      const boleta = `*Cotización Recibida*%0A%0A*Nombre:* ${nombre}%0A*Teléfono:* ${telefono}%0A*Recinto:* ${recinto}%0A*Tipo de Evento:* ${tipoEvento}%0A*Fecha Tentativa:* ${fecha}%0A*Detalles:* ${detalles}`;
+      const urlWsp = `https://wa.me/${telefono.replace('+','')}?text=${boleta}`;
+      window.open(urlWsp, '_blank');
 
       alert('✅ Cotización enviada correctamente. ¡Gracias!');
       quoteForm.reset();
@@ -1788,59 +2256,186 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </div>
 <!-- Botón para abrir el login de admin -->
-<button class="btn btn-outline-warning btn-sm" id="adminLoginBtn" style="position:fixed;bottom:20px;right:20px;z-index:2000;">
+<button class="btn btn-admin-float" id="adminLoginBtn" style="position:fixed;bottom:20px;right:20px;z-index:2000;">
     <i class="fas fa-user-shield"></i> Admin
 </button>
 
 <!-- Modal de Login Admin -->
 <div class="modal fade" id="adminLoginModal" tabindex="-1" aria-labelledby="adminLoginModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+    <div class="modal-content" style="border-radius:18px; box-shadow:0 8px 32px #0033cc22;">
       <form id="adminLoginForm">
-        <div class="modal-header bg-warning">
-          <h5 class="modal-title" id="adminLoginModalLabel"><i class="fas fa-user-shield me-2"></i>Acceso Administrador</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        <div class="modal-header" style="background:linear-gradient(90deg,#0033cc 60%,#4fc3f7 100%); color:#fff; border-top-left-radius:18px; border-top-right-radius:18px; border-bottom:none;">
+          <h5 class="modal-title d-flex align-items-center gap-2" id="adminLoginModalLabel" style="font-family:'Montserrat',sans-serif; font-size:1.25rem;">
+            <i class="fas fa-user-shield"></i> Acceso Administrador
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="background:#f8faff; padding:32px 28px 24px 28px;">
           <div class="mb-3">
-            <label for="admin-user" class="form-label">Usuario</label>
-            <input type="text" class="form-control" id="admin-user" required>
+            <label for="admin-user" class="form-label" style="font-weight:600; color:#0033cc;">Usuario</label>
+            <input type="text" class="form-control" id="admin-user" required style="border-radius:12px;">
           </div>
           <div class="mb-3">
-            <label for="admin-pass" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="admin-pass" required>
+            <label for="admin-pass" class="form-label" style="font-weight:600; color:#0033cc;">Contraseña</label>
+            <input type="password" class="form-control" id="admin-pass" required style="border-radius:12px;">
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-warning">Ingresar</button>
+        <div class="modal-footer" style="border-bottom-left-radius:18px; border-bottom-right-radius:18px; background:#f8faff; border-top:none;">
+          <button type="submit" class="btn btn-admin-login w-100" style="border-radius:30px; font-weight:700; font-size:1.08rem; background:linear-gradient(90deg,#0033cc 60%,#4fc3f7 100%); color:#fff; border:none; box-shadow:0 4px 14px #0033cc22;">Ingresar</button>
         </div>
       </form>
     </div>
   </div>
 </div>
+<style>
+.btn-admin-float {
+  background: linear-gradient(90deg, #0033cc 60%, #4fc3f7 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1.08rem;
+  box-shadow: 0 4px 16px #0033cc22;
+  padding: 10px 28px;
+  transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-admin-float:hover {
+  background: linear-gradient(90deg, #4fc3f7 60%, #0033cc 100%);
+  color: #fff;
+  box-shadow: 0 8px 24px #0033cc33;
+}
+.btn-admin-login:hover {
+  background: linear-gradient(90deg, #4fc3f7 60%, #0033cc 100%);
+  color: #fff;
+  box-shadow: 0 8px 24px #0033cc33;
+}
+</style>
 
 
 <!-- Panel de Administrador Mejorado y Visualmente Moderno -->
 <style>
 #adminPanelModal .modal-header {
-  background: linear-gradient(90deg, #0033cc 60%, #0099ff 100%);
+  background: linear-gradient(90deg, #0033cc 60%, #4fc3f7 100%);
   color: #fff;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  box-shadow: 0 4px 18px #0033cc22;
 }
 #adminPanelModal .modal-title {
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  font-size: 1.35rem;
+  font-family: 'Montserrat', 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-#adminPanelModal .admin-menu-btns .btn {
-  min-width: 180px;
-  font-size: 1.08rem;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 8px rgba(0,51,204,0.08);
+#adminPanelModal .modal-content {
+  border-radius: 18px;
+  box-shadow: 0 8px 32px #0033cc22;
+  border: none;
 }
 #adminPanelModal .admin-menu-btns {
-  gap: 18px;
+  display: flex;
   flex-wrap: wrap;
+  gap: 18px;
   justify-content: center;
   margin-bottom: 30px;
+}
+#adminPanelModal .admin-menu-btns .btn {
+  min-width: 210px;
+  font-size: 1.11rem;
+  font-weight: 700;
+  border-radius: 999px 32px 999px 999px/999px 999px 48px 999px;
+  padding: 15px 30px 15px 24px;
+  box-shadow: 0 4px 18px #0033cc22, 0 1.5px 0 #e3f0ff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, border 0.18s, transform 0.13s;
+}
+#adminPanelModal .admin-menu-btns .btn:after {
+  content: '';
+  position: absolute;
+  right: 0; bottom: 0;
+  width: 54px; height: 54px;
+  background: linear-gradient(135deg, #4fc3f7 0%, #e3f0ff 100%);
+  border-bottom-right-radius: 32px;
+  z-index: 1;
+  opacity: 0.18;
+  pointer-events: none;
+  transition: opacity 0.18s;
+}
+#adminPanelModal .admin-menu-btns .btn > * {
+  position: relative;
+  z-index: 2;
+}
+#adminPanelModal .admin-menu-btns .btn:hover {
+  box-shadow: 0 8px 32px #0033cc33;
+  transform: translateY(-2px) scale(1.03);
+}
+#adminPanelModal .admin-menu-btns .btn-blue {
+  color: #0033cc;
+  background: #fff;
+  border: 2.5px solid #1976d2;
+}
+#adminPanelModal .admin-menu-btns .btn-blue:hover {
+  background: linear-gradient(90deg, #0033cc 60%, #4fc3f7 100%);
+  color: #fff;
+  border-color: #0033cc;
+  box-shadow: 0 8px 32px #0033cc33;
+}
+#adminPanelModal .admin-menu-btns .btn-red {
+  color: #c62828;
+  background: #fff;
+  border: 2.5px solid #e57373;
+}
+#adminPanelModal .admin-menu-btns .btn-red:hover {
+  background: linear-gradient(90deg, #e53935 60%, #ffb3b3 100%);
+  color: #fff;
+  border-color: #c62828;
+  box-shadow: 0 8px 32px #e5393522;
+}
+#adminPanelModal .admin-menu-btns .btn-green {
+  color: #2e7d32;
+  background: #fff;
+  border: 2.5px solid #81c784;
+}
+#adminPanelModal .admin-menu-btns .btn-green:hover {
+  background: linear-gradient(90deg, #43a047 60%, #b9f6ca 100%);
+  color: #fff;
+  border-color: #2e7d32;
+  box-shadow: 0 8px 32px #43a04722;
+}
+#adminPanelModal .admin-menu-btns .btn-yellow {
+  color: #f9a825;
+  background: #fff;
+  border: 2.5px solid #ffe082;
+}
+#adminPanelModal .admin-menu-btns .btn-yellow:hover {
+  background: linear-gradient(90deg, #ffd600 60%, #fffde7 100%);
+  color: #fff;
+  border-color: #f9a825;
+  box-shadow: 0 8px 32px #ffd60022;
+}
+#adminPanelModal .admin-menu-btns .btn-gray {
+  color: #444;
+  background: #eceff1;
+  border: 2.5px solid #b0bec5;
+}
+#adminPanelModal .admin-menu-btns .btn-gray:hover {
+  background: linear-gradient(90deg, #78909c 60%, #eceff1 100%);
+  color: #fff;
+  border-color: #78909c;
+  box-shadow: 0 8px 32px #78909c22;
 }
 #adminPanelModal .admin-section {
   display: none;
@@ -1868,13 +2463,25 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="modal-body">
         <div id="admin-main-menu" class="admin-section active">
-          <div class="d-flex admin-menu-btns">
-            <button class="btn btn-outline-primary" onclick="showAdminSection('admin-reserva-section')"><i class="fas fa-phone-alt me-2"></i>Reservas Telefónicas</button>
-            <button class="btn btn-outline-danger" onclick="bloquearReservasAdmin()"><i class="fas fa-ban me-2"></i>Bloquear Reservas</button>
-            <button class="btn btn-outline-success" onclick="habilitarReservasAdmin()"><i class="fas fa-check-circle me-2"></i>Habilitar Reservas</button>
-            <button class="btn btn-outline-primary" onclick="restablecerHorarios()"><i class="fas fa-redo me-2"></i>Restablecer Horarios</button>
-            <button class="btn btn-outline-warning" onclick="showAdminSection('admin-horario-section')"><i class="fas fa-clock me-2"></i>Horario Especial</button>
-            <button class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Panel</button>
+          <div class="admin-menu-btns d-flex">
+            <button class="btn btn-blue" onclick="showAdminSection('admin-reserva-section')">
+              <i class="fas fa-phone-alt me-2"></i>Reservas Telefónicas
+            </button>
+            <button class="btn btn-red" onclick="bloquearReservasAdmin()">
+              <i class="fas fa-ban me-2"></i>Bloquear Reservas
+            </button>
+            <button class="btn btn-green" onclick="habilitarReservasAdmin()">
+              <i class="fas fa-check-circle me-2"></i>Habilitar Reservas
+            </button>
+            <button class="btn btn-blue" onclick="restablecerHorarios()">
+              <i class="fas fa-redo me-2"></i>Restablecer Horarios
+            </button>
+            <button class="btn btn-yellow" onclick="showAdminSection('admin-horario-section')">
+              <i class="fas fa-clock me-2"></i>Horario Especial
+            </button>
+            <button class="btn btn-gray" data-bs-dismiss="modal">
+              <i class="fas fa-sign-out-alt me-2"></i>Cerrar Panel
+            </button>
           </div>
         </div>
         <div id="admin-reserva-section" class="admin-section">
@@ -1907,11 +2514,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <div class="col-md-4">
                   <div class="form-floating">
-                    <select class="form-select" id="admin-cantidad-horas" required>
-                      <option value="1" selected>1 hora</option>
-                      <option value="2">2 horas</option>
-                      <option value="3">3 horas</option>
-                      <option value="4">4 horas</option>
                       <option value="5">5 horas</option>
                     </select>
                     <label for="admin-cantidad-horas"><i class="fas fa-clock me-2"></i>Cantidad de horas</label>
@@ -2109,9 +2711,11 @@ function cargarReservasDesdeFirebase() {
 cargarReservasDesdeFirebase();
 
 // Escuchar cambios en mantención y actualizar UI
+window.mantencionActiva = false;
 function actualizarMantencionUI(mantencion) {
   const aviso = document.getElementById('mantencionAviso');
   const btnReserva = document.querySelector('.btn-reserva');
+  window.mantencionActiva = !!mantencion;
   if (mantencion) {
     if (aviso) aviso.style.display = 'block';
     if (btnReserva) btnReserva.style.display = 'none';
@@ -2121,7 +2725,8 @@ function actualizarMantencionUI(mantencion) {
   }
 }
 db.ref('mantencion').on('value', function(snapshot) {
-  actualizarMantencionUI(!!snapshot.val());
+  const mant = !!snapshot.val();
+  actualizarMantencionUI(mant);
 });
 
 // Asegura que las funciones estén en el scope global para los botones del panel admin
@@ -2142,7 +2747,12 @@ window.habilitarReservasAdmin = function() {
   alert('¡Reservas habilitadas nuevamente!');
 };
 // Mostrar formularios principales
+// Bloquea apertura de formularios si está en mantención
 window.showForm = function(tipo) {
+  if (window.mantencionActiva) {
+    alert('⛔ Las reservas están temporalmente bloqueadas por mantención. Intenta más tarde.');
+    return;
+  }
   hideAllSections();
   if (tipo === 'reserva') {
     const reservaForm = document.getElementById('reserva-form');
@@ -2150,7 +2760,6 @@ window.showForm = function(tipo) {
       reservaForm.style.display = 'block';
       reservaForm.classList.add('active');
     }
-    // Generar horarios disponibles al mostrar el formulario de reserva
     generarHorariosDisponibles();
   } else if (tipo === 'cotizacion') {
     const cotizacionForm = document.getElementById('cotizacion-form');
